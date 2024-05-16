@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Bill here.
+ * Bill, our lightsaber weilding vampish friend.
  * 
  * @author Devin Joe
  * @version 2024-01-30

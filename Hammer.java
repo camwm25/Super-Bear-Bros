@@ -2,22 +2,18 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.lang.Math;
 
 /**
- * Write a description of class Lightsaber here.
+ * Gordon's Mom's Hammer.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Cam Welch Morgan and Devin Joe
+ * @version 2024-05-16
  */
-public class Hammer extends ForegroundObject
+public class Hammer extends Weapon
 {
-    int bearerNumber;
-    int direction;    
-    int timer = 3;
     
     GreenfootImage hammer;
     
     public Hammer(int bearerNumber, int direction) {
-        this.bearerNumber = bearerNumber;
-        this.direction = direction;
+        super(bearerNumber, direction, 3);
         hammer = new GreenfootImage("hammer.png");
         hammer.scale(3*hammer.getWidth() / 4, 3*hammer.getHeight() / 4);
         hammer.setTransparency(0);

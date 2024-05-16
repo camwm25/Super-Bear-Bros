@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Ground here.
+ * Objects you can stand on.
  * 
  * @author Devin Joe
  * @version 2024-01-31

@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Beans here.
+ * Bear's trusty bean can(s).
  * 
  * @author Devin Joe & Cam Welch Morgan 
  * @version 2024-05-16
@@ -80,6 +80,8 @@ public class Beans extends PhysicsObject
     private void checkHit() {
         thrower = (Bear) ((Map) getWorld()).getPlayer(throwerNumber);
         
+        //will explode upon seeing any players, hammers or beans
+        
         beanTimer++;
         if (beanTimer >= 600) {
             thrower.updateCurrentBean(beanNumber);
@@ -106,7 +108,6 @@ public class Beans extends PhysicsObject
                     }
                 }
                 explosionTimer = 1;
-
             }
             for (Hammer h : getIntersectingObjects(Hammer.class)) {
                 explosionTimer = 8;

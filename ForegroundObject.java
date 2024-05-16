@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class ForegroundObject here.
+ * Objects seen in the foreground of the game.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Cam Welch Morgan and Devin Joe
+ * @version 2024-05-16
  */
 public abstract class ForegroundObject extends Actor
 {

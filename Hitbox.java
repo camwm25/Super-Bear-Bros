@@ -2,10 +2,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.lang.Math;
 
 /**
- * Write a description of class hitbox here.
+ * Invisible hitboxes for close range attacks.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Cam Welch Morgan
+ * @version 2024-01-30
  */
 public class Hitbox extends ForegroundObject
 {

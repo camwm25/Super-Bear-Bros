@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class PhysicsObject here.
+ * Foreground object which experiences physical forces (gravity, friction, etc).
  * 
  * @author Devin Joe
  * @version 2024-01-31

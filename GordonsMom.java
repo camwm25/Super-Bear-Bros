@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class GordonsMom here.
+ * Scary woman with a big hammer.
  * 
  * @author Devin Joe
  * @version 2024-01-30

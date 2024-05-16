@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class GameButton here.
+ * Button clicked to start the game.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Cam Welch Morgan
+ * @version 2024-01-12
  */
 public class GameButton extends Button
 {

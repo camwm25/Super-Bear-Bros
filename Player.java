@@ -2,7 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.lang.Math;
 
 /**
- * Write a description of class Player here.
+ * All players.
  * 
  * @author Devin Joe & Cam Welch Morgan
  * @version 2024-05-16

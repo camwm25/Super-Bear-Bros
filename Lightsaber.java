@@ -2,22 +2,18 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.lang.Math;
 
 /**
- * Write a description of class Lightsaber here.
+ * Bill's Lightsaber.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Cam Welch Morgan and Devin Joe
+ * @version 2024-05-16
  */
-public class Lightsaber extends ForegroundObject
+public class Lightsaber extends Weapon
 {
-    int bearerNumber;
-    int direction;    
-    int timer = 7;
-    
+   
     GreenfootImage lightsaber;
     
     public Lightsaber(int bearerNumber, int direction) {
-        this.bearerNumber = bearerNumber;
-        this.direction = direction;
+        super(bearerNumber, direction, 7);
         lightsaber = new GreenfootImage("lightsaber.png");
         lightsaber.setTransparency(0);
         setImage(lightsaber);

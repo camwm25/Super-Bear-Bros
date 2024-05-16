@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Bear here.
+ * Big, burly bear, buff bean by bean.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Cam Welch Morgan
+ * @version 2024-05-16
  */
 public class Bear extends Player
 {

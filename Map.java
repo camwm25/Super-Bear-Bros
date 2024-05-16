@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Map here.
+ * All maps.
  * 
  * @author Devin Joe
  * @version 2024-01-09
