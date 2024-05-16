@@ -3,14 +3,19 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Beans here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Devin Joe & Cam Welch Morgan 
+ * @version 2024-05-16
  */
 public class Beans extends PhysicsObject
 {
     int beanTimer = 0;
     int throwerNumber;
     Bear thrower;
+    
+    /*
+     * Identifies this Beans with a unique number to prevent having too many
+     * beans in the map.
+     */
     int beanNumber;
     int explosionTimer = 0;
     
