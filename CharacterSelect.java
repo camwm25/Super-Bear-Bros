@@ -15,7 +15,7 @@ public class CharacterSelect extends GameScreen
     private int numOfCharacters = 2;
     
     private Selectable[] selectableList = new Selectable[numOfCharacters];
-    private NonSelectable[] nonSelectableList = new NonSelectable[2];
+    private Icon[] nonSelectableList = new Icon[2];
     
     public CharacterSelect() {
         super();
@@ -55,7 +55,7 @@ public class CharacterSelect extends GameScreen
             characterTwo = s;
             currentCharacter = 3;
             
-            NonSelectable two = new NonSelectable(s, 5);
+            Icon two = new Icon(s, 5);
             addObject(two, 760, 430);
             nonSelectableList[1] = two;
             
@@ -66,7 +66,7 @@ public class CharacterSelect extends GameScreen
         else if (currentCharacter == 1){
             characterOne = s;
             currentCharacter = 2;
-            NonSelectable one = new NonSelectable(s, 5);
+            Icon one = new Icon(s, 5);
             nonSelectableList[0] = one;
             addObject(one, 200, 430);
             //add text for player one
@@ -92,7 +92,7 @@ public class CharacterSelect extends GameScreen
     
     public void makeNonSelectablesDisappear() {
         for (int i = 0; i < nonSelectableList.length; i++) {
-            NonSelectable n = nonSelectableList[i];
+            Icon n = nonSelectableList[i];
             removeObject(n);
         }
     }

@@ -11,7 +11,7 @@ public abstract class Map extends GameScreen
     private String characterOne;
     private String characterTwo;
     
-    private NonSelectable[] iconList = new NonSelectable[2];
+    private Icon[] iconList = new Icon[2];
     
     private double camX = 0;
     private double camY = 0;
@@ -49,7 +49,7 @@ public abstract class Map extends GameScreen
         
         goToScreen(); 
         
-        setPaintOrder(NonSelectable.class, Player.class, Lightsaber.class, Hammer.class, Beans.class, Hitbox.class, Ground.class);
+        setPaintOrder(Icon.class, Player.class, Lightsaber.class, Hammer.class, Beans.class, Hitbox.class, Ground.class);
     }
     
     public void changeHealth(int damage, int playerNumber) {
@@ -127,7 +127,7 @@ public abstract class Map extends GameScreen
                 player1 = new Bear("WASD");
         }
         
-        NonSelectable one = new NonSelectable(characterOne, 5);
+        Icon one = new Icon(characterOne, 5);
         addObject(one, 100, 100);
         iconList[0] = one;
         showText("" + 200, 100, 150);
@@ -149,7 +149,7 @@ public abstract class Map extends GameScreen
                 player2 = new Bear("IJKL");
         }
         
-        NonSelectable two = new NonSelectable(characterTwo, 5);
+        Icon two = new Icon(characterTwo, 5);
         addObject(two, 860, 100);
         iconList[1] = two;
         showText("" + 200, 860, 150);
