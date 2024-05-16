@@ -80,19 +80,19 @@ public class Beans extends PhysicsObject
                 if (throwerNumber == p.playerNumber) {
                     p.takeDamage(6);
                     if (this.getXPosition() > p.getXPosition()) {
-                        p.takeKnockback(-1, 20);
+                        p.takeKnockback(-1, 10, 35);
                     }
                     else {
-                        p.takeKnockback(1, 20);
+                        p.takeKnockback(1, 10, 35);
                     }
                 }
                 else {
                     p.takeDamage(8);
                     if (this.getXPosition() > p.getXPosition()) {
-                        p.takeKnockback(-1, 30);
+                        p.takeKnockback(-1, 10, 35);
                     }
                     else {
-                        p.takeKnockback(1, 30);
+                        p.takeKnockback(1, 10, 35);
                     }
                 }
                 explosionTimer = 1;

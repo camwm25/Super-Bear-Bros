@@ -17,7 +17,8 @@ public abstract class Player extends PhysicsObject
     int COOLDOWN = 60;
     
     int attacked = 0;
-    int stun = 0;
+    int stun = 0; 
+    // thinking about stun rn. idk
     
     String upKey;
     String downKey;
@@ -74,10 +75,14 @@ public abstract class Player extends PhysicsObject
     }
     
     public boolean canAttack() {
-        if (attacked == 0 && !dropping && (xVelocity < 150 || xVelocity > -150)) {
+        if (stun == 0 && attacked == 0 && !dropping && (xVelocity < 150 || xVelocity > -150)) {
             return true;
         }
         return false;
+    }
+    
+    public void setStun(int timeStun) {
+        stun = timeStun;
     }
     
     /**
@@ -93,12 +98,15 @@ public abstract class Player extends PhysicsObject
         fixOverlap();
         checkAttack();
         checkInVoid();
-        updateAttacked();
+        updateAttackedAndStun();
     }
     
-    private void updateAttacked() {
+    private void updateAttackedAndStun() {
         if (attacked != 0) {
             attacked--;
+        }
+        if (stun != 0) {
+            stun--;
         }
     }
     
@@ -233,6 +241,23 @@ public abstract class Player extends PhysicsObject
                 yVelocity = -0.5*knockDistance;
         }
         attacked = knockDistance;
+    }
+    
+    public void takeKnockback(int knockDirection, int knockDistanceHor, int knockDistanceVert) {
+        switch (knockDirection) {
+            case 1:
+                xVelocity = knockDistanceHor;
+                yVelocity = -0.5*knockDistanceVert;
+                break;
+            case -1:
+                xVelocity = -knockDistanceHor;
+                yVelocity = -0.5*knockDistanceVert;
+                break;
+            case 0:
+                xVelocity = -direction * knockDistanceHor;
+                yVelocity = -0.5*knockDistanceVert;
+        }
+        attacked = Math.max(knockDistanceVert, knockDistanceHor);
     }
     
     public void takeDamage(int damage) {
