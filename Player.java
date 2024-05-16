@@ -4,8 +4,8 @@ import java.lang.Math;
 /**
  * Write a description of class Player here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Devin Joe & Cam Welch Morgan
+ * @version 2024-05-16
  */
 public abstract class Player extends PhysicsObject
 {
