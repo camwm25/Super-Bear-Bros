@@ -46,7 +46,7 @@ public class Bill extends Player
     }
     
     public void normalAttack() {
-        if (!dropping && (xVelocity < 150 || xVelocity > -150)) {
+        if (canAttack()) {
             attacking = true;
             biteTimer = 0;
             

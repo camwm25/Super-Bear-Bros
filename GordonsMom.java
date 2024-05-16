@@ -46,7 +46,7 @@ public class GordonsMom extends Player
     }
     
     public void normalAttack() {
-        if (!dropping && (xVelocity < 150 || xVelocity > -150)) {
+        if (canAttack()) {
             attacking = true;
             stareTimer = 0;
             

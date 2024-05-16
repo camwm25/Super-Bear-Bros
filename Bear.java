@@ -45,7 +45,7 @@ public class Bear extends Player
     
     public void normalAttack() {
         //bite
-        if (!dropping && (xVelocity < 150 || xVelocity > -150)) {
+        if (canAttack()) {
             attacking = true;
             biteTimer = 0;
             
@@ -56,7 +56,7 @@ public class Bear extends Player
                 xVelocity = -1;
             }
             
-            Hitbox h = new Hitbox(9, playerNumber, 20, 2, direction, 10, 
+            Hitbox h = new Hitbox(9, playerNumber, 20, 2, direction, 20, 
                 (int)getX(), (int)getY());
             ((Map) getWorld()).addObject(h, getX()+(60*direction), getY()-32);
         

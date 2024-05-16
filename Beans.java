@@ -79,15 +79,32 @@ public class Beans extends PhysicsObject
             for (Player p: getIntersectingObjects(Player.class)) {
                 if (throwerNumber == p.playerNumber) {
                     p.takeDamage(6);
-                    p.takeKnockback(0, 20);
+                    if (this.getXPosition() > p.getXPosition()) {
+                        p.takeKnockback(-1, 20);
+                    }
+                    else {
+                        p.takeKnockback(1, 20);
+                    }
                 }
                 else {
                     p.takeDamage(8);
-                    p.takeKnockback(0, 30);
+                    if (this.getXPosition() > p.getXPosition()) {
+                        p.takeKnockback(-1, 30);
+                    }
+                    else {
+                        p.takeKnockback(1, 30);
+                    }
                 }
                 explosionTimer = 1;
 
-                            }
+            }
+            for (Hammer h : getIntersectingObjects(Hammer.class)) {
+                explosionTimer = 8;
+            }
+            for (Lightsaber l : getIntersectingObjects(Lightsaber.class)) {
+                explosionTimer = 8;
+            }
         }
     }
 }
+

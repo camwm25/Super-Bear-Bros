@@ -16,6 +16,9 @@ public abstract class Player extends PhysicsObject
     
     int COOLDOWN = 60;
     
+    int attacked = 0;
+    int stun = 0;
+    
     String upKey;
     String downKey;
     String leftKey;
@@ -31,6 +34,9 @@ public abstract class Player extends PhysicsObject
     boolean attacking = false;
     boolean dropping = false;
     boolean inGround = false;
+    
+    // to do: fix attacking and getting hit at same time cancelling knockback
+    // to do: fix other knockback tidbits
     
     public Player(String character, String inputKeys) {        
         switch (inputKeys) {
@@ -67,6 +73,13 @@ public abstract class Player extends PhysicsObject
         }
     }
     
+    public boolean canAttack() {
+        if (attacked == 0 && !dropping && (xVelocity < 150 || xVelocity > -150)) {
+            return true;
+        }
+        return false;
+    }
+    
     /**
      * Act - do whatever the Player wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -80,6 +93,13 @@ public abstract class Player extends PhysicsObject
         fixOverlap();
         checkAttack();
         checkInVoid();
+        updateAttacked();
+    }
+    
+    private void updateAttacked() {
+        if (attacked != 0) {
+            attacked--;
+        }
     }
     
     private void collideWithPlayers() {
@@ -212,6 +232,7 @@ public abstract class Player extends PhysicsObject
                 xVelocity = -direction * knockDistance;
                 yVelocity = -0.5*knockDistance;
         }
+        attacked = knockDistance;
     }
     
     public void takeDamage(int damage) {
