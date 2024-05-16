@@ -12,6 +12,10 @@ public class Beans extends PhysicsObject
     int throwerNumber;
     Bear thrower;
     
+    // Some parameters
+    final int SELF_DAMAGE = 6;    // Damage done if the thrower touches the beans
+    final int DAMAGE = 8;         // Damage done if someone else touches the beans
+    
     /*
      * Identifies this Beans with a unique number to prevent having too many
      * beans in the map.
@@ -44,19 +48,20 @@ public class Beans extends PhysicsObject
             checkHit();
         }
         updateImage();
+        updateExplosionTimer();
+    }
+    
+    private void updateExplosionTimer() {
+        if (explosionTimer >= 1) {
+            explosionTimer++;
+        }
+        if (explosionTimer >= 16) {
+            ((Map) getWorld()).removeObject(this);
+        }
     }
     
     private void updateImage() {
         setImage(new GreenfootImage("beans" + explosionTimer / 4 + ".png"));
-        
-        if (explosionTimer >= 1) {
-            explosionTimer++;
-        }
-
-        if (explosionTimer >= 16) {
-            ((Map) getWorld()).removeObject(this);
-        }
-
     }
     
     private void updateVelocity() {
@@ -76,14 +81,14 @@ public class Beans extends PhysicsObject
         thrower = (Bear) ((Map) getWorld()).getPlayer(throwerNumber);
         
         beanTimer++;
-        if (beanTimer == 600) {
+        if (beanTimer >= 600) {
             thrower.updateCurrentBean(beanNumber);
             ((Map) getWorld()).removeObject(this);
         }
-        else if (beanTimer > 20) {
+        else if (beanTimer > 20) {  // If the Beans is ripe
             for (Player p: getIntersectingObjects(Player.class)) {
                 if (throwerNumber == p.playerNumber) {
-                    p.takeDamage(6);
+                    p.takeDamage(SELF_DAMAGE);
                     if (this.getXPosition() > p.getXPosition()) {
                         p.takeKnockback(-1, 20);
                     }
@@ -92,7 +97,7 @@ public class Beans extends PhysicsObject
                     }
                 }
                 else {
-                    p.takeDamage(8);
+                    p.takeDamage(DAMAGE);
                     if (this.getXPosition() > p.getXPosition()) {
                         p.takeKnockback(-1, 30);
                     }

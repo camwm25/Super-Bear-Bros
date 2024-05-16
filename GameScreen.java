@@ -21,5 +21,8 @@ public abstract class GameScreen extends World
     
     public abstract void leaveScreen();
     
+    /*
+     * Prepares any objects that must be on this screen opens this screen.
+     */
     public abstract void goToScreen();
 }
