@@ -83,14 +83,15 @@ public abstract class PhysicsObject extends ForegroundObject
         x += xVelocity;
         
         /*
-         * Update y velocity in two small steps to avoid clipping through
+         * Update y velocity in `n` small steps to avoid clipping through
          * ground.
          */
-        y += yVelocity / 2;
-        updateOnScreen();
-        if (!onBaseLayerGround()) {
-            y += yVelocity / 2;
-            updateOnScreen();
+        int n = 2;
+        for (int i = 0; i < n; i++) {
+            if (!onBaseLayerGround()) {
+                y += yVelocity / n;
+                updateOnScreen();
+            }
         }
     }
 }

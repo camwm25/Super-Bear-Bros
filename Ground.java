@@ -13,7 +13,7 @@ public class Ground extends ForegroundObject
     public Ground(String imageName, double x, double y, String type) {
         super(x, y);
         this.imageName = "" + imageName + ".png";
-        imageScale = 1.0/8;
+        imageScale = 0.125;
         
         this.type = type;
     }

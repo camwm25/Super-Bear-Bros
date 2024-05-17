@@ -39,8 +39,8 @@ public abstract class ForegroundObject extends Actor
                               + (world.getHeight() / 2));
         
         GreenfootImage image = new GreenfootImage(imageName);
-        image.scale((int) (image.getWidth() * imageScale * world.getCamZoom()),
-                    (int) (image.getHeight() * imageScale * world.getCamZoom()));
+        image.scale((int) (image.getWidth() * imageScale * world.getCamZoom()) + 1,
+                    (int) (image.getHeight() * imageScale * world.getCamZoom()) + 1);
         if (imageDirection == -1) {
             image.mirrorHorizontally();
         }

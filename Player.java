@@ -70,22 +70,7 @@ public abstract class Player extends PhysicsObject
             direction = -1;
         }
     }
-    
-    public boolean canAttack() {
-        if (getStun() == 0 && attacked == 0 && !dropping && (xVelocity < 150 || xVelocity > -150)) {
-            return true;
-        }
-        return false;
-    }
-    
-    public int getStun() {
-        return stun;
-    }
-    
-    public void setStun(int timeStun) {
-        stun = timeStun;
-    }
-    
+        
     /**
      * Act - do whatever the Player wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -100,6 +85,22 @@ public abstract class Player extends PhysicsObject
         checkAttack();
         checkInVoid();
         updateAttackedAndStun();
+        System.out.println("" + inGround + onGround() + playerNumber);
+    }
+    
+    public boolean canAttack() {
+        if (getStun() == 0 && attacked == 0 && !dropping && (xVelocity < 150 || xVelocity > -150)) {
+            return true;
+        }
+        return false;
+    }
+    
+    public int getStun() {
+        return stun;
+    }
+    
+    public void setStun(int timeStun) {
+        stun = timeStun;
     }
     
     private void updateAttackedAndStun() {
@@ -202,14 +203,20 @@ public abstract class Player extends PhysicsObject
             if (inGround && !onGround()) {
                 inGround = false;
             }
+            
+            if (yVelocity <= 0) {
+                dropping = false;
+                inGround = false;
+            }
         }
     }
     
     private void fixOverlap() {
-        if (onGround() && !inGround) {
+        if ((onGround() || onBaseLayerGround()) && !inGround) {
+            double tolerance = 20 * ((Map) getWorld()).getCamZoom();
             
-            for (int i = 0; i < 20; i++) {
-                if (onGround()) {
+            for (int i = 0; i < tolerance; i++) {
+                if (onGround() || onBaseLayerGround()) {
                     y -= 1;
                     updateOnScreen();
                 } else {
