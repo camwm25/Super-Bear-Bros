@@ -73,12 +73,12 @@ public class GordonsMom extends Player
     public void specialAttack() {
         //hammer
         if (canAttack()) {
-        
-        attacking = true;
-        Hammer h = new Hammer(playerNumber, direction, getXPosition(), getYPosition());
-        holder[0] = h;
-        double hammerX = getXPosition() + getXVelocity();
-        double hammerY = getYPosition() + getYVelocity();
+            attacking = true;
+            Hammer h = new Hammer(playerNumber, direction, getXPosition(), getYPosition());
+            holder[0] = h;
+            double hammerX = getXPosition() + getXVelocity();
+            double hammerY = getYPosition() + getYVelocity();
+            attacking = false;
         }
     }
     
