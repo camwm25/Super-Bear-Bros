@@ -70,7 +70,13 @@ public abstract class Map extends GameScreen
     public void act() {
         updateCamVelocity();
         moveCam();
+        tester();
         checkDead();
+    }
+    
+    public void tester() {
+        //showText(String.valueOf(player1.getStun()), 60, 400);
+        //showText(String.valueOf(player2.getStun()), 900, 400);
     }
     
     public void checkDead() {

@@ -89,6 +89,7 @@ public class Beans extends PhysicsObject
         }
         else if (beanTimer > 20) {  // If the Beans is ripe
             for (Player p: getIntersectingObjects(Player.class)) {
+                p.setStun(30);
                 if (throwerNumber == p.playerNumber) {
                     p.takeDamage(SELF_DAMAGE);
                     if (this.getXPosition() > p.getXPosition()) {
@@ -110,10 +111,10 @@ public class Beans extends PhysicsObject
                 explosionTimer = 1;
             }
             for (Hammer h : getIntersectingObjects(Hammer.class)) {
-                explosionTimer = 8;
+                this.explosionTimer = 8;
             }
             for (Lightsaber l : getIntersectingObjects(Lightsaber.class)) {
-                explosionTimer = 8;
+                this.explosionTimer = 8;
             }
         }
     }

@@ -17,7 +17,7 @@ public abstract class Player extends PhysicsObject
     int COOLDOWN = 60;
     
     int attacked = 0;
-    int stun = 0; 
+    public int stun = 0; 
     // thinking about stun rn. idk
     
     String upKey;
@@ -75,10 +75,14 @@ public abstract class Player extends PhysicsObject
     }
     
     public boolean canAttack() {
-        if (stun == 0 && attacked == 0 && !dropping && (xVelocity < 150 || xVelocity > -150)) {
+        if (getStun() == 0 && attacked == 0 && !dropping && (xVelocity < 150 || xVelocity > -150)) {
             return true;
         }
         return false;
+    }
+    
+    public int getStun() {
+        return stun;
     }
     
     public void setStun(int timeStun) {
@@ -134,7 +138,7 @@ public abstract class Player extends PhysicsObject
                 yVelocity = 0;
             }
             
-            if (Greenfoot.isKeyDown(upKey)) {
+            if (Greenfoot.isKeyDown(upKey) && getStun() == 0) {
                 yVelocity = -JUMP_POWER;
             }
             
@@ -146,14 +150,18 @@ public abstract class Player extends PhysicsObject
             xVelocity *= DRAG;
         }
         
-        if (Greenfoot.isKeyDown(leftKey)) {
-            xVelocity -= SPEED;
-            direction = -1;
-        }
+        if (getStun() == 0) {
+            
+            if (Greenfoot.isKeyDown(leftKey)) {
+                xVelocity -= SPEED;
+                direction = -1;
+            }
         
-        if (Greenfoot.isKeyDown(rightKey)) {
-            xVelocity += SPEED;
-            direction = 1;
+            if (Greenfoot.isKeyDown(rightKey)) {
+                xVelocity += SPEED;
+                direction = 1;
+            }
+        
         }
         
         collideWithPlayers();

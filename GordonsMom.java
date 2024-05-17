@@ -58,7 +58,7 @@ public class GordonsMom extends Player
             }
             
             Hitbox h = new Hitbox(12, playerNumber, 10, 2, direction, 8,
-                (int)getX(), (int)getY());
+                (int)getX(), (int)getY(), 15);
             ((Map) getWorld()).addObject(h, getX()+(35*direction), getY()-40);
         
             attacking = false;
@@ -68,15 +68,17 @@ public class GordonsMom extends Player
     
     public void specialAttack() {
         //hammer
+        if (canAttack()) {
+            attacking = true;
+            Hammer h = new Hammer(playerNumber, direction);
+            holder[0] = h;
+            double hammerX = getXPosition() + getXVelocity();
+            double hammerY = getYPosition() + getYVelocity();
         
-        attacking = true;
-        Hammer h = new Hammer(playerNumber, direction);
-        holder[0] = h;
-        double hammerX = getXPosition() + getXVelocity();
-        double hammerY = getYPosition() + getYVelocity();
+            ((Map) getWorld()).addObject(h, (int)hammerX, (int)hammerY); // The location is arbitrary.
+            attacking = false;
+        }
         
-        ((Map) getWorld()).addObject(h, (int)hammerX, (int)hammerY); // The location is arbitrary.
-        attacking = false;
     }
     
     public void removeProjectiles() {

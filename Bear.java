@@ -57,7 +57,7 @@ public class Bear extends Player
             }
             
             Hitbox h = new Hitbox(9, playerNumber, 20, 2, direction, 10, 
-                (int)getX(), (int)getY());
+                (int)getX(), (int)getY(), 20);
             ((Map) getWorld()).addObject(h, getX()+(60*direction), getY()-32);
         
             attacking = false;
@@ -71,16 +71,18 @@ public class Bear extends Player
     
     public void specialAttack() {
         //projectile (beans)
-        
-        Beans b = new Beans(getXPosition(), getYPosition(), 
-        getXVelocity() + direction * 25, getYVelocity() - 15, playerNumber, currentBean);
-        if (beanList[currentBean] != null) {
-            Beans oldBean = beanList[currentBean];
-            ((Map) getWorld()).removeObject(oldBean);
+        if (canAttack()) {
+            Beans b = new Beans(getXPosition(), getYPosition(), 
+            getXVelocity() + direction * 25, getYVelocity() - 15, playerNumber, currentBean);
+            if (beanList[currentBean] != null) {
+                Beans oldBean = beanList[currentBean];
+                ((Map) getWorld()).removeObject(oldBean);
+            }
+            beanList[currentBean] = b;
+            currentBean = (++currentBean % 2);
+            ((Map) getWorld()).addObject(b, getX(), getY()); // 0, 0 is fine because it will update anyway
         }
-        beanList[currentBean] = b;
-        currentBean = (++currentBean % 2);
-        ((Map) getWorld()).addObject(b, getX(), getY()); // 0, 0 is fine because it will update anyway
+        
     }
     
     public void removeProjectiles() {

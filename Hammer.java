@@ -45,6 +45,7 @@ public class Hammer extends Weapon
                 if (p.playerNumber != bearerNumber) {
                     p.takeDamage(1);
                     p.takeKnockback(direction, 23);
+                    p.setStun(10);
                 }
             }
         }

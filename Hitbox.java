@@ -16,6 +16,7 @@ public class Hitbox extends ForegroundObject
     int direction;
     int distance;
     int timer = 0;
+    int stunAmount;
     
     int xCoord;
     int yCoord;
@@ -29,7 +30,7 @@ public class Hitbox extends ForegroundObject
     }
     
     public Hitbox(int size, int playerCreator, int time, int damage, 
-                    int direction, int knockback, int x, int y) {
+                    int direction, int knockback, int x, int y, int stun) {
         GreenfootImage image = new GreenfootImage("hitbox.png");
         image.scale(2*image.getWidth() / size, 2*image.getHeight() / size);
         image.setTransparency(0);
@@ -42,6 +43,7 @@ public class Hitbox extends ForegroundObject
         power = damage;
         this.direction = direction;
         distance = knockback;
+        stunAmount = stun;
         
         xCoord = x;
         yCoord = y;
@@ -54,6 +56,7 @@ public class Hitbox extends ForegroundObject
                 if (p.playerNumber != creator) {
                     p.takeDamage(power);
                     p.takeKnockback(direction, distance);
+                    p.setStun(stunAmount);
                 }
             }
             checkOwner();

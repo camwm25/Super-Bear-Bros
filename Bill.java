@@ -58,7 +58,7 @@ public class Bill extends Player
             }
             
             Hitbox h = new Hitbox(10, playerNumber, 10, 3, direction, 10,
-                 (int)getX(), (int)getY());
+                 (int)getX(), (int)getY(), 15);
             ((Map) getWorld()).addObject(h, getX()+(35*direction), getY()-40);
         
             attacking = false;
@@ -68,19 +68,21 @@ public class Bill extends Player
     
     public void specialAttack() {
         //lightsaber
-        
-        attacking = true;
-        Lightsaber l = new Lightsaber(playerNumber, direction);
-        holder[0] = l;
-        double lightsaberX = getXPosition() + getXVelocity()
+        if (canAttack()) {
+            attacking = true;
+            Lightsaber l = new Lightsaber(playerNumber, direction);
+            holder[0] = l;
+            double lightsaberX = getXPosition() + getXVelocity()
             + 70 * Math.sin(Math.toRadians(direction*30))
             + (direction * 10);
-        double lightsaberY = getYPosition() + getYVelocity()
+            double lightsaberY = getYPosition() + getYVelocity()
             + 70 * -Math.cos(Math.toRadians(direction*30))
             + 5;
         
-        ((Map) getWorld()).addObject(l, (int)lightsaberX, (int)lightsaberY); // The location is arbitrary.
-        attacking = false;
+            ((Map) getWorld()).addObject(l, (int)lightsaberX, (int)lightsaberY); // The location is arbitrary.
+            attacking = false;
+        }
+        
     }
     
     public void removeProjectiles() {

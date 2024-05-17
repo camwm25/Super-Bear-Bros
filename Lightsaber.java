@@ -46,6 +46,7 @@ public class Lightsaber extends Weapon
                 if (p.playerNumber != bearerNumber) {
                     p.takeDamage(1);
                     p.takeKnockback(direction, 27);
+                    p.setStun(20);
                 }
             }
         }
