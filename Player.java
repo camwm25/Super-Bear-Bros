@@ -92,10 +92,10 @@ public abstract class Player extends PhysicsObject
      */
     public void act()
     {        
+        super.act();
         updateDrop();
         updateVelocity();
         move();
-        super.act();
         fixOverlap();
         checkAttack();
         checkInVoid();

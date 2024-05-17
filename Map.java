@@ -107,17 +107,16 @@ public abstract class Map extends GameScreen
         }
         else {
             camXVelocity = ((player1.getXPosition() + player2.getXPosition()) / 4 - camX) / 20;
-        camYVelocity = ((player1.getYPosition() + player2.getYPosition()) / 4 - camY) / 20;
+            camYVelocity = ((player1.getYPosition() + player2.getYPosition()) / 4 - camY) / 20;
         }
     }
     
     public void updateCamZoom() {
-        if (camZoom > 1.5) {
-            camZoom -= 0.00;
-        }
-        else {
-            camZoom += 0.00;
-        }
+        double playerDistance = Math.pow(player1.getXPosition() - player2.getXPosition(), 2) +
+                                Math.pow(player1.getYPosition() - player2.getYPosition(), 2);
+        double desiredCamZoom = Math.pow(playerDistance / 500000 + 0.5, -0.5);
+        
+        camZoom += (desiredCamZoom - camZoom) / 20;
     }
     
     public void moveCam() {
