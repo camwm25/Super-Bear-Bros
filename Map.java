@@ -70,6 +70,7 @@ public abstract class Map extends GameScreen
     
     public void act() {
         updateCamVelocity();
+        updateCamZoom();
         moveCam();
         checkDead();
     }
@@ -104,6 +105,15 @@ public abstract class Map extends GameScreen
         }
     }
     
+    public void updateCamZoom() {
+        if (camZoom > 1.5) {
+            camZoom -= 0.00;
+        }
+        else {
+            camZoom += 0.00;
+        }
+    }
+    
     public void moveCam() {
         camX += camXVelocity;
         camY += camYVelocity;
@@ -113,19 +123,19 @@ public abstract class Map extends GameScreen
     {
         switch (characterOne) {
             case "bear":
-                player1 = new Bear("WASD");
+                player1 = new Bear("WASD", -200, 200);
                 showText("BEAR", 100, 50);
                 break;
             case "bill":
-                player1 = new Bill("WASD");
+                player1 = new Bill("WASD", -200, 200);
                 showText("BILL", 100, 50);
                 break;
             case "gordonsmom":
-                player1 = new GordonsMom("WASD");
+                player1 = new GordonsMom("WASD", -200, 200);
                 showText("GORDON'S MOM", 100, 50);
                 break;
             default:
-                player1 = new Bear("WASD");
+                player1 = new Bear("WASD", -200, 200);
         }
         
         Icon one = new Icon(characterOne, 5);
@@ -135,19 +145,19 @@ public abstract class Map extends GameScreen
         
         switch (characterTwo) {
             case "bear":
-                player2 = new Bear("IJKL");
+                player2 = new Bear("IJKL", 200, 200);
                 showText("BEAR", 860, 50);
                 break;
             case "bill":
-                player2 = new Bill("IJKL");
+                player2 = new Bill("IJKL", 200, 200);
                 showText("BILL", 860, 50);
                 break;
             case "gordonsmom":
-                player2 = new GordonsMom("IJKL");
+                player2 = new GordonsMom("IJKL", 200, 200);
                 showText("GORDON'S MOM", 860, 50);
                 break;
             default:
-                player2 = new Bear("IJKL");
+                player2 = new Bear("IJKL", 200, 200);
         }
         
         Icon two = new Icon(characterTwo, 5);

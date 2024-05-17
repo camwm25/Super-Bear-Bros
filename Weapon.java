@@ -20,7 +20,8 @@ public abstract class Weapon extends ForegroundObject
         super.act();
     }
     
-    public Weapon(int bearerNumber, int direction, int timer){
+    public Weapon(int bearerNumber, int direction, int timer, double x, double y) {
+        super(x, y);
         this.bearerNumber = bearerNumber;
         this.direction = direction;
         this.timer = timer;

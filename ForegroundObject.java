@@ -11,7 +11,16 @@ public abstract class ForegroundObject extends Actor
     double x;
     double y;
     
-    double imageScale = 1;
+    String imageName = "hitbox.png"; // this line should in theory say String imageName;
+    double imageScale;
+    
+    // 1 by default, -1 if reflected.
+    int imageDirection = 1;
+    
+    public ForegroundObject(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
     
     /**
      * Act - do whatever the ForegroundObject wants to do. This method is called whenever
@@ -19,18 +28,23 @@ public abstract class ForegroundObject extends Actor
      */
     public void act()
     {
-        updateScreenLocation();
+        updateOnScreen();
     }
     
-    public void updateScreenLocation() {
+    public void updateOnScreen() {
         Map world = (Map) getWorld();
-        int screenX = (int) ((x - world.getCamX()) / world.getCamZoom()
+        int screenX = (int) ((x - world.getCamX()) * world.getCamZoom()
                               + (world.getWidth() / 2));
-        int screenY = (int) ((y - world.getCamY()) / world.getCamZoom()
+        int screenY = (int) ((y - world.getCamY()) * world.getCamZoom()
                               + (world.getHeight() / 2));
-        GreenfootImage image = getImage();
+        
+        GreenfootImage image = new GreenfootImage(imageName);
         image.scale((int) (image.getWidth() * imageScale * world.getCamZoom()),
                     (int) (image.getHeight() * imageScale * world.getCamZoom()));
+        if (imageDirection == -1) {
+            image.mirrorHorizontally();
+        }
+        setImage(image);
         setLocation(screenX, screenY);
     }
     

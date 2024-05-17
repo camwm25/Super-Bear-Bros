@@ -13,36 +13,32 @@ public class Bill extends Player
     
     Lightsaber[] holder = new Lightsaber[1];
     
-    public Bill(String inputType) {
-        super("bill", inputType);
+    public Bill(String inputType, double x, double y) {
+        super("bill", inputType, x, y);
         JUMP_POWER = 22;
         SPEED = 1.1;
+        imageName = "bill_walk_0.png";
+        imageScale = 1;
     }
     
     public void act() {
         super.act();
         
-        if (xVelocity < 0) {
-            getImage().mirrorHorizontally();
-        }
-        
         if (biteTimer >= 15 && lightsaberTimer >= 30) {
-            setImage(new GreenfootImage("bill_walk_" + (((int) x/10) % 4 + 4) % 4 + ".png"));
+            imageName = "bill_walk_" + (((int) x/10) % 4 + 4) % 4 + ".png";
         }
         
         if (biteTimer < 15) {
-            setImage(new GreenfootImage("bill_bite_" + biteTimer * 3 / 15 + ".png"));
+            imageName = "bill_bite_" + biteTimer * 3 / 15 + ".png";
             biteTimer++;
         }
         
         if (lightsaberTimer < 30) {
-            setImage(new GreenfootImage("bill_lightsaber_" + lightsaberTimer * 5 / 30 + ".png"));
+            imageName = "bill_lightsaber_" + lightsaberTimer * 5 / 30 + ".png";
             lightsaberTimer++;
         }
                 
-        if (direction == -1) {
-            getImage().mirrorHorizontally();
-        }
+        imageDirection = direction;
     }
     
     public void normalAttack() {
@@ -58,7 +54,7 @@ public class Bill extends Player
             }
             
             Hitbox h = new Hitbox(10, playerNumber, 10, 3, direction, 10,
-                 (int)getX(), (int)getY());
+                 (int)getXPosition(), (int)getYPosition());
             ((Map) getWorld()).addObject(h, getX()+(35*direction), getY()-40);
         
             attacking = false;
@@ -70,7 +66,7 @@ public class Bill extends Player
         //lightsaber
         
         attacking = true;
-        Lightsaber l = new Lightsaber(playerNumber, direction);
+        Lightsaber l = new Lightsaber(playerNumber, direction, getXPosition(), getYPosition());
         holder[0] = l;
         double lightsaberX = getXPosition() + getXVelocity()
             + 70 * Math.sin(Math.toRadians(direction*30))

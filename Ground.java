@@ -11,14 +11,11 @@ public class Ground extends ForegroundObject
     private String type;
     
     public Ground(String imageName, double x, double y, String type) {
-        GreenfootImage image = new GreenfootImage("" + imageName + ".png");
-        image.scale(image.getWidth() / 8, image.getHeight() / 8);
-        setImage(image);
+        super(x, y);
+        this.imageName = "" + imageName + ".png";
+        imageScale = 1.0/8;
         
         this.type = type;
-        
-        this.x = x;
-        this.y = y;
     }
     
     public Ground(String imageName, double x, double y) {

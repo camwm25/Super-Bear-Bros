@@ -14,6 +14,10 @@ public abstract class PhysicsObject extends ForegroundObject
     double xVelocity = 0;
     double yVelocity = 0;
     
+    public PhysicsObject(double x, double y) {
+        super(x, y);
+    }
+    
     /**
      * Act - do whatever the PhysicsObject wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -83,10 +87,10 @@ public abstract class PhysicsObject extends ForegroundObject
          * ground.
          */
         y += yVelocity / 2;
-        updateScreenLocation();
+        updateOnScreen();
         if (!onBaseLayerGround()) {
             y += yVelocity / 2;
-            updateScreenLocation();
+            updateOnScreen();
         }
     }
 }

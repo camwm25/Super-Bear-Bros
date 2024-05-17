@@ -39,7 +39,8 @@ public abstract class Player extends PhysicsObject
     // to do: fix attacking and getting hit at same time cancelling knockback
     // to do: fix other knockback tidbits
     
-    public Player(String character, String inputKeys) {        
+    public Player(String character, String inputKeys, double x, double y) {        
+        super(x, y);
         switch (inputKeys) {
             case "IJKL":
                 upKey = "I";
@@ -63,13 +64,9 @@ public abstract class Player extends PhysicsObject
         }
         
         if (playerNumber == 1) {
-            x = -200;
-            y = 200;
             direction = 1;
         }
         else {
-            x = 200;
-            y = 200;
             direction = -1;
         }
     }
@@ -94,7 +91,7 @@ public abstract class Player extends PhysicsObject
         updateDrop();
         updateVelocity();
         move();
-        updateScreenLocation();
+        super.act();
         fixOverlap();
         checkAttack();
         checkInVoid();
@@ -206,14 +203,14 @@ public abstract class Player extends PhysicsObject
             for (int i = 0; i < 20; i++) {
                 if (onGround()) {
                     y -= 1;
-                    updateScreenLocation();
+                    updateOnScreen();
                 } else {
                     break;
                 }
             }
             
             y += 1;
-            updateScreenLocation();
+            updateOnScreen();
         }
     }
     

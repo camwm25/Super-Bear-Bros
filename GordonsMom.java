@@ -13,10 +13,12 @@ public class GordonsMom extends Player
     
     Hammer[] holder = new Hammer[1];
     
-    public GordonsMom(String inputType) {
-        super("gordonsmom", inputType);
+    public GordonsMom(String inputType, double x, double y) {
+        super("gordonsmom", inputType, x, y);
         JUMP_POWER = 20;
         SPEED = 1.2;
+        imageName = "gordons_mom_walk_0.png";
+        imageScale = 1;
     }
     
     public void act() {
@@ -27,22 +29,24 @@ public class GordonsMom extends Player
         }
         
         if (stareTimer >= 15 && hammerTimer >= 30) {
-            setImage(new GreenfootImage("gordons_mom_walk_" + (((int) x/10) % 4 + 4) % 4 + ".png"));
+            imageName = "gordons_mom_walk_" + (((int) x/10) % 4 + 4) % 4 + ".png";
         }
         
         if (stareTimer < 15) {
-            setImage(new GreenfootImage("gordons_mom_stare_" + stareTimer * 3 / 15 + ".png"));
+            imageName = "gordons_mom_stare_" + stareTimer * 3 / 15 + ".png";
             stareTimer++;
         }
         
         if (hammerTimer < 30) {
-            setImage(new GreenfootImage("gordons_mom_hammer_" + hammerTimer * 5 / 30 + ".png"));
+            imageName = "gordons_mom_hammer_" + hammerTimer * 5 / 30 + ".png";
             hammerTimer++;
         }
                 
         if (direction == -1) {
             getImage().mirrorHorizontally();
         }
+        
+        imageDirection = direction;
     }
     
     public void normalAttack() {
@@ -58,7 +62,7 @@ public class GordonsMom extends Player
             }
             
             Hitbox h = new Hitbox(12, playerNumber, 10, 2, direction, 8,
-                (int)getX(), (int)getY());
+                (int)getXPosition(), (int)getYPosition());
             ((Map) getWorld()).addObject(h, getX()+(35*direction), getY()-40);
         
             attacking = false;
@@ -70,7 +74,7 @@ public class GordonsMom extends Player
         //hammer
         
         attacking = true;
-        Hammer h = new Hammer(playerNumber, direction);
+        Hammer h = new Hammer(playerNumber, direction, getXPosition(), getYPosition());
         holder[0] = h;
         double hammerX = getXPosition() + getXVelocity();
         double hammerY = getYPosition() + getYVelocity();

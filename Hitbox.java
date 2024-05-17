@@ -29,11 +29,11 @@ public class Hitbox extends ForegroundObject
     }
     
     public Hitbox(int size, int playerCreator, int time, int damage, 
-                    int direction, int knockback, int x, int y) {
-        GreenfootImage image = new GreenfootImage("hitbox.png");
-        image.scale(2*image.getWidth() / size, 2*image.getHeight() / size);
-        image.setTransparency(0);
-        setImage(image);
+                    int direction, int knockback, double x, double y) {
+        super(x, y);
+        imageName = "hitbox.png";
+        imageScale = 2.0/size;
+        // Transparency will break oops
         
         
         this.size = size;
@@ -42,9 +42,6 @@ public class Hitbox extends ForegroundObject
         power = damage;
         this.direction = direction;
         distance = knockback;
-        
-        xCoord = x;
-        yCoord = y;
     }
     
     public void checkHit() {
