@@ -15,7 +15,7 @@ public class Hammer extends Weapon
     public Hammer(int bearerNumber, int direction) {
         super(bearerNumber, direction, 3);
         hammer = new GreenfootImage("hammer.png");
-        hammer.scale(3/4*hammer.getWidth(), 3/4*hammer.getHeight());
+        hammer.scale(3*hammer.getWidth()/4, 3*hammer.getHeight()/4);
         hammer.setTransparency(0);
         setImage(hammer);
         turn(90 * direction);
