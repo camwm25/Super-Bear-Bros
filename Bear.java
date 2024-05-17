@@ -15,32 +15,32 @@ public class Bear extends Player
     
     int currentBean = 0;
     
-    public Bear(String inputType) {
-        super("bear", inputType);
+    public Bear(String inputType, double x, double y) {
+        super("bear", inputType, x, y);
         JUMP_POWER = 20;
         SPEED = 1;
+        imageName = "bear_walk_0.png";
+        imageScale = 1;
     }
     
     public void act() {
         super.act();
         
         if (biteTimer >= 30 && beansTimer >= 30) {
-            setImage(new GreenfootImage("bear_walk_" + (((int) x/10) % 16 + 16) % 16 + ".png"));
+            imageName = "bear_walk_" + (((int) x/10) % 16 + 16) % 16 + ".png";
         }
         
         if (biteTimer < 30) {
-            setImage(new GreenfootImage("bear_bite_" + biteTimer * 7 / 30 + ".png"));
+            imageName = "bear_bite_" + biteTimer * 7 / 30 + ".png";
             biteTimer++;
         }
         
         if (beansTimer < 30) {
-            setImage(new GreenfootImage("bear_beans_" + beansTimer * 7 / 30 + ".png"));
+            imageName = "bear_beans_" + beansTimer * 7 / 30 + ".png";
             beansTimer++;
         }
-                
-        if (direction == -1) {
-            getImage().mirrorHorizontally();
-        }
+        
+        imageDirection = direction;
     }
     
     public void normalAttack() {

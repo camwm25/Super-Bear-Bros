@@ -12,11 +12,11 @@ public class Lightsaber extends Weapon
    
     GreenfootImage lightsaber;
     
-    public Lightsaber(int bearerNumber, int direction) {
-        super(bearerNumber, direction, 7);
-        lightsaber = new GreenfootImage("lightsaber.png");
-        lightsaber.setTransparency(0);
-        setImage(lightsaber);
+    public Lightsaber(int bearerNumber, int direction, double x, double y) {
+        super(bearerNumber, direction, 7, x, y);
+        imageName = "lightsaber.png";
+        imageScale = 1;
+        // lightsaber.setTransparency(0);
         turn(90 * direction);
     }
     
@@ -40,8 +40,8 @@ public class Lightsaber extends Weapon
         
         timer++;
         if (timer > 9) {
-            lightsaber.setTransparency(255);
-            setImage(lightsaber);
+            // lightsaber.setTransparency(255);
+            // setImage(lightsaber);
             for (Player p: getIntersectingObjects(Player.class)) {
                 if (p.playerNumber != bearerNumber) {
                     p.takeDamage(1);

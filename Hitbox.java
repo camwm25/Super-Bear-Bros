@@ -18,8 +18,8 @@ public class Hitbox extends ForegroundObject
     int timer = 0;
     int stunAmount;
     
-    int xCoord;
-    int yCoord;
+    double xCoord;
+    double yCoord;
     /**
      * Act - do whatever the hitbox wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -30,11 +30,11 @@ public class Hitbox extends ForegroundObject
     }
     
     public Hitbox(int size, int playerCreator, int time, int damage, 
-                    int direction, int knockback, int x, int y, int stun) {
-        GreenfootImage image = new GreenfootImage("hitbox.png");
-        image.scale(2*image.getWidth() / size, 2*image.getHeight() / size);
-        image.setTransparency(0);
-        setImage(image);
+                    int direction, int knockback, double x, double y, int stun) {
+        super(x, y);
+        imageName = "hitbox.png";
+        imageScale = 2.0/size;
+        // Transparency will break oops
         
         
         this.size = size;

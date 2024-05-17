@@ -24,15 +24,15 @@ public class Beans extends PhysicsObject
     int explosionTimer = 0;
     
     public Beans(double x, double y, double xVelocity, double yVelocity, int creator, int beanNumber) {
-        this.x = x;
-        this.y = y;
+        super(x, y);
         this.xVelocity = xVelocity;
         this.yVelocity = yVelocity;
         
         throwerNumber = creator;
         this.beanNumber = beanNumber;
         
-        setImage(new GreenfootImage("beans0.png"));
+        imageName = "beans0.png";
+        imageScale = 1;
     }
     
     /**
@@ -43,7 +43,7 @@ public class Beans extends PhysicsObject
     {
         updateVelocity();
         move();
-        updateScreenLocation();
+        super.act();
         if (explosionTimer == 0) {
             checkHit();
         }
@@ -61,7 +61,7 @@ public class Beans extends PhysicsObject
     }
     
     private void updateImage() {
-        setImage(new GreenfootImage("beans" + explosionTimer / 4 + ".png"));
+        imageName = "beans" + explosionTimer / 4 + ".png";
     }
     
     private void updateVelocity() {

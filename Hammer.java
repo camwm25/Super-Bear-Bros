@@ -12,13 +12,13 @@ public class Hammer extends Weapon
     
     GreenfootImage hammer;
     
-    public Hammer(int bearerNumber, int direction) {
-        super(bearerNumber, direction, 3);
-        hammer = new GreenfootImage("hammer.png");
-        hammer.scale(3*hammer.getWidth()/4, 3*hammer.getHeight()/4);
-        hammer.setTransparency(0);
-        setImage(hammer);
-        turn(90 * direction);
+    public Hammer(int bearerNumber, int direction, double x, double y) {
+        super(bearerNumber, direction, 3, x, y);
+        imageName = "hammer.png";
+        imageScale = 0.75;
+        imageDirection = direction;
+        // hammer.setTransparency(0);
+        // turn(90 * direction);
     }
     
     /**
@@ -39,8 +39,8 @@ public class Hammer extends Weapon
         
         timer++;
         if (timer > 5) {
-            hammer.setTransparency(255);
-            setImage(hammer);
+            // hammer.setTransparency(255);
+            // setImage(hammer);
             for (Player p: getIntersectingObjects(Player.class)) {
                 if (p.playerNumber != bearerNumber) {
                     p.takeDamage(1);
