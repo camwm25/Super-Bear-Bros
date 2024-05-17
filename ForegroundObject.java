@@ -11,6 +11,8 @@ public abstract class ForegroundObject extends Actor
     double x;
     double y;
     
+    double imageScale = 1;
+    
     /**
      * Act - do whatever the ForegroundObject wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -22,8 +24,13 @@ public abstract class ForegroundObject extends Actor
     
     public void updateScreenLocation() {
         Map world = (Map) getWorld();
-        int screenX = (int) (x - world.getCamX() + world.getWidth() / 2);
-        int screenY = (int) (y - world.getCamY() + world.getHeight() / 2);
+        int screenX = (int) ((x - world.getCamX()) / world.getCamZoom()
+                              + (world.getWidth() / 2));
+        int screenY = (int) ((y - world.getCamY()) / world.getCamZoom()
+                              + (world.getHeight() / 2));
+        GreenfootImage image = getImage();
+        image.scale((int) (image.getWidth() * imageScale * world.getCamZoom()),
+                    (int) (image.getHeight() * imageScale * world.getCamZoom()));
         setLocation(screenX, screenY);
     }
     

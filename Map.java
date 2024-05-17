@@ -15,6 +15,7 @@ public abstract class Map extends GameScreen
     
     private double camX = 0;
     private double camY = 0;
+    private double camZoom = 1;
     private double camXVelocity = 0;
     private double camYVelocity = 0;
     
@@ -192,6 +193,10 @@ public abstract class Map extends GameScreen
         return camY;
     }
     
+    public double getCamZoom() {
+        return camZoom;
+    }
+    
     public Player getPlayer(int number) {
         if (number == 2) {
             return player2;
@@ -221,7 +226,7 @@ public abstract class Map extends GameScreen
         }
     }
     
-    public void setCamFocus(int f) {
-        camFocus = f;
+    public void setCamFocus(int playerNumber) {
+        camFocus = playerNumber;
     }
 }

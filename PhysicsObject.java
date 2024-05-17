@@ -77,6 +77,11 @@ public abstract class PhysicsObject extends ForegroundObject
     
     protected void move() {
         x += xVelocity;
+        
+        /*
+         * Update y velocity in two small steps to avoid clipping through
+         * ground.
+         */
         y += yVelocity / 2;
         updateScreenLocation();
         if (!onBaseLayerGround()) {

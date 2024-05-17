@@ -14,7 +14,7 @@ public abstract class Player extends PhysicsObject
     
     public int playerNumber;
     
-    int COOLDOWN = 60;
+    int COOLDOWN = 20;
     
     int attacked = 0;
     int stun = 0; 
@@ -91,10 +91,10 @@ public abstract class Player extends PhysicsObject
      */
     public void act()
     {        
+        updateDrop();
         updateVelocity();
         move();
         updateScreenLocation();
-        updateDrop();
         fixOverlap();
         checkAttack();
         checkInVoid();
