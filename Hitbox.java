@@ -79,8 +79,8 @@ public class Hitbox extends ForegroundObject
                     ownerHere = true;
                     ownerDirection = p.getDirection();
                     
-                    ownerX = Math.abs(xCoord - (int)p.getX());
-                    ownerY = Math.abs(yCoord - (int)p.getY());
+                    ownerX = Math.abs((int)xCoord - (int)p.getX());
+                    ownerY = Math.abs((int)yCoord - (int)p.getY());
                     
                 }
             }
