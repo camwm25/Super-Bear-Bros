@@ -24,6 +24,9 @@ public abstract class Map extends GameScreen
     private Player player1;
     private Player player2;
     
+    private PlayerFollower follower1;
+    private PlayerFollower follower2;
+    
     private int winner;
     
     private int playerOneHealth;
@@ -43,6 +46,7 @@ public abstract class Map extends GameScreen
         this.characterOne = characterOne;
         this.characterTwo = characterTwo;
         
+        
         playerOneHealth = 200;
         playerTwoHealth = 200;
         
@@ -50,7 +54,7 @@ public abstract class Map extends GameScreen
         
         goToScreen(); 
         
-        setPaintOrder(Icon.class, Player.class, Lightsaber.class, Hammer.class, Beans.class, Hitbox.class, Ground.class);
+        setPaintOrder(Icon.class, Player.class, PlayerFollower.class, Lightsaber.class, Hammer.class, Beans.class, Hitbox.class, Ground.class);
     }
     
     public void changeHealth(int damage, int playerNumber) {
@@ -144,6 +148,8 @@ public abstract class Map extends GameScreen
         }
         
         Icon one = new Icon(characterOne, 5);
+        follower1 = new PlayerFollower(player1.getX(), player1.getY(), player1);
+        addObject(follower1, player1.getX(), player1.getY()+50);
         addObject(one, 100, 100);
         iconList[0] = one;
         showText("" + 200, 100, 150);
@@ -166,7 +172,9 @@ public abstract class Map extends GameScreen
         }
         
         Icon two = new Icon(characterTwo, 5);
+        follower2 = new PlayerFollower(player2.getX(), player2.getY(), player2);
         addObject(two, 860, 100);
+        addObject(follower2, player2.getX(), player2.getY()+50);
         iconList[1] = two;
         showText("" + 200, 860, 150);
         
@@ -185,6 +193,7 @@ public abstract class Map extends GameScreen
     public void makeLiterallyEverythingOnScreenDisappear() {
         makeBlocksDisappear();
         makePlayersDisappear();
+        makeFollowersDisappear();
     }
     
     public void makePlayersDisappear() {
@@ -239,6 +248,11 @@ public abstract class Map extends GameScreen
         for (Ground g : groundArray) {
             removeObject(g);
         }
+    }
+    
+    public void makeFollowersDisappear() {
+        follower1.endGame();
+        follower2.endGame();
     }
     
     public void setCamFocus(int playerNumber) {
