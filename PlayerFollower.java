@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class PlayerFollower extends ForegroundObject
 {
     Player thisPlayer;
+    int imageScale = 1;
     /**
      * Act - do whatever the PlayerFollower wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -16,6 +17,7 @@ public class PlayerFollower extends ForegroundObject
     public void act()
     {
         moveToSpot();
+        //scale();
     }
     
     public PlayerFollower(int x, int y) {
@@ -36,7 +38,17 @@ public class PlayerFollower extends ForegroundObject
     }
     
     public void moveToSpot() {
-        setLocation(thisPlayer.getX(), thisPlayer.getY() + 50);
+        int yCoord = thisPlayer.getY() - (int)(100*((Map) getWorld()).getCamZoom());
+        yCoord +=  (int)(50*(((Map) getWorld()).getCamZoom()-1)*((Map) getWorld()).getCamZoom()-1);
+        setLocation(thisPlayer.getX(), yCoord);
+    }
+    
+    public void scale() {
+        Map world = (Map) getWorld();
+        GreenfootImage imageFollower = new GreenfootImage(imageName);
+        imageFollower.scale((int) (5*imageFollower.getWidth() * imageScale * world.getCamZoom()) + 1,
+                    (int) (5*imageFollower.getHeight() * imageScale * world.getCamZoom()) + 1);
+        setImage(imageFollower);
     }
     
     public void endGame() {

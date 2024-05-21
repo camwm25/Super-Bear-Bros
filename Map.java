@@ -148,6 +148,7 @@ public abstract class Map extends GameScreen
         }
         
         Icon one = new Icon(characterOne, 5);
+        addObject(player1, -300, 0);
         follower1 = new PlayerFollower(player1.getX(), player1.getY(), player1);
         addObject(follower1, player1.getX(), player1.getY()+50);
         addObject(one, 100, 100);
@@ -172,14 +173,12 @@ public abstract class Map extends GameScreen
         }
         
         Icon two = new Icon(characterTwo, 5);
+        addObject(player2, 300, 0);
         follower2 = new PlayerFollower(player2.getX(), player2.getY(), player2);
         addObject(two, 860, 100);
         addObject(follower2, player2.getX(), player2.getY()+50);
         iconList[1] = two;
-        showText("" + 200, 860, 150);
-        
-        addObject(player1, -300, 0);
-        addObject(player2, 300, 0);
+        showText("" + 200, 860, 150);        
     }
     
     public void playerOne(String s) {
