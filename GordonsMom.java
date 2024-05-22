@@ -78,6 +78,8 @@ public class GordonsMom extends Player
             holder[0] = h;
             double hammerX = getXPosition() + getXVelocity();
             double hammerY = getYPosition() + getYVelocity();
+
+            ((Map) getWorld()).addObject(h, (int)hammerX, (int)hammerY);
             attacking = false;
         }
     }

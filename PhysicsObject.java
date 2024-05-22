@@ -41,8 +41,8 @@ public abstract class PhysicsObject extends ForegroundObject
         
         for (Ground tile : getIntersectingObjects(Ground.class)) {
             
-            double playerBottom = y + getImage().getHeight() / 2;
-            double groundTop = tile.getYPosition() - tile.getImage().getHeight() / 2;
+            double playerBottom = y + (getImage().getHeight() * imageScale) / 2;
+            double groundTop = tile.getYPosition() - (tile.getImage().getHeight() * tile.imageScale) / 2;
             
             if (playerBottom < groundTop + tolerance) {
                 return true;
@@ -83,15 +83,18 @@ public abstract class PhysicsObject extends ForegroundObject
         x += xVelocity;
         
         /*
-         * Update y velocity in `n` small steps to avoid clipping through
+         * Update y velocity in n small steps to avoid clipping through
          * ground.
          */
         int n = 2;
         for (int i = 0; i < n; i++) {
-            if (!onBaseLayerGround()) {
-                y += yVelocity / n;
-                updateOnScreen();
+            if (onGround()) {
+                yVelocity = 0;
             }
+            else {
+                y += yVelocity / n;
+            }
+            updateOnScreen();
         }
     }
 }

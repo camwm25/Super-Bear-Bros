@@ -16,6 +16,7 @@ public abstract class ForegroundObject extends Actor
     
     // 1 by default, -1 if reflected.
     int imageDirection = 1;
+    int imageTransparency = 255;
     
     public ForegroundObject(double x, double y) {
         this.x = x;
@@ -44,6 +45,7 @@ public abstract class ForegroundObject extends Actor
         if (imageDirection == -1) {
             image.mirrorHorizontally();
         }
+        image.setTransparency(imageTransparency);
         setImage(image);
         setLocation(screenX, screenY);
     }

@@ -17,8 +17,8 @@ public class Hammer extends Weapon
         imageName = "hammer.png";
         imageScale = 0.75;
         imageDirection = direction;
-        // hammer.setTransparency(0);
-        // turn(90 * direction);
+        imageTransparency = 0;
+        turn(90 * direction);
     }
     
     /**
@@ -39,8 +39,8 @@ public class Hammer extends Weapon
         
         timer++;
         if (timer > 5) {
-            // hammer.setTransparency(255);
-            // setImage(hammer);
+            imageTransparency = 255;
+            
             for (Player p: getIntersectingObjects(Player.class)) {
                 if (p.playerNumber != bearerNumber) {
                     p.takeDamage(1);

@@ -85,7 +85,7 @@ public abstract class Player extends PhysicsObject
         checkAttack();
         checkInVoid();
         updateAttackedAndStun();
-        System.out.println("" + inGround + onGround() + playerNumber);
+        if (playerNumber == 1) System.out.println("" + inGround + onGround());
     }
     
     public boolean canAttack() {
