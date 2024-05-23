@@ -116,7 +116,7 @@ public abstract class Player extends PhysicsObject
         for (Player p : getIntersectingObjects(Player.class)) {
             double xDifference = p.getXPosition() - x;
             
-            if (Math.abs(xDifference) < (getImage().getWidth() + p.getImage().getWidth()) * 0.4) {
+            if (Math.abs(xDifference) < (getImage().getWidth()*imageScale + p.getImage().getWidth()*imageScale) * 0.4) {
                 if (xDifference > 0) {
                     xVelocity -= 0.5;
                 }

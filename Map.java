@@ -120,8 +120,8 @@ public abstract class Map extends GameScreen
                                 Math.pow(player1.getYPosition() - player2.getYPosition(), 2);
         double desiredCamZoom = 1 / (playerDistanceSquared / 1000000 + 0.8);
         
-        //test
-        desiredCamZoom *= 0.7;
+        // test
+        // desiredCamZoom *= 1;
         
         
         camZoom += (desiredCamZoom - camZoom) / 20;

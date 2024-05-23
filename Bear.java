@@ -57,7 +57,7 @@ public class Bear extends Player
             }
             
             Hitbox h = new Hitbox(9, playerNumber, 20, 2, direction, 10, 
-                (int)getX(), (int)getY(), 20);
+                (int)getXPosition(), (int)getYPosition(), 20);
             ((Map) getWorld()).addObject(h, getX()+(60*direction), getY()-32);
         
             attacking = false;

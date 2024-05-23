@@ -35,7 +35,7 @@ public class Hitbox extends ForegroundObject
         super(x, y);
         imageName = "hitbox.png";
         imageScale = 2.0/size;
-        imageTransparency = 255;
+        imageTransparency = 0;
         
         this.size = size;
         creator = playerCreator;
