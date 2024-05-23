@@ -78,14 +78,14 @@ public abstract class Player extends PhysicsObject
     public void act()
     {        
         super.act();
-        updateDrop();
         updateVelocity();
         move();
+        updateDrop();
         fixOverlap();
         checkAttack();
         checkInVoid();
         updateAttackedAndStun();
-        if (playerNumber == 1) System.out.println("" + inGround + onGround());
+        // if (playerNumber == 1) System.out.println("" + inGround + onGround());
     }
     
     public boolean canAttack() {

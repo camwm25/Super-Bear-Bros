@@ -26,6 +26,7 @@ public class Hitbox extends ForegroundObject
      */
     public void act()
     {
+        super.act();
         checkHit();
     }
     
@@ -34,8 +35,7 @@ public class Hitbox extends ForegroundObject
         super(x, y);
         imageName = "hitbox.png";
         imageScale = 2.0/size;
-        // Transparency will break oops
-        
+        imageTransparency = 255;
         
         this.size = size;
         creator = playerCreator;

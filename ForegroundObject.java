@@ -19,6 +19,8 @@ public abstract class ForegroundObject extends Actor
     int imageTransparency = 255;
     
     public ForegroundObject(double x, double y) {
+        // Set the image to transparent to begin with to avoid unwanted flashing
+        getImage().setTransparency(0);
         this.x = x;
         this.y = y;
     }
