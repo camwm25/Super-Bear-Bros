@@ -19,7 +19,7 @@ public class Bear extends Player
     int currentBean = 0;
     
     public Bear(String inputType, double x, double y) {
-        super("bear", inputType, x, y);
+        super(inputType, x, y);
         JUMP_POWER = 20;
         SPEED = 1;
         imageName = "bear_walk_0.png";

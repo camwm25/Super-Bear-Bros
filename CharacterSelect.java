@@ -46,7 +46,7 @@ public class CharacterSelect extends GameScreen
         
         showText("GORDON'S MOM", 480, 160);
                 
-        Selectable polarbearSelect = new Selectable("bear");
+        Selectable polarbearSelect = new Selectable("polarbear");
         addObject(polarbearSelect, 630, 230);
         selectableList[1] = polarbearSelect;
         

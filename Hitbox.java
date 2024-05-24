@@ -33,7 +33,7 @@ public class Hitbox extends ForegroundObject
         checkHit();
         
         imageTransparency = 0;
-        //imageTransparency = 255;
+        // imageTransparency = 255;
     }
     
     public Hitbox(int size, int playerCreator, int time, int damage, 
@@ -48,7 +48,7 @@ public class Hitbox extends ForegroundObject
         imageName = "hitbox.png";
         imageScale = 2.0/size;
         
-        //imageTransparency = 0;
+        imageTransparency = 0;
         
         this.size = size;
         creator = playerCreator;

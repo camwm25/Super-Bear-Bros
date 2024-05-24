@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Objects seen in the foreground of the game.
  * 
  * @author Cam Welch Morgan and Devin Joe
- * @version 2024-05-16
+ * @version 2024-05-24
  */
 public abstract class BackgroundObject extends Actor
 {

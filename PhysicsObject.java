@@ -14,6 +14,8 @@ public abstract class PhysicsObject extends ForegroundObject
     double xVelocity = 0;
     double yVelocity = 0;
     
+    boolean dropping = false;
+    
     public PhysicsObject(double x, double y) {
         super(x, y);
     }
@@ -88,7 +90,7 @@ public abstract class PhysicsObject extends ForegroundObject
          */
         int n = 2;
         for (int i = 0; i < n; i++) {
-            if (onGround()) {
+            if ((onGround() && !dropping) || onBaseLayerGround()) {
                 yVelocity = 0;
             }
             else {

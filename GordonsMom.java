@@ -16,7 +16,7 @@ public class GordonsMom extends Player
     Hammer[] holder = new Hammer[1];
     
     public GordonsMom(String inputType, double x, double y) {
-        super("gordonsmom", inputType, x, y);
+        super(inputType, x, y);
         JUMP_POWER = 20;
         SPEED = 1.2;
         imageName = "gordons_mom_walk_0.png";

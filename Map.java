@@ -147,6 +147,10 @@ public abstract class Map extends GameScreen
                 player1 = new GordonsMom("WASD", -200, 200);
                 showText("GORDON'S MOM", 100, 50);
                 break;
+            case "polarbear":
+                player1 = new PolarBear("WASD", -200, 200);
+                showText("POLAR BEAR", 100, 50);
+                break;
             default:
                 player1 = new Bear("WASD", -200, 200);
         }
@@ -171,6 +175,10 @@ public abstract class Map extends GameScreen
             case "gordonsmom":
                 player2 = new GordonsMom("IJKL", 200, 200);
                 showText("GORDON'S MOM", 860, 50);
+                break;
+            case "polarbear":
+                player2 = new PolarBear("IJKL", 200, 200);
+                showText("POLAR BEAR", 860, 50);
                 break;
             default:
                 player2 = new Bear("IJKL", 200, 200);

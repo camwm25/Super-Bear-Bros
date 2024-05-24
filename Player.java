@@ -33,13 +33,12 @@ public abstract class Player extends PhysicsObject
     int attackDelay = 0;
     
     boolean attacking = false;
-    boolean dropping = false;
     boolean inGround = false;
     
     // to do: fix attacking and getting hit at same time cancelling knockback
     // to do: fix other knockback tidbits
     
-    public Player(String character, String inputKeys, double x, double y) {        
+    public Player(String inputKeys, double x, double y) {        
         super(x, y);
         switch (inputKeys) {
             case "IJKL":
@@ -80,8 +79,8 @@ public abstract class Player extends PhysicsObject
         super.act();
         updateVelocity();
         move();
-        updateDrop();
         fixOverlap();
+        updateDrop();
         checkAttack();
         checkInVoid();
         updateAttackedAndStun();
@@ -204,7 +203,7 @@ public abstract class Player extends PhysicsObject
                 inGround = false;
             }
             
-            if (yVelocity <= 0) {
+            if (yVelocity < 0) {
                 dropping = false;
                 inGround = false;
             }

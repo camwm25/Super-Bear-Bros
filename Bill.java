@@ -16,7 +16,7 @@ public class Bill extends Player
     Lightsaber[] holder = new Lightsaber[1];
     
     public Bill(String inputType, double x, double y) {
-        super("bill", inputType, x, y);
+        super(inputType, x, y);
         JUMP_POWER = 22;
         SPEED = 1.1;
         imageName = "bill_walk_0.png";
