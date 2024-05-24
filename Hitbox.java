@@ -18,6 +18,9 @@ public class Hitbox extends ForegroundObject
     int timer = 0;
     int stunAmount;
     
+    int changeX = 0;
+    int changeY = 0;
+    
     double xCoord;
     double yCoord;
     /**
@@ -28,6 +31,15 @@ public class Hitbox extends ForegroundObject
     {
         super.act();
         checkHit();
+        
+        imageTransparency = 0;
+        //imageTransparency = 255;
+    }
+    
+    public Hitbox(int size, int playerCreator, int time, int damage, 
+                    int direction, int knockback, double x, double y, int stun,
+                    int changeX, int changeY) {
+        this(size, playerCreator, time, damage, direction, knockback, x, y, stun);
     }
     
     public Hitbox(int size, int playerCreator, int time, int damage, 
@@ -35,7 +47,8 @@ public class Hitbox extends ForegroundObject
         super(x, y);
         imageName = "hitbox.png";
         imageScale = 2.0/size;
-        imageTransparency = 0;
+        
+        //imageTransparency = 0;
         
         this.size = size;
         creator = playerCreator;
@@ -79,12 +92,15 @@ public class Hitbox extends ForegroundObject
                     ownerHere = true;
                     ownerDirection = p.getDirection();
                     
-                    ownerX = Math.abs((int)xCoord - (int)p.getX());
-                    ownerY = Math.abs((int)yCoord - (int)p.getY());
+                    ownerX = Math.abs((int)xCoord - ((int)p.getXPosition()+changeX));
+                    ownerY = Math.abs((int)yCoord - ((int)p.getYPosition()+changeY));
+                    
+                    ownerX = Math.abs((int)p.getXVelocity());
+                    ownerY = Math.abs((int)p.getYVelocity());
                     
                 }
             }
-        if (!ownerHere || ownerDirection != direction || ownerX > 40 || ownerY > 20) {
+        if (!ownerHere || ownerDirection != direction || ownerX > 6 || ownerY > 20) {
             ((Map) getWorld()).removeObject(this);
         }
     }

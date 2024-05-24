@@ -11,6 +11,8 @@ public class GordonsMom extends Player
     int stareTimer = 20;
     int hammerTimer = 30;
     
+    int biteY = -30;
+    
     Hammer[] holder = new Hammer[1];
     
     public GordonsMom(String inputType, double x, double y) {
@@ -62,7 +64,8 @@ public class GordonsMom extends Player
             }
             
             Hitbox h = new Hitbox(12, playerNumber, 10, 2, direction, 8,
-                (int)getXPosition(), (int)getYPosition(), 15);
+                (int)getXPosition(), (int)getYPosition()+biteY, 15,
+                0, biteY);
             ((Map) getWorld()).addObject(h, getX()+(35*direction), getY()-40);
         
             attacking = false;

@@ -11,6 +11,8 @@ public class Bill extends Player
     int biteTimer = 20;
     int lightsaberTimer = 30;
     
+    int biteY = -30;
+    
     Lightsaber[] holder = new Lightsaber[1];
     
     public Bill(String inputType, double x, double y) {
@@ -54,7 +56,8 @@ public class Bill extends Player
             }
             
             Hitbox h = new Hitbox(10, playerNumber, 10, 3, direction, 10,
-                 (int)getXPosition(), (int)getYPosition(), 20);
+                 (int)getXPosition(), (int)getYPosition()+biteY, 20,
+                 0, biteY);
             ((Map) getWorld()).addObject(h, getX()+(35*direction), getY()-40);
         
             attacking = false;

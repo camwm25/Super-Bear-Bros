@@ -11,6 +11,9 @@ public class Bear extends Player
     int biteTimer = 30;
     int beansTimer = 30;
     
+    public int biteX = 50;
+    public int biteY = -30;
+    
     Beans[] beanList = new Beans[2];
     
     int currentBean = 0;
@@ -57,8 +60,9 @@ public class Bear extends Player
             }
             
             Hitbox h = new Hitbox(9, playerNumber, 20, 2, direction, 10, 
-                (int)getXPosition(), (int)getYPosition(), 20);
-            ((Map) getWorld()).addObject(h, getX()+(60*direction), getY()-32);
+                (int)getXPosition()+ (biteX*direction), (int)getYPosition() + biteY, 20, 
+                biteX*direction, biteY);
+            ((Map) getWorld()).addObject(h, getX()+(biteX*direction), getY()+biteY);
         
             attacking = false;
         }
