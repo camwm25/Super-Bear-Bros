@@ -118,13 +118,13 @@ public abstract class Map extends GameScreen
     public void updateCamZoom() {
         double playerDistanceSquared = Math.pow(player1.getXPosition() - player2.getXPosition(), 2) +
                                 Math.pow(player1.getYPosition() - player2.getYPosition(), 2);
-        double desiredCamZoom = 1 / (playerDistanceSquared / 1000000 + 0.8);
+        double desiredCamZoom = 1 / (playerDistanceSquared / 1000000 + 1.2) + 0.25;
         
         // test
         // desiredCamZoom *= 1;
         
         
-        camZoom += (desiredCamZoom - camZoom) / 20;
+        camZoom += (desiredCamZoom - camZoom) / 10;
     }
     
     public void moveCam() {
