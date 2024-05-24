@@ -45,6 +45,12 @@ public class Map1 extends Map
         
         buildObject("tile1_b0", 245, -100);
         buildObject("tile1_b2", 355, -100);
+        
+        for (int i = 50; i >= 0; i--) {
+            addCloud(Math.random() * 10000 - 5000,
+                     Math.random() * 300 - 500,
+                     i / 10.0);
+        }
         /**
         addObject(new Ground("grass_block", 500, 300, "base"), 0, 0);
         addObject(new Ground("grass_block", 400, 300, "base"), 0, 0);

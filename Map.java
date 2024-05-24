@@ -54,7 +54,11 @@ public abstract class Map extends GameScreen
         
         goToScreen(); 
         
+<<<<<<< Updated upstream
         setPaintOrder(Icon.class, Hitbox.class, Player.class, PlayerFollower.class, Lightsaber.class, Hammer.class, Beans.class, Ground.class);
+=======
+        setPaintOrder(Icon.class, Player.class, PlayerFollower.class, Lightsaber.class, Hammer.class, Beans.class, Hitbox.class, Ground.class, Cloud.class);
+>>>>>>> Stashed changes
     }
     
     public void changeHealth(int damage, int playerNumber) {
@@ -245,6 +249,11 @@ public abstract class Map extends GameScreen
         groundArray[arrayCounter] = g;
         arrayCounter++;
         addObject(g, 0, 0);
+    }
+    
+    protected void addCloud(double x, double y, double z) {
+        Cloud c = new Cloud(x, y, z);
+        addObject(c, 0, 0);
     }
     
     public void makeBlocksDisappear() {
