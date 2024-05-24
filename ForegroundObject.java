@@ -59,4 +59,8 @@ public abstract class ForegroundObject extends Actor
     public double getYPosition() {
         return y;
     }
+    
+    public double getHeight() {
+        return getImage().getHeight() * imageScale;
+    }
 }

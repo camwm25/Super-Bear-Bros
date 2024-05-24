@@ -26,10 +26,6 @@ public class GordonsMom extends Player
     public void act() {
         super.act();
         
-        if (xVelocity < 0) {
-            getImage().mirrorHorizontally();
-        }
-        
         if (stareTimer >= 15 && hammerTimer >= 30) {
             imageName = "gordons_mom_walk_" + (((int) x/10) % 4 + 4) % 4 + ".png";
         }
@@ -42,10 +38,6 @@ public class GordonsMom extends Player
         if (hammerTimer < 30) {
             imageName = "gordons_mom_hammer_" + hammerTimer * 5 / 30 + ".png";
             hammerTimer++;
-        }
-                
-        if (direction == -1) {
-            getImage().mirrorHorizontally();
         }
         
         imageDirection = direction;
