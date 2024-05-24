@@ -47,8 +47,8 @@ public abstract class BackgroundObject extends Actor
                               + (world.getHeight() / 2));
         
         GreenfootImage image = new GreenfootImage(imageName);
-        image.scale((int) (image.getWidth() * imageScale * world.getCamZoom() * parallaxFactor) + 1,
-                    (int) (image.getHeight() * imageScale * world.getCamZoom() * parallaxFactor) + 1);
+        image.scale((int) (image.getWidth() * imageScale * world.getCamZoom() / (world.getCamZoom() + z)) + 1,
+                    (int) (image.getHeight() * imageScale * world.getCamZoom() / (world.getCamZoom() + z)) + 1);
         if (imageDirection == -1) {
             image.mirrorHorizontally();
         }

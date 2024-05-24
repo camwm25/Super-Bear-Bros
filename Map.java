@@ -54,11 +54,7 @@ public abstract class Map extends GameScreen
         
         goToScreen(); 
         
-<<<<<<< Updated upstream
-        setPaintOrder(Icon.class, Hitbox.class, Player.class, PlayerFollower.class, Lightsaber.class, Hammer.class, Beans.class, Ground.class);
-=======
-        setPaintOrder(Icon.class, Player.class, PlayerFollower.class, Lightsaber.class, Hammer.class, Beans.class, Hitbox.class, Ground.class, Cloud.class);
->>>>>>> Stashed changes
+        setPaintOrder(Icon.class, Hitbox.class, Player.class, PlayerFollower.class, Lightsaber.class, Hammer.class, Beans.class, Ground.class, Cloud.class);
     }
     
     public void changeHealth(int damage, int playerNumber) {

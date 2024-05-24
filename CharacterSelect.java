@@ -29,22 +29,28 @@ public class CharacterSelect extends GameScreen
         currentCharacter = 1;
         
         Selectable bearSelect = new Selectable("bear");
-        addObject(bearSelect, 480, 230);
+        addObject(bearSelect, 180, 230);
         selectableList[0] = bearSelect;
         
-        showText("BEAR", 480, 160);
+        showText("BEAR", 180, 160);
         
         Selectable billSelect = new Selectable("bill");
-        addObject(billSelect, 280, 230);
+        addObject(billSelect, 330, 230);
         selectableList[1] = billSelect;
         
-        showText("BILL", 280, 160);
+        showText("BILL", 330, 160);
         
         Selectable gordonsmomSelect = new Selectable("gordonsmom");
-        addObject(gordonsmomSelect, 680, 230);
+        addObject(gordonsmomSelect, 480, 230);
         selectableList[1] = gordonsmomSelect;
         
-        showText("GORDON'S MOM", 680, 160);
+        showText("GORDON'S MOM", 480, 160);
+                
+        Selectable polarbearSelect = new Selectable("bear");
+        addObject(polarbearSelect, 630, 230);
+        selectableList[1] = polarbearSelect;
+        
+        showText("POLAR BEAR", 630, 160);
         
         showText("Player One", 200, 500);
         showText("Player Two", 760, 500);
