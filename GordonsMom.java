@@ -9,9 +9,24 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class GordonsMom extends Player
 {
     int stareTimer = 20;
+    int kickTimer = 30;
     int hammerTimer = 30;
     
-    int biteY = -30;
+    int stareY = -30;
+    int stareX = 10;
+    int stareDuration = 10;
+    int stareSize = 12;
+    int stareDamage = 2;
+    int stareKnockback = 8;
+    int stareStun = 15;
+    
+    int kickY = 40;
+    int kickX = 15;
+    int kickDuration = 15;
+    int kickSize = 9;
+    int kickDamage = 1;
+    int kickKnockback = 10;
+    int kickStun = 30;
     
     Hammer[] holder = new Hammer[1];
     
@@ -55,9 +70,9 @@ public class GordonsMom extends Player
                 xVelocity = -1;
             }
             
-            Hitbox h = new Hitbox(12, playerNumber, 10, 2, direction, 8,
-                (int)getXPosition(), (int)getYPosition()+biteY, 15,
-                0, biteY);
+            Hitbox h = new Hitbox(stareSize, playerNumber, stareDuration, stareDamage, direction, 
+                stareKnockback, (int)getXPosition()+(stareX*direction), (int)getYPosition()+stareY, 
+                stareStun, 0, stareY);
             ((Map) getWorld()).addObject(h, getX()+(35*direction), getY()-40);
         
             attacking = false;
@@ -75,6 +90,28 @@ public class GordonsMom extends Player
             double hammerY = getYPosition() + getYVelocity();
 
             ((Map) getWorld()).addObject(h, (int)hammerX, (int)hammerY);
+            attacking = false;
+        }
+    }
+    
+    public void alternateAttack() {
+        // kick
+        if (canAttack()) {
+            attacking = true;
+            kickTimer = 0;
+            
+            if (direction == 1) {
+                xVelocity = 1;
+            }
+            else {
+                xVelocity = -1;
+            }
+            
+            Hitbox h = new Hitbox(kickSize, playerNumber, kickDuration, kickDamage, direction, 
+                kickKnockback, (int)getXPosition() + kickX*direction, (int)getYPosition()+kickY, 
+                kickStun, 0, kickY);
+            ((Map) getWorld()).addObject(h, getX()+(35*direction), getY());
+        
             attacking = false;
         }
     }
