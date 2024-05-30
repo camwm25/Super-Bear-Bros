@@ -12,6 +12,12 @@ public class Bill extends Player
     int lightsaberTimer = 30;
     
     int biteY = -30;
+    int biteX = 10;
+    int biteDuration = 10;
+    int biteSize = 10;
+    int biteDamage = 3;
+    int biteKnockback = 10;
+    int biteStun = 20;
     
     Lightsaber[] holder = new Lightsaber[1];
     
@@ -55,9 +61,9 @@ public class Bill extends Player
                 xVelocity = -1;
             }
             
-            Hitbox h = new Hitbox(10, playerNumber, 10, 3, direction, 10,
-                 (int)getXPosition(), (int)getYPosition()+biteY, 20,
-                 0, biteY);
+            Hitbox h = new Hitbox(biteSize, playerNumber, biteDuration, biteDamage, direction, 
+                biteKnockback, (int)getXPosition()+(biteX*direction), (int)getYPosition()+biteY, 
+                biteStun, 0, biteY);
             ((Map) getWorld()).addObject(h, getX()+(35*direction), getY()-40);
         
             attacking = false;
@@ -82,6 +88,10 @@ public class Bill extends Player
             attacking = false;
         }
         
+    }
+    
+    public void alternateAttack() {
+        // transform into bat
     }
     
     public void removeProjectiles() {

@@ -96,6 +96,10 @@ public class PolarBear extends Player
         
     }
     
+    public void alternateAttack() {
+        
+    }
+    
     public void removeProjectiles() {
         for (Lightning b : beanList) {
             ((Map) getWorld()).removeObject(b);

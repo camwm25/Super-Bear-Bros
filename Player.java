@@ -27,6 +27,7 @@ public abstract class Player extends PhysicsObject
     
     String normalAttack;
     String specialAttack;
+    String alternateAttack;
     
     int direction = 1;
     
@@ -48,6 +49,7 @@ public abstract class Player extends PhysicsObject
                 rightKey = "L";
                 normalAttack = "U";
                 specialAttack = "O";
+                alternateAttack = "H";
                 playerNumber = 2;
                 break;
             case "WASD":
@@ -58,6 +60,7 @@ public abstract class Player extends PhysicsObject
                 rightKey = "D";
                 normalAttack = "Q";
                 specialAttack = "E";
+                alternateAttack = "F";
                 playerNumber = 1;
                 break;
         }
@@ -174,6 +177,10 @@ public abstract class Player extends PhysicsObject
                 specialAttack();
                 attackDelay = COOLDOWN;
             } 
+            if (Greenfoot.isKeyDown(alternateAttack)) {
+                alternateAttack();
+                attackDelay = COOLDOWN;
+            } 
             
         }
         else if (attackDelay > 0){
@@ -281,6 +288,7 @@ public abstract class Player extends PhysicsObject
     
     public abstract void normalAttack();
     public abstract void specialAttack();
+    public abstract void alternateAttack();
     public abstract void removeProjectiles();
         
 }

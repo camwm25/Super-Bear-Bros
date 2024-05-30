@@ -11,8 +11,13 @@ public class Bear extends Player
     int biteTimer = 30;
     int beansTimer = 30;
     
-    public int biteX = 50;
-    public int biteY = -30;
+    int biteX = 50;
+    int biteY = -30;
+    int biteDuration = 20;
+    int biteSize = 12;
+    int biteDamage = 2;
+    int biteKnockback = 8;
+    int biteStun = 20;
     
     Beans[] beanList = new Beans[2];
     
@@ -59,9 +64,9 @@ public class Bear extends Player
                 xVelocity = -1;
             }
             
-            Hitbox h = new Hitbox(9, playerNumber, 20, 2, direction, 10, 
-                (int)getXPosition()+ (biteX*direction), (int)getYPosition() + biteY, 20, 
-                biteX*direction, biteY);
+            Hitbox h = new Hitbox(biteSize, playerNumber, biteDuration, biteDamage, direction, 
+                biteKnockback, (int)getXPosition()+(biteX*direction), (int)getYPosition()+biteY, 
+                biteStun, 0, biteY);
             ((Map) getWorld()).addObject(h, getX()+(biteX*direction), getY()+biteY);
         
             attacking = false;
@@ -87,6 +92,10 @@ public class Bear extends Player
             ((Map) getWorld()).addObject(b, getX(), getY()); // 0, 0 is fine because it will update anyway
         }
         
+    }
+    
+    public void alternateAttack() {
+        // this will be window attack which i cannot add 
     }
     
     public void removeProjectiles() {

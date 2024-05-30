@@ -32,8 +32,8 @@ public class Hitbox extends ForegroundObject
         super.act();
         checkHit();
         
-        imageTransparency = 0;
-        // imageTransparency = 255;
+        //imageTransparency = 0;
+        imageTransparency = 255;
     }
     
     public Hitbox(int size, int playerCreator, int time, int damage, 
