@@ -8,11 +8,18 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PolarBear extends Player
 {
-    int biteTimer = 30;
+    int punchTimer = 30;
     int beansTimer = 30;
     
-    public int biteX = 50;
-    public int biteY = -30;
+    boolean punchActivate = false;
+    
+    int punchX = 60;
+    int punchY = 5;
+    int punchDuration = 20;
+    int punchSize = 9;
+    int punchDamage = 2;
+    int punchKnockback = 16;
+    int punchStun = 35;
     
     Lightning[] beanList = new Lightning[2]; // This is obviously temporary
     
@@ -29,28 +36,30 @@ public class PolarBear extends Player
     public void act() {
         super.act();
         
-        if (biteTimer >= 30 && beansTimer >= 30) {
+        if (punchTimer >= 30 && beansTimer >= 30) {
             imageName = "polar_bear_walk_" + (((int) x/10) % 16 + 16) % 16 + ".png";
         }
         
-        if (biteTimer < 30) {
-            imageName = "polar_bear_bite_" + biteTimer * 7 / 30 + ".png";
-            biteTimer++;
+        if (punchTimer < 30) {
+            imageName = "polar_bear_punch_" + punchTimer * 7 / 30 + ".png";
+            punchTimer++;
         }
         
-        if (beansTimer < 30) {
-            imageName = "polar_bear_beans_" + beansTimer * 7 / 30 + ".png";
-            beansTimer++;
+        if (punchTimer == 8 && canAttack()) {
+            Hitbox h = new Hitbox(punchSize, playerNumber, punchDuration, punchDamage, direction, 
+                punchKnockback, (int)getXPosition()+(punchX*direction), (int)getYPosition()+punchY, 
+                punchStun, 0, punchY);
+            ((Map) getWorld()).addObject(h, getX()+(punchX*direction), getY()+punchY);
         }
         
         imageDirection = direction;
     }
     
     public void normalAttack() {
-        //bite
+        //punch
         if (canAttack()) {
             attacking = true;
-            biteTimer = 0;
+            punchTimer = 0;
             
             if (direction == 1) {
                 xVelocity = 1;
@@ -58,16 +67,12 @@ public class PolarBear extends Player
             else {
                 xVelocity = -1;
             }
-            
-            Hitbox h = new Hitbox(9, playerNumber, 20, 2, direction, 10, 
-                (int)getXPosition()+ (biteX*direction), (int)getYPosition() + biteY, 20, 
-                biteX*direction, biteY);
-            ((Map) getWorld()).addObject(h, getX()+(biteX*direction), getY()+biteY);
-        
+    
             attacking = false;
         }
         
     }
+    
     
     public void updateCurrentBean(int update) {
         currentBean = update;

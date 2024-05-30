@@ -14,8 +14,8 @@ public class Bear extends Player
     int biteX = 50;
     int biteY = -30;
     int biteDuration = 20;
-    int biteSize = 12;
-    int biteDamage = 2;
+    int biteSize = 8;
+    int biteDamage = 3;
     int biteKnockback = 8;
     int biteStun = 20;
     
@@ -63,12 +63,11 @@ public class Bear extends Player
             else {
                 xVelocity = -1;
             }
-            
+        
             Hitbox h = new Hitbox(biteSize, playerNumber, biteDuration, biteDamage, direction, 
                 biteKnockback, (int)getXPosition()+(biteX*direction), (int)getYPosition()+biteY, 
                 biteStun, 0, biteY);
             ((Map) getWorld()).addObject(h, getX()+(biteX*direction), getY()+biteY);
-        
             attacking = false;
         }
         

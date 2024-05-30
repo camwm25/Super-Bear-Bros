@@ -35,7 +35,7 @@ public abstract class PhysicsObject extends ForegroundObject
     
         
     public boolean onGround() {
-        double tolerance = 10 * ((Map) getWorld()).getCamZoom();
+        double tolerance = 8 * ((Map) getWorld()).getCamZoom();
         
         if (yVelocity < 0) {
             return false;
