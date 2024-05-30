@@ -17,15 +17,15 @@ public class Selectable extends SelectScreeners
      */
     public GreenfootImage[] images = new GreenfootImage[1];
     
-    private String characterName;
+    private String text;
     
-    public Selectable(String character) {
-        images[0] = new GreenfootImage("" + character + "Select.png");
+    public Selectable(String text) {
+        images[0] = new GreenfootImage("" + text + "Select.png");
         for (GreenfootImage image : images) {
             image.scale(image.getWidth() / 5, image.getHeight() / 5);
         }
         setImage(images[0]);
-        characterName = character;
+        this.text = text;
     }
     
     public void act()
@@ -36,7 +36,12 @@ public class Selectable extends SelectScreeners
     }
     
     public void onPress() {
-        ((CharacterSelect) getWorld()).selectPlayer(characterName);
-        // will send character name to map2
+        if (getWorld() instanceof CharacterSelect) {
+            ((CharacterSelect) getWorld()).selectPlayer(text);
+            // will send character name to map2
+        }
+        else if (getWorld() instanceof MapSelect) {
+            ((MapSelect) getWorld()).selectMap(text);
+        }
     }
 }

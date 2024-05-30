@@ -13,7 +13,7 @@ public class GameButton extends Button
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void onPress() { 
-        ((CharacterSelect) getWorld()).leaveScreen();
-        ((CharacterSelect) getWorld()).removeObject(this);
+        ((GameScreen) getWorld()).leaveScreen();
+        ((GameScreen) getWorld()).removeObject(this);
     }
 }

@@ -260,6 +260,11 @@ public abstract class Map extends GameScreen
         addObject(c, 0, 0);
     }
     
+    protected void addStar(double x, double y, double z) {
+        Star s = new Star(x, y, z);
+        addObject(s, 0, 0);
+    }
+    
     public void makeBlocksDisappear() {
         for (Ground g : groundArray) {
             removeObject(g);

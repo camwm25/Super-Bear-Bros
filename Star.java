@@ -1,17 +1,17 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Clouds in the sky.
+ * Stars in the sky.
  * 
  * @author Devin Joe
  * @version 2024-05-24
  */
-public class Cloud extends BackgroundObject
+public class Star extends BackgroundObject
 {
-    public Cloud(double x, double y, double z) {
+    public Star(double x, double y, double z) {
         super(x, y, z);
-        imageName = "cloud.png";
-        imageScale = 2;
+        imageName = "star.png";
+        imageScale = 4;
     }
     
     /**
