@@ -19,9 +19,9 @@ public class PolarBear extends Player
     int punchSize = 9;
     int punchDamage = 2;
     int punchKnockback = 16;
-    int punchStun = 35;
+    int punchStun = 20;
     
-    Lightning[] beanList = new Lightning[2]; // This is obviously temporary
+    int punchDelay = 40;
     
     int currentBean = 0;
     
@@ -38,6 +38,9 @@ public class PolarBear extends Player
         
         if (punchTimer >= 30 && beansTimer >= 30) {
             imageName = "polar_bear_walk_" + (((int) x/10) % 16 + 16) % 16 + ".png";
+            if (stun != 0) {
+                imageName = "polar_bear_stun.png";
+            }
         }
         
         if (punchTimer < 30) {
@@ -50,6 +53,7 @@ public class PolarBear extends Player
                 punchKnockback, (int)getXPosition()+(punchX*direction), (int)getYPosition()+punchY, 
                 punchStun, 0, punchY);
             ((Map) getWorld()).addObject(h, getX()+(punchX*direction), getY()+punchY);
+            setAttackDelay(punchDelay);
         }
         
         imageDirection = direction;
@@ -79,35 +83,15 @@ public class PolarBear extends Player
     }
     
     public void specialAttack() {
-        //projectile (lighting)
-        /**
-         * Temporary attack!!!
-         * 
-         * It is stupid!!!
-         * 
-         * Fix it!!!
-         */
-        if (canAttack()) {
-            Lightning b = new Lightning(getXPosition(), getYPosition(), 
-            getXVelocity() + direction * 25, getYVelocity() - 15, playerNumber, currentBean);
-            if (beanList[currentBean] != null) {
-                Lightning oldBean = beanList[currentBean];
-                ((Map) getWorld()).removeObject(oldBean);
-            }
-            beanList[currentBean] = b;
-            currentBean = (++currentBean % 2);
-            ((Map) getWorld()).addObject(b, getX(), getY()); // 0, 0 is fine because it will update anyway
-        }
+        //lighting
         
     }
     
     public void alternateAttack() {
-        
+        //lightning force field
     }
     
     public void removeProjectiles() {
-        for (Lightning b : beanList) {
-            ((Map) getWorld()).removeObject(b);
-        }
+        
     }
 }

@@ -111,10 +111,10 @@ public class Beans extends PhysicsObject
                 explosionTimer = 1;
             }
             for (Hammer h : getIntersectingObjects(Hammer.class)) {
-                this.explosionTimer = 8;
+                this.explosionTimer = 1;
             }
             for (Lightsaber l : getIntersectingObjects(Lightsaber.class)) {
-                this.explosionTimer = 8;
+                this.explosionTimer = 1;
             }
         }
     }

@@ -8,9 +8,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class GordonsMom extends Player
 {
-    int stareTimer = 20;
+    //int stareTimer = 20;
     int kickTimer = 30;
     int hammerTimer = 30;
+    int blasterTimer = 20;
     
     //int stareY = -30;
     //int stareX = 10;
@@ -21,14 +22,19 @@ public class GordonsMom extends Player
     //int stareStun = 15;
     
     int kickY = 30;
-    int kickX = 15;
+    int kickX = 20;
     int kickDuration = 15;
-    int kickSize = 8;
+    int kickSize = 10;
     int kickDamage = 2;
     int kickKnockback = 12;
-    int kickStun = 30;
+    int kickStun = 15;
+    int kickDelay = 40;
+    
+    int hammerDelay = 60;
+    int blasterDelay = 60;
     
     Hammer[] holder = new Hammer[1];
+    Bullet[] blaster = new Bullet[1];
     
     public GordonsMom(String inputType, double x, double y) {
         super(inputType, x, y);
@@ -41,8 +47,11 @@ public class GordonsMom extends Player
     public void act() {
         super.act();
         
-        if (stareTimer >= 15 && hammerTimer >= 30) {
+        if (blasterTimer >= 20 && hammerTimer >= 30 && kickTimer >= 30) {
             imageName = "gordons_mom_walk_" + (((int) x/10) % 4 + 4) % 4 + ".png";
+            if (stun != 0) {
+                imageName = "gordons_mom_stun.png";
+            }
         }
         
         //if (stareTimer < 15) {
@@ -58,6 +67,21 @@ public class GordonsMom extends Player
         if (hammerTimer < 30) {
             imageName = "gordons_mom_hammer_" + hammerTimer * 5 / 30 + ".png";
             hammerTimer++;
+        }
+        
+        if (blasterTimer < 20) {
+            imageName = "gordons_mom_blaster_" + blasterTimer * 4 / 20 + ".png";
+            blasterTimer++;
+        }
+        
+        if(blasterTimer == 15 && canAttack()) {
+            Bullet b = new Bullet(getXPosition(), getYPosition()-5, direction, playerNumber);
+            blaster[0] = b;
+            double BulletX = getXPosition() + getXVelocity();
+            double BulletY = getYPosition() + getYVelocity();
+
+            ((Map) getWorld()).addObject(b, (int)BulletX, (int)BulletY);
+            setAttackDelay(blasterDelay);
         }
         
         imageDirection = direction;
@@ -99,7 +123,9 @@ public class GordonsMom extends Player
                 kickKnockback, (int)getXPosition() + kickX*direction, (int)getYPosition()+kickY, 
                 kickStun, 0, kickY);
             ((Map) getWorld()).addObject(h, getX()+(35*direction), getY());
-        
+            
+            
+            setAttackDelay(kickDelay);
             attacking = false;
         }
         
@@ -115,13 +141,18 @@ public class GordonsMom extends Player
             double hammerY = getYPosition() + getYVelocity();
 
             ((Map) getWorld()).addObject(h, (int)hammerX, (int)hammerY);
+            setAttackDelay(hammerDelay);
             attacking = false;
         }
     }
     
     public void alternateAttack() {
-        // blaster
-        
+        //blaster
+        if (canAttack()) {
+            blasterTimer = 0;
+            attacking = true;
+            attacking = false;
+        }
     }
     
     public void removeProjectiles() {

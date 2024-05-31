@@ -15,10 +15,9 @@ public abstract class Player extends PhysicsObject
     public int playerNumber;
     
     int COOLDOWN = 20;
-    
-    int attacked = 0;
+
     public int stun = 0; 
-    // thinking about stun rn. idk
+    public int attackDelay = 0;
     
     String upKey;
     String downKey;
@@ -30,8 +29,6 @@ public abstract class Player extends PhysicsObject
     String alternateAttack;
     
     int direction = 1;
-    
-    int attackDelay = 0;
     
     boolean attacking = false;
     boolean inGround = false;
@@ -86,12 +83,12 @@ public abstract class Player extends PhysicsObject
         updateDrop();
         checkAttack();
         checkInVoid();
-        updateAttackedAndStun();
+        updateStun();
         // if (playerNumber == 1) System.out.println("" + inGround + onGround());
     }
     
     public boolean canAttack() {
-        if (getStun() == 0 && attacked == 0 && !dropping && (xVelocity < 150 || xVelocity > -150)) {
+        if (getStun() == 0 && getAttackDelay() == 0 & !dropping && (xVelocity < 150 || xVelocity > -150)) {
             return true;
         }
         return false;
@@ -105,10 +102,15 @@ public abstract class Player extends PhysicsObject
         stun = timeStun;
     }
     
-    private void updateAttackedAndStun() {
-        if (attacked != 0) {
-            attacked--;
-        }
+    public int getAttackDelay() {
+        return attackDelay;
+    }
+    
+    public void setAttackDelay(int timeDelay) {
+        attackDelay = timeDelay;
+    }
+    
+    private void updateStun() {
         if (stun != 0) {
             stun--;
         }
@@ -171,15 +173,12 @@ public abstract class Player extends PhysicsObject
         if (attackDelay == 0) {
             if (Greenfoot.isKeyDown(normalAttack)) {
                 normalAttack();
-                attackDelay = COOLDOWN;
             }
             if (Greenfoot.isKeyDown(specialAttack)) {
                 specialAttack();
-                attackDelay = COOLDOWN;
             } 
             if (Greenfoot.isKeyDown(alternateAttack)) {
                 alternateAttack();
-                attackDelay = COOLDOWN;
             } 
             
         }
@@ -248,17 +247,16 @@ public abstract class Player extends PhysicsObject
         switch (knockDirection) {
             case 1:
                 xVelocity = knockDistance;
-                yVelocity = -0.5*knockDistance;
+                yVelocity = -0.75*knockDistance;
                 break;
             case -1:
                 xVelocity = -knockDistance;
-                yVelocity = -0.5*knockDistance;
+                yVelocity = -0.75*knockDistance;
                 break;
             case 0:
                 xVelocity = -direction * knockDistance;
-                yVelocity = -0.5*knockDistance;
+                yVelocity = -0.75*knockDistance;
         }
-        attacked = knockDistance;
     }
     
     public void takeKnockback(int knockDirection, int knockDistanceHor, int knockDistanceVert) {
@@ -275,7 +273,6 @@ public abstract class Player extends PhysicsObject
                 xVelocity = -direction * knockDistanceHor;
                 yVelocity = -0.5*knockDistanceVert;
         }
-        attacked = Math.max(knockDistanceVert, knockDistanceHor);
     }
     
     public void takeDamage(int damage) {

@@ -17,7 +17,10 @@ public class Bill extends Player
     int biteSize = 10;
     int biteDamage = 3;
     int biteKnockback = 10;
-    int biteStun = 20;
+    int biteStun = 10;
+    int biteDelay = 35;
+    
+    int lightsaberDelay = 60;
     
     Lightsaber[] holder = new Lightsaber[1];
     
@@ -34,6 +37,9 @@ public class Bill extends Player
         
         if (biteTimer >= 15 && lightsaberTimer >= 30) {
             imageName = "bill_walk_" + (((int) x/10) % 4 + 4) % 4 + ".png";
+            if (stun != 0) {
+                imageName = "bill_stun.png";
+            }
         }
         
         if (biteTimer < 15) {
@@ -66,6 +72,7 @@ public class Bill extends Player
                 biteStun, 0, biteY);
             ((Map) getWorld()).addObject(h, getX()+(35*direction), getY()-40);
         
+            setAttackDelay(biteDelay);
             attacking = false;
         }
         
@@ -85,6 +92,7 @@ public class Bill extends Player
             + 5;
         
             ((Map) getWorld()).addObject(l, (int)lightsaberX, (int)lightsaberY); // The location is arbitrary.
+            setAttackDelay(lightsaberDelay);
             attacking = false;
         }
         

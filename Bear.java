@@ -17,7 +17,10 @@ public class Bear extends Player
     int biteSize = 8;
     int biteDamage = 3;
     int biteKnockback = 8;
-    int biteStun = 20;
+    int biteStun = 15;
+    int biteDelay = 35;
+    
+    int beansDelay = 60;
     
     Beans[] beanList = new Beans[2];
     
@@ -34,8 +37,11 @@ public class Bear extends Player
     public void act() {
         super.act();
         
-        if (biteTimer >= 30 && beansTimer >= 30) {
+        if (biteTimer >= 30 && beansTimer >= 20) {
             imageName = "bear_walk_" + (((int) x/10) % 16 + 16) % 16 + ".png";
+            if (stun != 0) {
+                imageName = "bear_stun.png";
+            }
         }
         
         if (biteTimer < 30) {
@@ -43,8 +49,8 @@ public class Bear extends Player
             biteTimer++;
         }
         
-        if (beansTimer < 30) {
-            imageName = "bear_beans_" + beansTimer * 7 / 30 + ".png";
+        if (beansTimer < 20) {
+            imageName = "bear_beans_" + beansTimer * 4 / 20 + ".png";
             beansTimer++;
         }
         
@@ -68,7 +74,9 @@ public class Bear extends Player
                 biteKnockback, (int)getXPosition()+(biteX*direction), (int)getYPosition()+biteY, 
                 biteStun, 0, biteY);
             ((Map) getWorld()).addObject(h, getX()+(biteX*direction), getY()+biteY);
+            setAttackDelay(biteDelay);
             attacking = false;
+
         }
         
     }
@@ -80,7 +88,8 @@ public class Bear extends Player
     public void specialAttack() {
         //projectile (beans)
         if (canAttack()) {
-            Beans b = new Beans(getXPosition(), getYPosition(), 
+            beansTimer = 0;
+            Beans b = new Beans(getXPosition()+10, getYPosition()+40, 
             getXVelocity() + direction * 25, getYVelocity() - 15, playerNumber, currentBean);
             if (beanList[currentBean] != null) {
                 Beans oldBean = beanList[currentBean];
@@ -88,7 +97,8 @@ public class Bear extends Player
             }
             beanList[currentBean] = b;
             currentBean = (++currentBean % 2);
-            ((Map) getWorld()).addObject(b, getX(), getY()); // 0, 0 is fine because it will update anyway
+            ((Map) getWorld()).addObject(b, 0, 0); // 0, 0 is fine because it will update anyway
+            setAttackDelay(beansDelay);
         }
         
     }
