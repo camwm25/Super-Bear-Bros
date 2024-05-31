@@ -35,6 +35,8 @@ public abstract class Map extends GameScreen
     Ground[] groundArray = new Ground[25];
     int arrayCounter;
     
+    private final double shakingThreshold = 0.1;
+    
     /**
      * Constructor for objects of class Map.
      * 
@@ -112,6 +114,14 @@ public abstract class Map extends GameScreen
         else {
             camXVelocity = ((player1.getXPosition() + 20*player1.getXVelocity() + player2.getXPosition() + 20*player2.getXVelocity()) / 4 - camX) / 20;
             camYVelocity = ((player1.getYPosition() + 20*player1.getYVelocity() + player2.getYPosition() + 20*player2.getYVelocity()) / 4 - camY) / 20;
+        }
+        
+        // Prevent shaking
+        if (-shakingThreshold < camXVelocity && camXVelocity < shakingThreshold) {
+            camXVelocity = 0;
+        }
+        if (-shakingThreshold < camYVelocity && camYVelocity < shakingThreshold) {
+            camYVelocity = 0;
         }
     }
     
