@@ -15,8 +15,6 @@ public abstract class BackgroundObject extends Actor
     String imageName = "hitbox.png"; // this line should in theory say String imageName;
     double imageScale;
     
-    double parallaxFactor;
-    
     // 1 by default, -1 if reflected.
     int imageDirection = 1;
     int imageTransparency = 255;
@@ -27,7 +25,6 @@ public abstract class BackgroundObject extends Actor
         this.x = x;
         this.y = y;
         this.z = z;
-        parallaxFactor = 1 / (1 + z);
     }
     
     /**
@@ -41,14 +38,13 @@ public abstract class BackgroundObject extends Actor
     
     public void updateOnScreen() {
         Map world = (Map) getWorld();
-        int screenX = (int) (parallaxFactor * (x - world.getCamX()) * world.getCamZoom()
-                              + (world.getWidth() / 2));
-        int screenY = (int) (parallaxFactor * (y - world.getCamY()) * world.getCamZoom()
-                              + (world.getHeight() / 2));
+        double parallaxFactor = world.getCamZoom() / (1 + z);
+        int screenX = (int) (parallaxFactor * (x - world.getCamX()) + (world.getWidth() / 2));
+        int screenY = (int) (parallaxFactor * (y - world.getCamY()) + (world.getHeight() / 2));
         
         GreenfootImage image = new GreenfootImage(imageName);
-        image.scale((int) (image.getWidth() * imageScale * world.getCamZoom() / (world.getCamZoom() + z)) + 1,
-                    (int) (image.getHeight() * imageScale * world.getCamZoom() / (world.getCamZoom() + z)) + 1);
+        image.scale((int) (image.getWidth() * imageScale * parallaxFactor) + 1,
+                    (int) (image.getHeight() * imageScale * parallaxFactor) + 1);
         if (imageDirection == -1) {
             image.mirrorHorizontally();
         }
