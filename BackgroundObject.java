@@ -38,7 +38,8 @@ public abstract class BackgroundObject extends Actor
     
     public void updateOnScreen() {
         Map world = (Map) getWorld();
-        double parallaxFactor = world.getCamZoom() / (1 + z);
+        double parallaxFactor = 1 / (1/world.getCamZoom() + z);
+        // double parallaxFactor = 1 / (1 + z);
         int screenX = (int) (parallaxFactor * (x - world.getCamX()) + (world.getWidth() / 2));
         int screenY = (int) (parallaxFactor * (y - world.getCamY()) + (world.getHeight() / 2));
         
