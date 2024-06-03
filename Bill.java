@@ -69,7 +69,7 @@ public class Bill extends Player
             
             Hitbox h = new Hitbox(biteSize, playerNumber, biteDuration, biteDamage, direction, 
                 biteKnockback, (int)getXPosition()+(biteX*direction), (int)getYPosition()+biteY, 
-                biteStun, 0, biteY);
+                biteStun);
             ((Map) getWorld()).addObject(h, getX()+(35*direction), getY()-40);
         
             setAttackDelay(biteDelay);

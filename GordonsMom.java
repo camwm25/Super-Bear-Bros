@@ -121,7 +121,7 @@ public class GordonsMom extends Player
             
             Hitbox h = new Hitbox(kickSize, playerNumber, kickDuration, kickDamage, direction, 
                 kickKnockback, (int)getXPosition() + kickX*direction, (int)getYPosition()+kickY, 
-                kickStun, 0, kickY);
+                kickStun);
             ((Map) getWorld()).addObject(h, getX()+(35*direction), getY());
             
             

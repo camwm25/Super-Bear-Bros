@@ -2,12 +2,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.lang.Math;
 
 /**
- * Invisible hitboxes for close range attacks.
- * 
+ * Invisible hitboxes for projectile deflecting/absorbing attacks.
+ * Currently the same as Hitbox.class. WIll be changed to be different for projectiles.
  * @author Cam Welch Morgan
  * @version 2024-01-30
  */
-public class Hitbox extends InvisibleObject
+public class ProjectileBox extends InvisibleObject
 {
     int size;
     int power;
@@ -25,7 +25,7 @@ public class Hitbox extends InvisibleObject
         super.act();
     }
     
-    public Hitbox(int size, int playerCreator, int time, int damage, 
+    public ProjectileBox(int size, int playerCreator, int time, int damage, 
                     int direction, int knockback, double x, double y, int stun) {
         super(playerCreator, x, y, direction);
         imageName = "hitbox.png";

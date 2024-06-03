@@ -51,7 +51,7 @@ public class PolarBear extends Player
         if (punchTimer == 8 && canAttack()) {
             Hitbox h = new Hitbox(punchSize, playerNumber, punchDuration, punchDamage, direction, 
                 punchKnockback, (int)getXPosition()+(punchX*direction), (int)getYPosition()+punchY, 
-                punchStun, 0, punchY);
+                punchStun);
             ((Map) getWorld()).addObject(h, getX()+(punchX*direction), getY()+punchY);
             setAttackDelay(punchDelay);
         }
