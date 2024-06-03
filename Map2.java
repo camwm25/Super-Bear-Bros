@@ -46,7 +46,7 @@ public class Map2 extends Map
         buildObject("tile1_b0", 245, -100);
         buildObject("tile1_b2", 355, -100);
         
-        int numStars = 300;
+        int numStars = 3000;
         for (int i = 0; i <= numStars; i++) {
             addStar(Math.random() * (25000 - 2000 * i / numStars) - (25000 - 2000 * i / numStars)/2,
                      Math.random() * (15000 - 1000 * i / numStars) - (15000 - 1000 * i / numStars)/2 + 2000,

@@ -40,7 +40,7 @@ public class PlayerFollower extends ForegroundObject
     
     public void moveToSpot() {
         x = thisPlayer.getXPosition();
-        y = thisPlayer.getYPosition() - thisPlayer.getHeight();
+        y = thisPlayer.getYPosition() - thisPlayer.getImage().getHeight();
     }
     
     public void endGame() {
