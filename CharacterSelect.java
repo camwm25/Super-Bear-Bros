@@ -44,10 +44,6 @@ public class CharacterSelect extends GameScreen
         addObject(polarbearSelect, 630, 230);
         showText("POLAR BEAR", 630, 160);
         
-        Selectable sooyoungSelect = new Selectable("sooyoung");
-        addObject(sooyoungSelect, 780, 230);
-        showText("SOO YOUNG", 780, 160);
-        
         showText("Player One", 200, 500);
         showText("Player Two", 760, 500);
     }
