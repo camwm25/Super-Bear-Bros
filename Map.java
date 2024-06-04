@@ -56,7 +56,7 @@ public abstract class Map extends GameScreen
         
         goToScreen(); 
         
-        setPaintOrder(PlayerFollower.class, Icon.class, Hitbox.class, Player.class, PlayerFollower.class, Lightsaber.class, Hammer.class, Beans.class, Ground.class, Cloud.class);
+        setPaintOrder(PlayerFollower.class, Icon.class, InvisibleObject.class, Player.class, PlayerFollower.class, Lightsaber.class, Hammer.class, Beans.class, Ground.class, Cloud.class);
     }
     
     public void changeHealth(int damage, int playerNumber) {
@@ -289,4 +289,5 @@ public abstract class Map extends GameScreen
     public void setCamFocus(int playerNumber) {
         camFocus = playerNumber;
     }
+    
 }

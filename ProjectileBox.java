@@ -107,10 +107,10 @@ public class ProjectileBox extends InvisibleObject
     public void checkMove() {
         if (!wantMove && this.getWorld() != null) {
             Player p = ((Map) getWorld()).getPlayer(creator);
-            if (yCoord - (int)p.getYPosition() > 3) {
+            if (Math.abs(yCoord - (int)p.getYPosition()) > 3) {
                 ((Map) getWorld()).removeObject(this);
             }
-            if (xCoord - (int)p.getXPosition() > 3) {
+            if (Math.abs(xCoord - (int)p.getXPosition()) > 3) {
                 ((Map) getWorld()).removeObject(this);
             }
         }

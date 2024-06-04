@@ -21,6 +21,8 @@ public class PolarBear extends Player
     int punchKnockback = 16;
     int punchStun = 20;
     
+    ProjectileBox[] boxHolder = new ProjectileBox[1];
+    
     int punchDelay = 40;
     int fieldDelay = 60;
     
@@ -65,6 +67,7 @@ public class PolarBear extends Player
         }
         if (fieldTimer == 4) {
             setAttackDelay(fieldDelay);
+            ((Map) getWorld()).removeObject(boxHolder[0]);
         }
         
         imageDirection = direction;
@@ -95,7 +98,7 @@ public class PolarBear extends Player
     }
     
     public void alternateAttack() {
-        if (canAttack() && fieldTimer >= 20) {
+        if (canAttack() && fieldTimer >= 60) {
             attacking = true;
             fieldTimer = 0;
             
@@ -108,6 +111,7 @@ public class PolarBear extends Player
             
             ProjectileBox p = new ProjectileBox(4, playerNumber, direction, 
                 (int)getXPosition(), (int)getYPosition(), false, 2);
+            boxHolder[0] = p;
             ((Map) getWorld()).addObject(p, getX(), getY());
     
             attacking = false;
