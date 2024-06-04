@@ -10,12 +10,14 @@ import java.lang.Math;
 public class ProjectileBox extends InvisibleObject
 {
     int size;
-    int power;
-    int attackTime;
     int direction;
-    int distance;
     int timer = 0;
-    int stunAmount;
+    int time = 0;
+    int healing;
+    
+    boolean isTimer = false;
+    boolean wantMove = true;
+    
     /**
      * Act - do whatever the hitbox wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -25,37 +27,92 @@ public class ProjectileBox extends InvisibleObject
         super.act();
     }
     
-    public ProjectileBox(int size, int playerCreator, int time, int damage, 
-                    int direction, int knockback, double x, double y, int stun) {
+    public ProjectileBox(int size, int playerCreator, int direction, double x, double y, int time,
+                        int healFactor) {
+        this(size, playerCreator, direction, x, y, healFactor);
+        isTimer = true;
+        this.time = time;
+    }
+    
+    public ProjectileBox(int size, int playerCreator, int direction, double x, double y, int healFactor) {
         super(playerCreator, x, y, direction);
         imageName = "hitbox.png";
         imageScale = 2.0/size;
         
         imageTransparency = 0;
         
+        healing = healFactor;
+        
         this.size = size;
         creator = playerCreator;
-        attackTime = time;
-        power = damage;
         this.direction = direction;
-        distance = knockback;
-        stunAmount = stun;
+    }
+    
+    public ProjectileBox(int size, int playerCreator, int direction, double x, double y, boolean wantMove,
+                        int healFactor) {
+        this(size, playerCreator, direction, x, y, healFactor);
+        this.wantMove = wantMove;
     }
     
     public void checkHit() {
-        if (timer < attackTime) {
-            timer++;
-            for (Player p: getIntersectingObjects(Player.class)) {
-                if (p.playerNumber != creator) {
-                    p.takeDamage(power);
-                    p.takeKnockback(direction, distance);
-                    p.setStun(stunAmount);
+        if (isTimer) {
+            if (timer < time) {
+                timer++;
+                for (Projectile p: getIntersectingObjects(Projectile.class)) {
+                    ((Map) getWorld()).removeObject(p);
+                    Player play = ((Map) getWorld()).getPlayer(creator);
+                    play.healDamage(healing*2);
                 }
+                for (Bullet b: getIntersectingObjects(Bullet.class)) {
+                    ((Map) getWorld()).removeObject(b);
+                    Player play = ((Map) getWorld()).getPlayer(creator);
+                    play.healDamage(healing);
+                }
+                checkOwner();
+                checkMove();
             }
-            checkOwner();
+            else {
+                ((Map) getWorld()).removeObject(this);
+            }
         }
         else {
-            ((Map) getWorld()).removeObject(this);
+            if (checkHeld()) {
+                timer++;
+                for (Projectile p: getIntersectingObjects(Projectile.class)) {
+                    ((Map) getWorld()).removeObject(p);
+                    Player play = ((Map) getWorld()).getPlayer(creator);
+                    play.healDamage(healing*2);
+                }
+                for (Bullet b: getIntersectingObjects(Bullet.class)) {
+                    ((Map) getWorld()).removeObject(b);
+                    Player play = ((Map) getWorld()).getPlayer(creator);
+                    play.healDamage(healing);
+                }
+                checkOwner();
+                checkMove();
+            }
+            else {
+                ((Map) getWorld()).removeObject(this);
+            }
+        }
+    }
+    
+    public boolean checkHeld() {
+        if (Greenfoot.isKeyDown(((Map) getWorld()).getPlayer(creator).alternateAttack)) {
+            return true;
+        } 
+        return false;
+    }
+    
+    public void checkMove() {
+        if (!wantMove && this.getWorld() != null) {
+            Player p = ((Map) getWorld()).getPlayer(creator);
+            if (yCoord - (int)p.getYPosition() > 3) {
+                ((Map) getWorld()).removeObject(this);
+            }
+            if (xCoord - (int)p.getXPosition() > 3) {
+                ((Map) getWorld()).removeObject(this);
+            }
         }
         
     }

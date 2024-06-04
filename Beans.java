@@ -6,10 +6,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Devin Joe & Cam Welch Morgan 
  * @version 2024-05-16
  */
-public class Beans extends PhysicsObject
+public class Beans extends Projectile
 {
     int beanTimer = 0;
-    int throwerNumber;
     Bear thrower;
     
     // Some parameters
@@ -24,7 +23,7 @@ public class Beans extends PhysicsObject
     int explosionTimer = 0;
     
     public Beans(double x, double y, double xVelocity, double yVelocity, int creator, int beanNumber) {
-        super(x, y);
+        super(x, y, creator);
         this.xVelocity = xVelocity;
         this.yVelocity = yVelocity;
         
@@ -62,19 +61,6 @@ public class Beans extends PhysicsObject
     
     private void updateImage() {
         imageName = "beans" + explosionTimer / 4 + ".png";
-    }
-    
-    private void updateVelocity() {
-        if (onGround()) {
-            yVelocity = 0;
-            
-            xVelocity *= FRICTION;
-        }
-        else {
-            experienceTheWonderfulForceOfGravity();
-            
-            xVelocity *= DRAG;
-        }
     }
     
     private void checkHit() {

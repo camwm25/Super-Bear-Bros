@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class PolarBear extends Player
 {
     int punchTimer = 30;
-    int beansTimer = 30;
+    int fieldTimer = 60;
     
     boolean punchActivate = false;
     
@@ -22,8 +22,7 @@ public class PolarBear extends Player
     int punchStun = 20;
     
     int punchDelay = 40;
-    
-    int currentBean = 0;
+    int fieldDelay = 60;
     
     public PolarBear(String inputType, double x, double y) {
         super(inputType, x, y);
@@ -36,7 +35,7 @@ public class PolarBear extends Player
     public void act() {
         super.act();
         
-        if (punchTimer >= 30 && beansTimer >= 30) {
+        if (punchTimer >= 30 && fieldTimer >= 60) {
             imageName = "polar_bear_walk_" + (((int) x/10) % 16 + 16) % 16 + ".png";
             if (stun != 0) {
                 imageName = "polar_bear_stun.png";
@@ -48,12 +47,24 @@ public class PolarBear extends Player
             punchTimer++;
         }
         
+        if (fieldTimer < 60) {
+            //imageName = "polar_bear_field.png";
+            fieldTimer++;
+        }
+        
         if (punchTimer == 8 && canAttack()) {
             Hitbox h = new Hitbox(punchSize, playerNumber, punchDuration, punchDamage, direction, 
                 punchKnockback, (int)getXPosition()+(punchX*direction), (int)getYPosition()+punchY, 
                 punchStun);
             ((Map) getWorld()).addObject(h, getX()+(punchX*direction), getY()+punchY);
             setAttackDelay(punchDelay);
+        }
+        
+        if (fieldTimer == 2 && checkHeld()) {
+            fieldTimer--;
+        }
+        if (fieldTimer == 4) {
+            setAttackDelay(fieldDelay);
         }
         
         imageDirection = direction;
@@ -78,17 +89,39 @@ public class PolarBear extends Player
     }
     
     
-    public void updateCurrentBean(int update) {
-        currentBean = update;
-    }
-    
     public void specialAttack() {
         //lighting
         
     }
     
     public void alternateAttack() {
-        //lightning force field
+        if (canAttack() && fieldTimer >= 20) {
+            attacking = true;
+            fieldTimer = 0;
+            
+            if (direction == 1) {
+                xVelocity = 0;
+            }
+            else {
+                xVelocity = 0;
+            }
+            
+            ProjectileBox p = new ProjectileBox(4, playerNumber, direction, 
+                (int)getXPosition(), (int)getYPosition(), false, 2);
+            ((Map) getWorld()).addObject(p, getX(), getY());
+    
+            attacking = false;
+        }
+    }
+    
+    public boolean checkHeld() {
+        if (Greenfoot.isKeyDown(leftKey) || Greenfoot.isKeyDown(rightKey) || Greenfoot.isKeyDown(upKey) || Greenfoot.isKeyDown(downKey)) {
+            return false;
+        }
+        else if (Greenfoot.isKeyDown(this.alternateAttack)) {
+            return true;
+        } 
+        return false;
     }
     
     public void removeProjectiles() {

@@ -279,6 +279,10 @@ public abstract class Player extends PhysicsObject
         ((Map) getWorld()).changeHealth(damage, playerNumber);
     }
     
+    public void healDamage(int damage) {
+        ((Map) getWorld()).changeHealth(-damage, playerNumber);
+    }
+    
     public int getDirection() {
         return direction;
     }
