@@ -60,7 +60,7 @@ public class GordonsMom extends Player
         //}
         
         if (kickTimer < 30) {
-            //imageName = "gordons_mom_kick_" + stareTimer * 3 / 15 + ".png";
+            imageName = "gordons_mom_kick_" + kickTimer / 8 + ".png";
             kickTimer++;
         }
         
