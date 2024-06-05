@@ -14,10 +14,10 @@ public class Bill extends Player
     int biteY = -30;
     int biteX = 10;
     int biteDuration = 10;
-    int biteSize = 10;
+    int biteSize = 11;
     int biteDamage = 3;
-    int biteKnockback = 10;
-    int biteStun = 10;
+    int biteKnockback = 12;
+    int biteStun = 15;
     int biteDelay = 35;
     
     int lightsaberDelay = 60;

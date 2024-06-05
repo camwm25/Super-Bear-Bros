@@ -19,7 +19,7 @@ public class PolarBear extends Player
     int punchSize = 9;
     int punchDamage = 2;
     int punchKnockback = 16;
-    int punchStun = 20;
+    int punchStun = 25;
     
     ProjectileBox[] boxHolder = new ProjectileBox[1];
     

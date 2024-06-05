@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class GordonsMom extends Player
 {
     //int stareTimer = 20;
-    int kickTimer = 30;
+    int kickTimer = 15;
     int hammerTimer = 30;
     int blasterTimer = 20;
     
@@ -27,7 +27,7 @@ public class GordonsMom extends Player
     int kickSize = 10;
     int kickDamage = 2;
     int kickKnockback = 12;
-    int kickStun = 15;
+    int kickStun = 20;
     int kickDelay = 40;
     
     int hammerDelay = 60;
@@ -47,7 +47,7 @@ public class GordonsMom extends Player
     public void act() {
         super.act();
         
-        if (blasterTimer >= 20 && hammerTimer >= 30 && kickTimer >= 30) {
+        if (blasterTimer >= 20 && hammerTimer >= 30 && kickTimer >= 15) {
             imageName = "gordons_mom_walk_" + (((int) x/10) % 4 + 4) % 4 + ".png";
             if (stun != 0) {
                 imageName = "gordons_mom_stun.png";
@@ -59,8 +59,8 @@ public class GordonsMom extends Player
             //stareTimer++;
         //}
         
-        if (kickTimer < 30) {
-            imageName = "gordons_mom_kick_" + kickTimer / 8 + ".png";
+        if (kickTimer < 15) {
+            imageName = "gordons_mom_kick_" + kickTimer / 4 + ".png";
             kickTimer++;
         }
         
