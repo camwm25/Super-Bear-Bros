@@ -36,6 +36,7 @@ public class EndScreen extends GameScreen
             case 0:
                 one = new WinnerScreener(characterOne, 1, "Draw", 1);
                 two = new WinnerScreener(characterTwo, 1, "Draw", 2);
+                showText("Draw...", 480, 50);
                 break;
                 // draw
             case 1:

@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Big, burly bear, buff bean by bean.
+ * Electrical powers and a cool headband. May or may not be related to Bear.
  * 
  * @author Devin Joe & Cam Welch Morgan
  * @version 2024-05-24
@@ -28,8 +28,8 @@ public class PolarBear extends Player
     
     public PolarBear(String inputType, double x, double y) {
         super(inputType, x, y);
-        JUMP_POWER = 20;
-        SPEED = 1;
+        JUMP_POWER = 21;
+        SPEED = 1.05;
         imageName = "polar_bear_walk_0.png";
         imageScale = 1;
     }

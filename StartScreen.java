@@ -21,13 +21,14 @@ public class StartScreen extends GameScreen
 
         setBackground(new GreenfootImage("start.png"));
         getBackground().scale(getWidth(), getHeight());
-        prepare();
     }
 
     public void act()
     {
         // Temporary ways
-        if (Greenfoot.isKeyDown("1")) {}
+        if (Greenfoot.isKeyDown("5")) {
+            goToControls();
+        }
         if (Greenfoot.isKeyDown("2")) {}
     }
 
@@ -40,11 +41,9 @@ public class StartScreen extends GameScreen
         Greenfoot.setWorld(new CharacterSelect());
         showText("", 480, 200); // to remove old start game text
     }
-    /**
-     * Prepare the world for the start of the program.
-     * That is: create the initial objects and add them to the world.
-     */
-    private void prepare()
-    {
+    
+    public void goToControls() {
+        Greenfoot.setWorld(new ControlScreen());
+        showText("", 480, 200);
     }
 }
