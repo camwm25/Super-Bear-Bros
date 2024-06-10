@@ -44,6 +44,15 @@ public class GordonsMom extends Player
         imageScale = 1;
     }
     
+    public GordonsMom(int playerNumber, double x, double y, String[] controls) {
+        super(playerNumber, x, y, controls);
+        JUMP_POWER = 20;
+        SPEED = 1.2;
+        imageName = "gordons_mom_walk_0.png";
+        imageScale = 1;
+    }
+
+    
     public void act() {
         super.act();
         

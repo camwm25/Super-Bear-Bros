@@ -34,6 +34,14 @@ public class Bear extends Player
         imageScale = 1;
     }
     
+    public Bear(int playerNumber, double x, double y, String[] controls) {
+        super(playerNumber, x, y, controls);
+        JUMP_POWER = 20;
+        SPEED = 1;
+        imageName = "bear_walk_0.png";
+        imageScale = 1;
+    }
+    
     public void act() {
         super.act();
         

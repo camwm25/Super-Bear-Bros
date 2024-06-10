@@ -69,6 +69,26 @@ public abstract class Player extends PhysicsObject
             direction = -1;
         }
     }
+    
+    public Player(int playerNumber, double x, double y, String[] controls) {
+        super(x,y);
+        switch (playerNumber) {
+            case 2:
+                playerNumber = 2;
+                break;
+            case 1:
+            default:
+                playerNumber = 1;
+                break;
+        }
+        upKey = controls[0];
+        downKey = controls[1];
+        leftKey = controls[2];
+        rightKey = controls[3];
+        normalAttack = controls[4];
+        specialAttack = controls[5];
+        alternateAttack = controls[6];
+    }
         
     /**
      * Act - do whatever the Player wants to do. This method is called whenever

@@ -10,6 +10,9 @@ public class CharacterSelect extends GameScreen
 {
     private String characterOne;
     private String characterTwo;
+    
+    private String[] controlsOne = null;
+    private String[] controlsTwo = null;
     private int currentCharacter;
     
     // private int numOfCharacters = 2;
@@ -23,6 +26,13 @@ public class CharacterSelect extends GameScreen
         
         setBackground(new GreenfootImage("character_select.png"));
         getBackground().scale(getWidth(), getHeight());
+    }
+    
+    public CharacterSelect(String[] controlsOne, String[] controlsTwo) {
+        this();
+        
+        this.controlsOne = controlsOne;
+        this.controlsTwo = controlsTwo;
     }
     
     public void goToScreen() {
@@ -76,8 +86,12 @@ public class CharacterSelect extends GameScreen
         // makeTextDisappear();
         // makeNonSelectablesDisappear();
         // makeSelectablesDisappear();
-        
-        Greenfoot.setWorld(new MapSelect(characterOne, characterTwo));
+        if (controlsOne != null && controlsTwo != null) {
+            Greenfoot.setWorld(new MapSelect(characterOne, characterTwo, controlsOne, controlsTwo));
+        }
+        else {
+            Greenfoot.setWorld(new MapSelect(characterOne, characterTwo));
+        }
     }
     
     // public void makeTextDisappear() {

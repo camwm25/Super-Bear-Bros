@@ -8,7 +8,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class StartScreen extends GameScreen
 {
-
+    private String[] controlsOne = null;
+    private String[] controlsTwo = null;
+    
     /**
      * Constructor for objects of class Map1.
      * 
@@ -21,6 +23,15 @@ public class StartScreen extends GameScreen
 
         setBackground(new GreenfootImage("start.png"));
         getBackground().scale(getWidth(), getHeight());
+    }
+    
+    public StartScreen(String[] controlsOne, String[] controlsTwo)
+    {    
+        // Create a new world with 1280x720 cells with a cell size of 1x1 pixels.
+        this();
+        
+        this.controlsOne = controlsOne;
+        this.controlsTwo = controlsTwo;
     }
 
     public void act()
@@ -38,7 +49,12 @@ public class StartScreen extends GameScreen
     }
 
     public void leaveScreen() {
-        Greenfoot.setWorld(new CharacterSelect());
+        if (controlsOne != null && controlsTwo != null) {
+            Greenfoot.setWorld(new CharacterSelect(controlsOne, controlsTwo));
+        }
+        else {
+            Greenfoot.setWorld(new CharacterSelect());
+        }
         showText("", 480, 200); // to remove old start game text
     }
     

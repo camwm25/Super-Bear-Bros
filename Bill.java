@@ -32,6 +32,15 @@ public class Bill extends Player
         imageScale = 1;
     }
     
+    public Bill(int playerNumber, double x, double y, String[] controls) {
+        super(playerNumber, x, y, controls);
+        JUMP_POWER = 22;
+        SPEED = 1.1;
+        imageName = "bill_walk_0.png";
+        imageScale = 1;
+    }
+
+    
     public void act() {
         super.act();
         

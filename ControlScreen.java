@@ -17,7 +17,7 @@ public class ControlScreen extends GameScreen
     ControlButton c;
     
     boolean selectingOldControl = false;
-    boolean selectingNewControl = true;
+    boolean selectingNewControl = false;
     
     String changingLetter = null;
     
@@ -25,7 +25,7 @@ public class ControlScreen extends GameScreen
         super();
         goToScreen();
         
-        //setBackground(new GreenfootImage("bathroom-tile.png"));
+        setBackground(new GreenfootImage("bathroom-tile.jpg"));
         getBackground().scale(getWidth(), getHeight());
     }
     
@@ -108,12 +108,8 @@ public class ControlScreen extends GameScreen
     
     public void checkNewControl() {
         if (selectingNewControl) {
-            if (!Greenfoot.isKeyDown(null)) {
-                String key = Greenfoot.getKey();
-                if (key.equals("space")) {
-                    key = " ";
-                }
-                
+            String key = Greenfoot.getKey();
+            if (key != null && Greenfoot.isKeyDown(key)) {
                 for (String s : playerOneControls) {
                     if (key.equals(s)) {
                         showText("Keybind Already Exists, Try Again", 480, 150);
@@ -135,17 +131,19 @@ public class ControlScreen extends GameScreen
         if (!changingLetter.equals(null)) {
             for (int i = 0; i < playerOneControls.length; i++) {
                 if (playerOneControls[i].equals(changingLetter)) {
-                    playerOneControls[i] = k;
+                    playerOneControls[i] = k.toUpperCase();
                     selectingNewControl = false;
                     goToScreen();
+                    changingLetter = null;
                     return;
                 }
             }
             for (int i = 0; i < playerTwoControls.length; i++)  {
                 if (playerTwoControls[i].equals(changingLetter)) {
-                    playerTwoControls[i] = k;
+                    playerTwoControls[i] = k.toUpperCase();
                     selectingNewControl = false;
                     goToScreen();
+                    changingLetter = null;
                     return;
                 }
             }
@@ -153,6 +151,6 @@ public class ControlScreen extends GameScreen
     }
     
     public void leaveScreen() {
-        Greenfoot.setWorld(new StartScreen());
+        Greenfoot.setWorld(new StartScreen(playerOneControlsReal, playerTwoControlsReal));
     }
 }

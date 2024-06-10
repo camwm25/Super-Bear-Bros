@@ -18,6 +18,17 @@ public class Map1 extends Map
         arrayCounter = 0;
     }
     
+    public Map1(String characterOne, String characterTwo, String[] controlsOne, String[] controlsTwo) {
+        //super(characterOne, characterTwo, controlsOne, controlsTwo);
+        super(characterOne, characterTwo);
+        
+        GreenfootImage image = new GreenfootImage("map1.jpg");
+        image.scale(image.getWidth() / 6, image.getHeight() / 6);
+        setBackground(image);
+        buildMap();
+        arrayCounter = 0;
+    }
+    
     private void buildMap() {
         buildObject("grass_block", 500, 300, "base");
         buildObject("grass_block", 400, 300, "base");

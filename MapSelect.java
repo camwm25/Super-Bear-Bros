@@ -12,6 +12,9 @@ public class MapSelect extends GameScreen
     private String characterTwo;
     private String map;
     
+    private String[] controlsOne = null;
+    private String[] controlsTwo = null;
+    
     public MapSelect(String characterOne, String characterTwo) {
         super();
         goToScreen();
@@ -21,6 +24,13 @@ public class MapSelect extends GameScreen
         
         setBackground(new GreenfootImage("map_select.png"));
         getBackground().scale(getWidth(), getHeight());
+    }
+    
+    public MapSelect(String characterOne, String characterTwo, String[] controlsOne, String[] controlsTwo) {
+        this(characterOne, characterTwo);
+        
+        this.controlsOne = controlsOne;
+        this.controlsTwo = controlsTwo;
     }
     
     public void goToScreen() {
@@ -45,14 +55,28 @@ public class MapSelect extends GameScreen
     }
     
     public void leaveScreen() {
-        if (map.equals("map1")) {
-            Greenfoot.setWorld(new Map1(characterOne, characterTwo));
-        }
-        else if (map.equals("map2")) {
-            Greenfoot.setWorld(new Map2(characterOne, characterTwo));
+        if (controlsOne != null && controlsTwo != null) {
+            if (map.equals("map1")) {
+                Greenfoot.setWorld(new Map1(characterOne, characterTwo));
+            }
+            else if (map.equals("map2")) {
+                Greenfoot.setWorld(new Map2(characterOne, characterTwo));
+            }
+            else {
+                Greenfoot.setWorld(new Map1(characterOne, characterTwo));
+            }
         }
         else {
-            Greenfoot.setWorld(new Map1(characterOne, characterTwo));
+            if (map.equals("map1")) {
+                Greenfoot.setWorld(new Map1(characterOne, characterTwo));
+            }
+            else if (map.equals("map2")) {
+                Greenfoot.setWorld(new Map2(characterOne, characterTwo));
+            }
+            else {
+                Greenfoot.setWorld(new Map1(characterOne, characterTwo));
+            }
         }
+        
     }    
 }
