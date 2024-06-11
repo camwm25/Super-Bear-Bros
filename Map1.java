@@ -19,8 +19,8 @@ public class Map1 extends Map
     }
     
     public Map1(String characterOne, String characterTwo, String[] controlsOne, String[] controlsTwo) {
-        //super(characterOne, characterTwo, controlsOne, controlsTwo);
-        super(characterOne, characterTwo);
+        super(characterOne, characterTwo, controlsOne, controlsTwo);
+        //super(characterOne, characterTwo);
         
         GreenfootImage image = new GreenfootImage("map1.jpg");
         image.scale(image.getWidth() / 6, image.getHeight() / 6);

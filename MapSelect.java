@@ -57,13 +57,13 @@ public class MapSelect extends GameScreen
     public void leaveScreen() {
         if (controlsOne != null && controlsTwo != null) {
             if (map.equals("map1")) {
-                Greenfoot.setWorld(new Map1(characterOne, characterTwo));
+                Greenfoot.setWorld(new Map1(characterOne, characterTwo, controlsOne, controlsTwo));
             }
             else if (map.equals("map2")) {
-                Greenfoot.setWorld(new Map2(characterOne, characterTwo));
+                Greenfoot.setWorld(new Map2(characterOne, characterTwo, controlsOne, controlsTwo));
             }
             else {
-                Greenfoot.setWorld(new Map1(characterOne, characterTwo));
+                Greenfoot.setWorld(new Map1(characterOne, characterTwo, controlsOne, controlsTwo));
             }
         }
         else {

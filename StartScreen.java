@@ -59,7 +59,12 @@ public class StartScreen extends GameScreen
     }
     
     public void goToControls() {
-        Greenfoot.setWorld(new ControlScreen());
+        if (controlsOne != null && controlsTwo != null) {
+            Greenfoot.setWorld(new ControlScreen(controlsOne, controlsTwo));
+        }
+        else {
+            Greenfoot.setWorld(new ControlScreen());
+        }
         showText("", 480, 200);
     }
 }

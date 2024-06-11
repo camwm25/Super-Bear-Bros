@@ -11,6 +11,9 @@ public abstract class Map extends GameScreen
     private String characterOne;
     private String characterTwo;
     
+    public String[] playerOneControls = {"W", "S", "A", "D", "Q", "E", "F"};
+    public String[] playerTwoControls = {"I", "K", "J", "L", "U", "O", "H"};
+    
     private Icon[] iconList = new Icon[2];
     
     private double camX = 0;
@@ -44,7 +47,17 @@ public abstract class Map extends GameScreen
     public Map(String characterOne, String characterTwo)
     {    
         // Create a new world with 1280x720 cells with a cell size of 1x1 pixels.
-        super();
+        this(characterOne, characterTwo, 
+            new String[] {"W", "S", "A", "D", "Q", "E", "F"}, 
+            new String[] {"I", "K", "J", "L", "U", "O", "H"});
+    }
+    
+    public Map(String characterOne, String characterTwo, String[] controlsOne, String[] controlsTwo)
+    {    
+        // Create a new world with 1280x720 cells with a cell size of 1x1 pixels.
+        
+        playerOneControls = controlsOne;
+        playerTwoControls = controlsTwo;
         this.characterOne = characterOne;
         this.characterTwo = characterTwo;
         
@@ -56,7 +69,9 @@ public abstract class Map extends GameScreen
         
         goToScreen(); 
         
-        setPaintOrder(PlayerFollower.class, Icon.class, InvisibleObject.class, Player.class, PlayerFollower.class, Lightsaber.class, Hammer.class, Beans.class, Ground.class, Cloud.class);
+        setPaintOrder(PlayerFollower.class, Icon.class, InvisibleObject.class, 
+            Player.class, PlayerFollower.class, Lightsaber.class, Hammer.class, 
+            Beans.class, Ground.class, Cloud.class);
     }
     
     public void changeHealth(int damage, int playerNumber) {
@@ -146,23 +161,28 @@ public abstract class Map extends GameScreen
     {
         switch (characterOne) {
             case "bear":
-                player1 = new Bear("WASD", -200, 200);
+                //player1 = new Bear("WASD", -200, 200);
+                player1 = new Bear(1, -200, 200, playerOneControls);
                 showText("BEAR", 100, 50);
                 break;
             case "bill":
-                player1 = new Bill("WASD", -200, 200);
+                //player1 = new Bill("WASD", -200, 200);
+                player1 = new Bill(1, -200, 200, playerOneControls);
                 showText("BILL", 100, 50);
                 break;
             case "gordonsmom":
-                player1 = new GordonsMom("WASD", -200, 200);
+                //player1 = new GordonsMom("WASD", -200, 200);
+                player1 = new GordonsMom(1, -200, 200, playerOneControls);
                 showText("GORDON'S MOM", 100, 50);
                 break;
             case "polarbear":
-                player1 = new PolarBear("WASD", -200, 200);
+                //player1 = new PolarBear("WASD", -200, 200);
+                player1 = new PolarBear(1, -200, 200, playerOneControls);
                 showText("POLAR BEAR", 100, 50);
                 break;
             default:
-                player1 = new Bear("WASD", -200, 200);
+                //player1 = new Bear("WASD", -200, 200);
+                player1 = new Bear(1, -200, 200, playerOneControls);
         }
         
         Icon one = new Icon(characterOne, 5);
@@ -175,23 +195,28 @@ public abstract class Map extends GameScreen
         
         switch (characterTwo) {
             case "bear":
-                player2 = new Bear("IJKL", 200, 200);
+                //player2 = new Bear("IJKL", 200, 200);
+                player2 = new Bear(2, 200, 200, playerTwoControls);
                 showText("BEAR", 860, 50);
                 break;
             case "bill":
-                player2 = new Bill("IJKL", 200, 200);
+                //player2 = new Bill("IJKL", 200, 200);
+                player2 = new Bill(2, 200, 200, playerTwoControls);
                 showText("BILL", 860, 50);
                 break;
             case "gordonsmom":
-                player2 = new GordonsMom("IJKL", 200, 200);
+                //player2 = new GordonsMom("IJKL", 200, 200);
+                player2 = new GordonsMom(2, 200, 200, playerTwoControls);
                 showText("GORDON'S MOM", 860, 50);
                 break;
             case "polarbear":
-                player2 = new PolarBear("IJKL", 200, 200);
+                //player2 = new PolarBear("IJKL", 200, 200);
+                player2 = new PolarBear(2, 200, 200, playerTwoControls);
                 showText("POLAR BEAR", 860, 50);
                 break;
             default:
-                player2 = new Bear("IJKL", 200, 200);
+                //player2 = new Bear("IJKL", 200, 200);
+                player2 = new Bear(2, 200, 200, playerTwoControls);
         }
         
         Icon two = new Icon(characterTwo, 5);

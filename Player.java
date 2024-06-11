@@ -69,18 +69,11 @@ public abstract class Player extends PhysicsObject
             direction = -1;
         }
     }
+
     
-    public Player(int playerNumber, double x, double y, String[] controls) {
+    public Player(int number, double x, double y, String[] controls) {
         super(x,y);
-        switch (playerNumber) {
-            case 2:
-                playerNumber = 2;
-                break;
-            case 1:
-            default:
-                playerNumber = 1;
-                break;
-        }
+        playerNumber = number;
         upKey = controls[0];
         downKey = controls[1];
         leftKey = controls[2];
@@ -88,6 +81,13 @@ public abstract class Player extends PhysicsObject
         normalAttack = controls[4];
         specialAttack = controls[5];
         alternateAttack = controls[6];
+        
+        if (playerNumber == 1) {
+            direction = 1;
+        }
+        else {
+            direction = -1;
+        }
     }
         
     /**

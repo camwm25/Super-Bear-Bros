@@ -10,9 +10,6 @@ public class ControlScreen extends GameScreen
 {
     public String[] playerOneControls = {"W", "S", "A", "D", "Q", "E", "F"};
     public String[] playerTwoControls = {"I", "K", "J", "L", "U", "O", "H"};
-    
-    public String[] playerOneControlsReal = {"W", "S", "A", "D", "Q", "E", "F"};
-    public String[] playerTwoControlsReal = {"I", "K", "J", "L", "U", "O", "H"};
     // 0 up, 1 down, 2 left, 3 right, 4 normal, 5 special, 6 alternate
     ControlButton c;
     
@@ -27,6 +24,15 @@ public class ControlScreen extends GameScreen
         
         setBackground(new GreenfootImage("bathroom-tile.jpg"));
         getBackground().scale(getWidth(), getHeight());
+    }
+    
+    public ControlScreen(String[] controlsOne, String[] controlsTwo) {
+        this();
+        
+        playerOneControls = controlsOne;
+        playerTwoControls = controlsTwo;
+        textPlayerOne();
+        textPlayerTwo();
     }
     
     public void goToScreen() {
@@ -111,13 +117,13 @@ public class ControlScreen extends GameScreen
             String key = Greenfoot.getKey();
             if (key != null && Greenfoot.isKeyDown(key)) {
                 for (String s : playerOneControls) {
-                    if (key.equals(s)) {
+                    if (key.toUpperCase().equals(s)) {
                         showText("Keybind Already Exists, Try Again", 480, 150);
                         return;
                     }
                 }
                 for (String s : playerTwoControls) {
-                    if (key.equals(s)) {
+                    if (key.toUpperCase().equals(s)) {
                         showText("Keybind Already Exists, Try Again", 480, 150);
                         return;
                     }
@@ -151,6 +157,6 @@ public class ControlScreen extends GameScreen
     }
     
     public void leaveScreen() {
-        Greenfoot.setWorld(new StartScreen(playerOneControlsReal, playerTwoControlsReal));
+        Greenfoot.setWorld(new StartScreen(playerOneControls, playerTwoControls));
     }
 }

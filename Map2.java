@@ -19,11 +19,11 @@ public class Map2 extends Map
     }
     
     public Map2(String characterOne, String characterTwo, String[] controlsOne, String[] controlsTwo) {
-        //super(characterOne, characterTwo, controlsOne, controlsTwo);
-        super(characterOne, characterTwo);
+        super(characterOne, characterTwo, controlsOne, controlsTwo);
+        //super(characterOne, characterTwo);
         
         GreenfootImage image = new GreenfootImage("map2.jpg");
-        image.scale(image.getWidth() / 6, image.getHeight() / 6);
+        image.scale(image.getWidth(), image.getHeight());
         setBackground(image);
         buildMap();
         arrayCounter = 0;
