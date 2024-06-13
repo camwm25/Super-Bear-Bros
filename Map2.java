@@ -30,17 +30,23 @@ public class Map2 extends Map
     }
     
     private void buildMap() {
-        buildObject("grass_block", 500, 300, "base");
-        buildObject("grass_block", 400, 300, "base");
-        buildObject("grass_block", 300, 300, "base");
-        buildObject("grass_block", 200, 300, "base");
-        buildObject("grass_block", 100, 300, "base");
-        buildObject("grass_block", 0, 300, "base");
-        buildObject("grass_block", -100, 300, "base");
-        buildObject("grass_block", -200, 300, "base");
-        buildObject("grass_block", -300, 300, "base");
-        buildObject("grass_block", -400, 300, "base");
-        buildObject("grass_block", -500, 300, "base");
+        buildObject("space_block", 512, 300, "base");
+        buildObject("space_block", 448, 300, "base");
+        buildObject("space_block", 384, 300, "base");
+        buildObject("space_block", 320, 300, "base");
+        buildObject("space_block", 256, 300, "base");
+        buildObject("space_block", 192, 300, "base");
+        buildObject("space_block", 128, 300, "base");
+        buildObject("space_block", 64, 300, "base");
+        buildObject("space_block", 0, 300, "base");
+        buildObject("space_block", -64, 300, "base");
+        buildObject("space_block", -128, 300, "base");
+        buildObject("space_block", -192, 300, "base");
+        buildObject("space_block", -256, 300, "base");
+        buildObject("space_block", -320, 300, "base");
+        buildObject("space_block", -384, 300, "base");
+        buildObject("space_block", -448, 300, "base");
+        buildObject("space_block", -512, 300, "base");
         
         buildObject("tile1_b0", -300, 100);
         buildObject("tile1_b2", -190, 100);

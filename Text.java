@@ -9,18 +9,23 @@ import java.util.ArrayList;
  */
 public class Text extends Actor
 {
-    private final int spacing = 2;
+    private final int spacing = 5;
     private ArrayList<Letter> letterList;
     // private double size;
     
+    private String displayText;
+    
     public Text(String text, int x, int y, double size) {
         letterList = new ArrayList<>();
+        displayText = text.toLowerCase();
+        
         int initialX = x;
         int currentX = x;
-        for (int i = 0; i < text.length(); i++) {
-            String currentCharacter = "" + text.charAt(i);
+        for (int i = 0; i < displayText.length(); i++) {
+            String currentCharacter = "" + displayText.charAt(i);
             if (currentCharacter.equals(" ")) currentCharacter = "space";
             if (currentCharacter.equals("'")) currentCharacter = "apostrophe";
+            if (currentCharacter.equals(".")) currentCharacter = "period";
             letterList.add(new Letter(currentCharacter, currentX, y, size));
             currentX += size * spacing + letterList.get(letterList.size() - 1).getImage().getWidth();
         }
@@ -34,6 +39,13 @@ public class Text extends Actor
         for (Letter l : letterList) {
             l.show(world);
         }
+    }
+    
+    public void hide(World world) {
+        for (Letter l : letterList) {
+            world.removeObject(l);
+        }
+        world.removeObject(this);
     }
     
     public void act()

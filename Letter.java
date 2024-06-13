@@ -16,16 +16,16 @@ public class Letter extends Actor
         getImage().scale((int) (getImage().getWidth() * size), (int) (getImage().getHeight() * size));
         this.x = x;
         this.y = y;
-        setLocation(x, y);
+        setLocation(x + getImage().getWidth() / 2, y);
     }
     
     public void shiftLeft(int amount) {
         x -= amount;
-        setLocation(x, y);
+        setLocation(x + getImage().getWidth() / 2, y);
     }
     
     public void show(World world) {
-        world.addObject(this, x, y);
+        world.addObject(this, x + getImage().getWidth() / 2, y);
     }
     
     public void act()

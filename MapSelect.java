@@ -36,13 +36,11 @@ public class MapSelect extends GameScreen
     public void goToScreen() {
         Selectable map1Select = new Selectable("map1");
         addObject(map1Select, 180, 230);
-        showText("Map 1", 180, 160);
+        displayText("Map 1", 180, 160, 0.3);
         
         Selectable map2Select = new Selectable("map2");
         addObject(map2Select, 330, 230);
-        showText("Map 2", 330, 160);
-        
-        showText("Map", 200, 500);
+        displayText("Map 2", 330, 160, 0.3);
     }
     
     public void selectMap(String s) {
