@@ -23,13 +23,13 @@ public class Lightning extends Weapon
     }
     
     public void updateImage() {
-        if (timer < 35) {
-            imageName = "lightning_" + (timer-15)/4 + ".png";
+        if (timer < 30) {
+            imageName = "lightning_" + (timer-10)/4 + ".png";
         }
         else {
             imageName = "lightning_4.png";
         }
-        lightningPhase = (timer-15)/4;
+        lightningPhase = (timer-10)/4;
     }
     
     public void updatePosition(Player bearer) {
@@ -66,7 +66,7 @@ public class Lightning extends Weapon
         
         timer++;
         
-        if (timer > 15) {
+        if (timer > 10) {
             updateImage();
             updatePosition(bearer);
 
@@ -81,7 +81,7 @@ public class Lightning extends Weapon
             }
         }
         
-        if (timer >= 35) {
+        if (timer >= 30) {
             ((Map) getWorld()).removeObject(this);
         }
         

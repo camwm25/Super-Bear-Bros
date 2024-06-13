@@ -10,7 +10,7 @@ public class PolarBear extends Player
 {
     int punchTimer = 30;
     int fieldTimer = 40;
-    int lightningTimer = 60;
+    int lightningTimer = 42;
     
     public boolean projectileBoxGone = false;
     
@@ -57,7 +57,7 @@ public class PolarBear extends Player
     public void act() {
         super.act();
         
-        if (punchTimer >= 30 && fieldTimer >= 40 && lightningTimer >= 60) {
+        if (punchTimer >= 30 && fieldTimer >= 40 && lightningTimer >= 42) {
             imageName = "polar_bear_walk_" + (((int) x/10) % 16 + 16) % 16 + ".png";
             if (stun != 0) {
                 imageName = "polar_bear_stun.png";
@@ -82,8 +82,8 @@ public class PolarBear extends Player
             fieldTimer++;
         }
         
-        if (lightningTimer < 60) {
-            imageName = "polar_bear_lightning_" + lightningTimer / 10 + ".png";
+        if (lightningTimer < 42) {
+            imageName = "polar_bear_lightning_" + lightningTimer / 7 + ".png";
             lightningTimer++;
         }
         

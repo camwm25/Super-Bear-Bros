@@ -145,17 +145,22 @@ public class Bill extends Player
                 imageScale = .9;
                 JUMP_POWER = 28;
                 SPEED = 1.4;
-                int biteDamage = 2;
-                int biteSize = 14;
+                biteDamage = 2;
+                biteSize = 13;
                 biteY = -20;
+                biteKnockback = 12;
+                biteDelay = 30;
+                defaultImage = new GreenfootImage("bill_bat_fly_0.png");
             }
             else {
                 imageScale = 1;
                 JUMP_POWER = 22;
                 SPEED = 1.1;
-                int biteDamage = 3;
-                int biteSize = 11;
+                biteDamage = 3;
+                biteSize = 11;
                 biteY = -30;
+                biteKnockback = 14;
+                biteDelay = 35;
                 defaultImage = new GreenfootImage("bill_walk_0.png");
             }
             setAttackDelay(batDelay);
