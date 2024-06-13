@@ -35,6 +35,9 @@ public abstract class Map extends GameScreen
     private int playerOneHealth;
     private int playerTwoHealth;
     
+    private Text playerOneHealthText;
+    private Text playerTwoHealthText;
+    
     Ground[] groundArray = new Ground[25];
     int arrayCounter;
     
@@ -69,7 +72,7 @@ public abstract class Map extends GameScreen
         
         goToScreen(); 
         
-        setPaintOrder(PlayerFollower.class, Icon.class, InvisibleObject.class, 
+        setPaintOrder(PlayerFollower.class, Letter.class, Icon.class, InvisibleObject.class, 
             Player.class, PlayerFollower.class, Lightning.class, Lightsaber.class, Hammer.class, 
             Window.class, Beans.class, Ground.class, Cloud.class);
     }
@@ -78,12 +81,20 @@ public abstract class Map extends GameScreen
         switch (playerNumber) {
             case 1:
             playerOneHealth -= damage;
-            displayText(String.valueOf(playerOneHealth), 100, 150, 0.5);
+            if (playerOneHealthText != null) {
+                playerOneHealthText.hide(this);
+            }
+            playerOneHealthText = new Text(String.valueOf(playerOneHealth), 100, 150, 0.5);
+            playerOneHealthText.show(this);
             break;
             
             case 2:
             playerTwoHealth -= damage;
-            displayText(String.valueOf(playerTwoHealth), 860, 150, 0.5);
+            if (playerTwoHealthText != null) {
+                playerTwoHealthText.hide(this);
+            }
+            playerTwoHealthText = new Text(String.valueOf(playerTwoHealth), 860, 150, 0.5);
+            playerTwoHealthText.show(this);
             break;
             
         }
@@ -192,7 +203,8 @@ public abstract class Map extends GameScreen
         addObject(follower1, player1.getX(), player1.getY()+50);
         addObject(one, 100, 100);
         iconList[0] = one;
-        showText("" + 200, 100, 150);
+        playerOneHealthText = new Text("" + 200, 100, 150, 0.5);
+        playerOneHealthText.show(this);
         
         switch (characterTwo) {
             case "bear":
@@ -226,7 +238,8 @@ public abstract class Map extends GameScreen
         addObject(two, 860, 100);
         addObject(follower2, player2.getX(), player2.getY()+50);
         iconList[1] = two;
-        showText("" + 200, 860, 150);        
+        playerTwoHealthText = new Text("" + 200, 860, 150, 0.5);
+        playerTwoHealthText.show(this);
     }
     
     public void playerOne(String s) {
