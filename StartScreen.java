@@ -48,8 +48,6 @@ public class StartScreen extends GameScreen
         addObject(startButton, 480, 270);
         SettingsButton settingsButton = new SettingsButton();
         addObject(settingsButton, 60, 470);
-        
-        displayText("fork", 480, 300, 0.5);
     }
     
     public void goToSettings() {
