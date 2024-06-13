@@ -10,6 +10,7 @@ public class Bear extends Player
 {
     int biteTimer = 30;
     int beansTimer = 30;
+    int windowTimer = 40;
     
     int biteX = 50;
     int biteY = -30;
@@ -21,8 +22,10 @@ public class Bear extends Player
     int biteDelay = 35;
     
     int beansDelay = 60;
+    int windowDelay = 60;
     
     Beans[] beanList = new Beans[2];
+    Window[] windowList = new Window[1];
     
     int currentBean = 0;
     
@@ -41,6 +44,7 @@ public class Bear extends Player
         SPEED = 1;
         imageName = "bear_walk_0.png";
         imageScale = 1;
+        defaultImage = new GreenfootImage("bear_walk_0.png");
     }
     
     public void act() {
@@ -56,6 +60,10 @@ public class Bear extends Player
         if (biteTimer < 30) {
             imageName = "bear_bite_" + biteTimer * 7 / 30 + ".png";
             biteTimer++;
+        }
+        
+        if (windowTimer < 40) {
+            windowTimer++;
         }
         
         if (beansTimer < 20) {
@@ -113,12 +121,27 @@ public class Bear extends Player
     }
     
     public void alternateAttack() {
-        // this will be window attack which i cannot add 
+        // projectile (window)
+        if (canAttack()) {
+            windowTimer = 0;
+            Window w = new Window(getXPosition(), getYPosition()+50, 
+            0, getYVelocity() - 30, playerNumber);
+            if (beanList[0] != null) {
+                Window oldWindow = windowList[0];
+                ((Map) getWorld()).removeObject(oldWindow);
+            }
+            windowList[0] = w;
+            ((Map) getWorld()).addObject(w, 0, 0); // 0, 0 is fine because it will update anyway
+            setAttackDelay(windowDelay);
+        }
     }
     
     public void removeProjectiles() {
         for (Beans b : beanList) {
             ((Map) getWorld()).removeObject(b);
+        }
+        for (Window w : windowList) {
+            ((Map) getWorld()).removeObject(w);
         }
     }
 }

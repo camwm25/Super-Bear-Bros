@@ -59,7 +59,6 @@ public class Bill extends Player
         }
         
         if (lightsaberTimer < 30) {
-            imageName = "bill_lightsaber_" + lightsaberTimer * 5 / 30 + ".png";
             lightsaberTimer++;
         }
                 

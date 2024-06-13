@@ -76,7 +76,6 @@ public class GordonsMom extends Player
         }
         
         if (hammerTimer < 30) {
-            imageName = "gordons_mom_hammer_" + hammerTimer * 5 / 30 + ".png";
             hammerTimer++;
         }
         

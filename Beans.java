@@ -30,7 +30,7 @@ public class Beans extends Projectile
         throwerNumber = creator;
         this.beanNumber = beanNumber;
         
-        imageName = "beans0.png";
+        imageName = "window.png";
         imageScale = 1;
     }
     
@@ -66,7 +66,7 @@ public class Beans extends Projectile
     private void checkHit() {
         thrower = (Bear) ((Map) getWorld()).getPlayer(throwerNumber);
         
-        //will explode upon seeing any players, hammers or beans
+        //will explode upon seeing any players, hammers or lightsabers
         
         beanTimer++;
         if (beanTimer >= 600) {
@@ -97,9 +97,6 @@ public class Beans extends Projectile
                 explosionTimer = 1;
             }
             for (Hammer h : getIntersectingObjects(Hammer.class)) {
-                this.explosionTimer = 1;
-            }
-            for (Lightsaber l : getIntersectingObjects(Lightsaber.class)) {
                 this.explosionTimer = 1;
             }
         }
