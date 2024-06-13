@@ -46,6 +46,12 @@ public class StartScreen extends GameScreen
     public void goToScreen() {
         StartButton startButton = new StartButton();
         addObject(startButton, 480, 270);
+        SettingsButton settingsButton = new SettingsButton();
+        addObject(settingsButton, 60, 470);
+    }
+    
+    public void goToSettings() {
+        Greenfoot.setWorld(new SettingsScreen(this));
     }
 
     public void leaveScreen() {

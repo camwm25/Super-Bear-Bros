@@ -90,6 +90,7 @@ public abstract class Map extends GameScreen
     }
     
     public void act() {
+        GameScreen.music.playLoop();
         updateCamVelocity();
         updateCamZoom();
         moveCam();

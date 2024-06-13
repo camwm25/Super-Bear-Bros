@@ -22,7 +22,7 @@ public class ControlScreen extends GameScreen
         super();
         goToScreen();
         
-        setBackground(new GreenfootImage("bathroom-tile.jpg"));
+        setBackground(new GreenfootImage("controls_screen.png"));
         getBackground().scale(getWidth(), getHeight());
     }
     
