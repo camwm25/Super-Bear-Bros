@@ -15,6 +15,7 @@ public class Text extends Actor
     
     public Text(String text, int x, int y, double size) {
         letterList = new ArrayList<>();
+        int initialX = x;
         int currentX = x;
         for (int i = 0; i < text.length(); i++) {
             String currentCharacter = "" + text.charAt(i);
@@ -22,6 +23,10 @@ public class Text extends Actor
             if (currentCharacter.equals("'")) currentCharacter = "apostrophe";
             letterList.add(new Letter(currentCharacter, currentX, y, size));
             currentX += size * spacing + letterList.get(letterList.size() - 1).getImage().getWidth();
+        }
+        
+        for (Letter l : letterList) {
+            l.shiftLeft((currentX - initialX) / 2);
         }
     }
     

@@ -19,6 +19,11 @@ public class Letter extends Actor
         setLocation(x, y);
     }
     
+    public void shiftLeft(int amount) {
+        x -= amount;
+        setLocation(x, y);
+    }
+    
     public void show(World world) {
         world.addObject(this, x, y);
     }
