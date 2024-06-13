@@ -152,6 +152,7 @@ public class PolarBear extends Player
                 (int)getXPosition(), (int)getYPosition(), false, fieldHealFactor);
             boxHolder[0] = p;
             ((Map) getWorld()).addObject(p, getX(), getY());
+
     
             attacking = false;
         }
