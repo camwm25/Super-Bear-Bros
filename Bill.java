@@ -10,6 +10,9 @@ public class Bill extends Player
 {
     int biteTimer = 20;
     int lightsaberTimer = 30;
+    int batTimer = 60;
+    
+    int flyingTimer = 0;
     
     int biteY = -30;
     int biteX = 10;
@@ -21,6 +24,10 @@ public class Bill extends Player
     int biteDelay = 35;
     
     int lightsaberDelay = 60;
+
+    int batDelay = 60;
+    
+    public boolean billBat = false;
     
     Lightsaber[] holder = new Lightsaber[1];
     
@@ -47,15 +54,35 @@ public class Bill extends Player
         super.act();
         
         if (biteTimer >= 15 && lightsaberTimer >= 30) {
-            imageName = "bill_walk_" + (((int) x/10) % 4 + 4) % 4 + ".png";
-            if (stun != 0) {
-                imageName = "bill_stun.png";
+            if (!billBat) {
+                imageName = "bill_walk_" + (((int) x/10) % 4 + 4) % 4 + ".png";
+                if (stun != 0) {
+                    imageName = "bill_stun.png";
+                }
             }
+            else {
+                imageName = "bill_bat_fly_" + (flyingTimer/15) + ".png";
+                flyingTimer++;
+                if (flyingTimer == 60) {
+                    flyingTimer = 0;
+                }
+                if (stun != 0) {
+                    imageName = "bill_bat_stun.png";
+                }
+            }
+            
+            
         }
         
         if (biteTimer < 15) {
-            imageName = "bill_bite_" + biteTimer * 3 / 15 + ".png";
-            biteTimer++;
+            if (!billBat) {
+                imageName = "bill_bite_" + biteTimer * 3 / 15 + ".png";
+                biteTimer++;
+            }
+            else {
+                imageName = "bill_bat_bite_" + biteTimer * 3 / 15 + ".png";
+                biteTimer++;
+            }
         }
         
         if (lightsaberTimer < 30) {
@@ -90,7 +117,7 @@ public class Bill extends Player
     
     public void specialAttack() {
         //lightsaber
-        if (canAttack()) {
+        if (canAttack() && !billBat) {
             attacking = true;
             Lightsaber l = new Lightsaber(playerNumber, direction, getXPosition(), getYPosition());
             holder[0] = l;
@@ -109,7 +136,29 @@ public class Bill extends Player
     }
     
     public void alternateAttack() {
-        // transform into bat
+        if (canAttack()) {
+            attacking = true;
+            billBat = !billBat;
+            if (billBat) {
+                imageScale = .9;
+                JUMP_POWER = 28;
+                SPEED = 1.4;
+                int biteDamage = 2;
+                int biteSize = 14;
+                biteY = -20;
+            }
+            else {
+                imageScale = 1;
+                JUMP_POWER = 22;
+                SPEED = 1.1;
+                int biteDamage = 3;
+                int biteSize = 11;
+                biteY = -30;
+                defaultImage = new GreenfootImage("bill_walk_0.png");
+            }
+            setAttackDelay(batDelay);
+            attacking = false;
+        }
     }
     
     public void removeProjectiles() {
