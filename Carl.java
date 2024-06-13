@@ -37,9 +37,9 @@ public class Carl extends Player
         super(playerNumber, x, y, controls);
         JUMP_POWER = 19;
         SPEED = 1.2;
-        imageName = "bear_walk_0.png";
+        imageName = "carl_swim_0.png";
         imageScale = 1;
-        defaultImage = new GreenfootImage("carl_swim_0");
+        defaultImage = new GreenfootImage("carl_swim_0.png");
     }
     
     public void act() {
@@ -57,7 +57,7 @@ public class Carl extends Player
         }
         
         if (rollTimer < 30) {
-            imageName = "polar_bear_punch_" + rollTimer * 5 / 30 + ".png";
+            imageName = "carl_roll_" + rollTimer * 5 / 30 + ".png";
             rollTimer++;
         }
         
