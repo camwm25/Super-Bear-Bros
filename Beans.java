@@ -30,7 +30,7 @@ public class Beans extends Projectile
         throwerNumber = creator;
         this.beanNumber = beanNumber;
         
-        imageName = "window.png";
+        imageName = "beans0.png";
         imageScale = 1;
     }
     
