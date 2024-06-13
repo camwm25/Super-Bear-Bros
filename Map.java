@@ -192,6 +192,10 @@ public abstract class Map extends GameScreen
                 player1 = new PolarBear(1, -200, 200, playerOneControls);
                 displayText("POLAR BEAR", 100, 50, 0.3);
                 break;
+            case "carl":
+                player1 = new Carl(1, -200, 200, playerOneControls);
+                displayText("CARL", 100, 50, 0.3);
+                break;
             default:
                 //player1 = new Bear("WASD", -200, 200);
                 player1 = new Bear(1, -200, 200, playerOneControls);
@@ -226,6 +230,10 @@ public abstract class Map extends GameScreen
                 //player2 = new PolarBear("IJKL", 200, 200);
                 player2 = new PolarBear(2, 200, 200, playerTwoControls);
                 displayText("POLAR BEAR", 860, 50, 0.3);
+                break;
+            case "carl":
+                player2 = new Carl(2, 200, 200, playerTwoControls);
+                displayText("CARL", 860, 50, 0.3);
                 break;
             default:
                 //player2 = new Bear("IJKL", 200, 200);
