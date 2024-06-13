@@ -22,6 +22,12 @@ public abstract class GameScreen extends World
     
     public abstract void leaveScreen();
     
+        
+    public void displayText(String text, int x, int y, double size) {
+        Text displayText = new Text(text, x, y, size);
+        displayText.show(this);
+    }
+    
     /*
      * Prepares any objects that must be on this screen opens this screen.
      */

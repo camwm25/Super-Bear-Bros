@@ -40,22 +40,22 @@ public class CharacterSelect extends GameScreen
         
         Selectable bearSelect = new Selectable("bear");
         addObject(bearSelect, 180, 230);
-        showText("BEAR", 180, 160);
+        displayText("bear", 180, 160, 0.5);
         
         Selectable billSelect = new Selectable("bill");
         addObject(billSelect, 330, 230);
-        showText("BILL", 330, 160);
+        displayText("bill", 330, 160, 0.5);
         
         Selectable gordonsmomSelect = new Selectable("gordonsmom");
         addObject(gordonsmomSelect, 480, 230);
-        showText("GORDON'S MOM", 480, 160);
+        displayText("gordon's mom", 480, 160, 0.5);
                 
         Selectable polarbearSelect = new Selectable("polarbear");
         addObject(polarbearSelect, 630, 230);
-        showText("POLAR BEAR", 630, 160);
+        displayText("polar bear", 630, 160, 0.5);
         
-        showText("Player One", 200, 500);
-        showText("Player Two", 760, 500);
+        displayText("player one", 200, 500, 0.5);
+        displayText("player two", 760, 500, 0.5);
     }
     
     public void selectPlayer(String s) {
