@@ -1,103 +1,59 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Bill, our lightsaber weilding vampish friend.
+ * Big, burly bear, buff bean by bean.
  * 
- * @author Devin Joe and Cma Welcem moRgn
- * @version 2024-06-13
+ * @author Cam Welch Morgan
+ * @version 2024-05-16
  */
 public class Carl extends Player
 {
-    int biteTimer = 20;
-    int lightsaberTimer = 30;
-    int batTimer = 60;
     
-    int flyingTimer = 0;
+    int swimmingTimer = 0;
     
-    int biteY = -30;
-    int biteX = 10;
-    int biteDuration = 10;
-    int biteSize = 11;
-    int biteDamage = 3;
-    int biteKnockback = 14;
-    int biteStun = 15;
-    int biteDelay = 35;
-    
-    int lightsaberDelay = 60;
-
-    int batDelay = 60;
-    
-    public boolean billBat = false;
-    
-    Lightsaber[] holder = new Lightsaber[1];
+    int rollTimer = 30;
+    int splashTimer = 30;
     
     public Carl(String inputType, double x, double y) {
         super(inputType, x, y);
-        JUMP_POWER = 22;
-        SPEED = 1.1;
+        JUMP_POWER = 19;
+        SPEED = 1.2;
         imageName = "carl_swim_0.png";
         imageScale = 1;
-        
         defaultImage = new GreenfootImage("carl_swim_0.png");
     }
     
-    public Bill(int playerNumber, double x, double y, String[] controls) {
+    public Carl(int playerNumber, double x, double y, String[] controls) {
         super(playerNumber, x, y, controls);
-        JUMP_POWER = 22;
-        SPEED = 1.1;
-        imageName = "carl_swim_0.png";
+        JUMP_POWER = 19;
+        SPEED = 1.2;
+        imageName = "bear_walk_0.png";
         imageScale = 1;
-        
-        defaultImage = new GreenfootImage("carl_swim_0.png");
+        defaultImage = new GreenfootImage("carl_swim_0");
     }
-
     
     public void act() {
         super.act();
         
-        if (biteTimer >= 15 && lightsaberTimer >= 30) {
-            if (!billBat) {
-                imageName = "carl_swim_" + (((int) x/10) % 4 + 4) % 4 + ".png";
-                if (stun != 0) {
-                    imageName = "bill_stun.png";
-                }
+        if (splashTimer >= 30 && rollTimer >= 30) {
+            imageName = "carl_swim_" + (swimmingTimer/15) + ".png";
+            swimmingTimer++;
+            if (swimmingTimer == 60) {
+                swimmingTimer = 0;
             }
-            else {
-                imageName = "bill_bat_fly_" + (flyingTimer/15) + ".png";
-                flyingTimer++;
-                if (flyingTimer == 60) {
-                    flyingTimer = 0;
-                }
-                if (stun != 0) {
-                    imageName = "bill_bat_stun.png";
-                }
-            }
-            
-            
-        }
-        
-        if (biteTimer < 15) {
-            if (!billBat) {
-                imageName = "bill_bite_" + biteTimer * 3 / 15 + ".png";
-                biteTimer++;
-            }
-            else {
-                imageName = "bill_bat_bite_" + biteTimer * 3 / 15 + ".png";
-                biteTimer++;
+            if (stun != 0) {
+                imageName = "carl_stun.png";
             }
         }
         
-        if (lightsaberTimer < 30) {
-            lightsaberTimer++;
-        }
-                
         imageDirection = direction;
     }
     
     public void normalAttack() {
+        //bite
         if (canAttack()) {
             attacking = true;
-            biteTimer = 0;
+            rollTimer = 0;
             
             if (direction == 1) {
                 xVelocity = 1;
@@ -105,70 +61,62 @@ public class Carl extends Player
             else {
                 xVelocity = -1;
             }
-            
+        
             Hitbox h = new Hitbox(biteSize, playerNumber, biteDuration, biteDamage, direction, 
                 biteKnockback, (int)getXPosition()+(biteX*direction), (int)getYPosition()+biteY, 
                 biteStun);
-            ((Map) getWorld()).addObject(h, getX()+(35*direction), getY()-40);
-        
+            ((Map) getWorld()).addObject(h, getX()+(biteX*direction), getY()+biteY);
             setAttackDelay(biteDelay);
             attacking = false;
+
         }
         
     }
     
+    public void updateCurrentBean(int update) {
+        currentBean = update;
+    }
+    
     public void specialAttack() {
-        //lightsaber
-        if (canAttack() && !billBat) {
-            attacking = true;
-            Lightsaber l = new Lightsaber(playerNumber, direction, getXPosition(), getYPosition());
-            holder[0] = l;
-            double lightsaberX = getXPosition() + getXVelocity()
-            + 70 * Math.sin(Math.toRadians(direction*30))
-            + (direction * 10);
-            double lightsaberY = getYPosition() + getYVelocity()
-            + 70 * -Math.cos(Math.toRadians(direction*30))
-            + 5;
-        
-            ((Map) getWorld()).addObject(l, (int)lightsaberX, (int)lightsaberY); // The location is arbitrary.
-            setAttackDelay(lightsaberDelay);
-            attacking = false;
+        //projectile (beans)
+        if (canAttack()) {
+            beansTimer = 0;
+            Beans b = new Beans(getXPosition()+10, getYPosition()+40, 
+            getXVelocity() + direction * 25, getYVelocity() - 15, playerNumber, currentBean);
+            if (beanList[currentBean] != null) {
+                Beans oldBean = beanList[currentBean];
+                ((Map) getWorld()).removeObject(oldBean);
+            }
+            beanList[currentBean] = b;
+            currentBean = (++currentBean % 2);
+            ((Map) getWorld()).addObject(b, 0, 0); // 0, 0 is fine because it will update anyway
+            setAttackDelay(beansDelay);
         }
         
     }
     
     public void alternateAttack() {
+        // projectile (window)
         if (canAttack()) {
-            attacking = true;
-            billBat = !billBat;
-            if (billBat) {
-                imageScale = .9;
-                JUMP_POWER = 28;
-                SPEED = 1.4;
-                biteDamage = 2;
-                biteSize = 13;
-                biteY = -20;
-                biteKnockback = 12;
-                biteDelay = 30;
-                defaultImage = new GreenfootImage("bill_bat_fly_0.png");
+            windowTimer = 0;
+            Window w = new Window(getXPosition(), getYPosition()+50, 
+            0, getYVelocity() - 30, playerNumber);
+            if (beanList[0] != null) {
+                Window oldWindow = windowList[0];
+                ((Map) getWorld()).removeObject(oldWindow);
             }
-            else {
-                imageScale = 1;
-                JUMP_POWER = 22;
-                SPEED = 1.1;
-                biteDamage = 3;
-                biteSize = 11;
-                biteY = -30;
-                biteKnockback = 14;
-                biteDelay = 35;
-                defaultImage = new GreenfootImage("bill_walk_0.png");
-            }
-            setAttackDelay(batDelay);
-            attacking = false;
+            windowList[0] = w;
+            ((Map) getWorld()).addObject(w, 0, 0); // 0, 0 is fine because it will update anyway
+            setAttackDelay(windowDelay);
         }
     }
     
     public void removeProjectiles() {
-        ((Map) getWorld()).removeObject(holder[0]);
+        for (Beans b : beanList) {
+            ((Map) getWorld()).removeObject(b);
+        }
+        for (Window w : windowList) {
+            ((Map) getWorld()).removeObject(w);
+        }
     }
 }
