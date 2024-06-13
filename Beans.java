@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Beans extends Projectile
 {
     int beanTimer = 0;
-    Bear thrower;
+    Player thrower;
     
     // Some parameters
     final int SELF_DAMAGE = 6;    // Damage done if the thrower touches the beans
@@ -64,7 +64,9 @@ public class Beans extends Projectile
     }
     
     private void checkHit() {
-        thrower = (Bear) ((Map) getWorld()).getPlayer(throwerNumber);
+         
+        thrower = ((Map) getWorld()).getPlayer(throwerNumber);
+        
         
         //will explode upon seeing any players, hammers or lightsabers
         

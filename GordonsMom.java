@@ -167,6 +167,10 @@ public class GordonsMom extends Player
         }
     }
     
+    public void updateCurrentBean(int update) {
+        
+    }
+    
     public void removeProjectiles() {
         ((Map) getWorld()).removeObject(holder[0]);
     }

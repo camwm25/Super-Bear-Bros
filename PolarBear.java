@@ -181,6 +181,10 @@ public class PolarBear extends Player
         return false;
     }
     
+    public void updateCurrentBean(int update) {
+        
+    }
+    
     public void removeProjectiles() {
         ((Map) getWorld()).removeObject(lightningHolder[0]);
     }

@@ -13,14 +13,30 @@ public class Carl extends Player
     
     int rollTimer = 30;
     
+    int beansDelay = 60;
+    int beansTimer = 30;
+    
+    int currentBean = 0;
+    
+    Beans[] beanList = new Beans[2];
+    
     int rollX = 40;
     int rollY = 0;
     int rollDuration = 20;
-    int rollSize = 9;
+    int rollSize = 8;
     int rollDamage = 10;
     int rollKnockback = 18;
     int rollStun = 25;
     int rollDelay = 30;
+    
+    int splashX = 20;
+    int splashY = -30;
+    int splashDuration = 20;
+    int splashSize = 7;
+    int splashDamage = 4;
+    int splashKnockback = 18;
+    int splashStun = 20;
+    int splashDelay = 30;
     
     int splashTimer = 30;
     
@@ -61,11 +77,16 @@ public class Carl extends Player
             rollTimer++;
         }
         
+        if (splashTimer < 30) {
+            imageName = "carl_splash_" + splashTimer * 6 / 30 + ".png";
+            splashTimer++;
+        }
+        
         imageDirection = direction;
     }
     
     public void normalAttack() {
-        //bite
+        //roll
         if (canAttack()) {
             attacking = true;
             rollTimer = 0;
@@ -89,17 +110,53 @@ public class Carl extends Player
     }
     
     public void specialAttack() {
-        //projectile (beans)
-        
-        
+        //beans
+        if (canAttack()) {
+            beansTimer = 0;
+            Beans b = new Beans(getXPosition()+10, getYPosition()+40, 
+            getXVelocity() + direction * 25, getYVelocity() - 15, playerNumber, currentBean);
+            if (beanList[currentBean] != null) {
+                Beans oldBean = beanList[currentBean];
+                ((Map) getWorld()).removeObject(oldBean);
+            }
+            beanList[currentBean] = b;
+            currentBean = (++currentBean % 2);
+            ((Map) getWorld()).addObject(b, 0, 0); // 0, 0 is fine because it will update anyway
+            setAttackDelay(beansDelay);
+        }
     }
     
     public void alternateAttack() {
-        // projectile (window)
+        // splash
         
+        if (canAttack()) {
+            attacking = true;
+            splashTimer = 0;
+            
+            if (direction == 1) {
+                xVelocity = 1;
+            }
+            else {
+                xVelocity = -1;
+            }
+        
+            Hitbox h = new Hitbox(splashSize, playerNumber, splashDuration, splashDamage, direction, 
+                splashKnockback, (int)getXPosition()+(splashX*direction), (int)getYPosition()+splashY, 
+                splashStun);
+            ((Map) getWorld()).addObject(h, getX()+(rollX*direction), getY()+rollY);
+            setAttackDelay(splashDelay);
+            attacking = false;
+
+        }
+    }
+    
+    public void updateCurrentBean(int update) {
+        currentBean = update;
     }
     
     public void removeProjectiles() {
-
+        for (Beans b : beanList) {
+            ((Map) getWorld()).removeObject(b);
+        }
     }
 }

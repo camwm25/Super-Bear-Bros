@@ -92,6 +92,8 @@ public abstract class Player extends PhysicsObject
             direction = -1;
         }
     }
+    
+    public abstract void updateCurrentBean(int update);
         
     /**
      * Act - do whatever the Player wants to do. This method is called whenever
