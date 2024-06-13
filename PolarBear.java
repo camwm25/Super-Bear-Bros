@@ -19,10 +19,10 @@ public class PolarBear extends Player
     int punchX = 60;
     int punchY = 5;
     int punchDuration = 20;
-    int punchSize = 9;
-    int punchDamage = 2;
+    int punchSize = 7;
+    int punchDamage = 3;
     int punchKnockback = 16;
-    int punchStun = 25;
+    int punchStun = 30;
     
     double fieldSize = 3.25;
     int fieldHealFactor = 2;
@@ -87,7 +87,7 @@ public class PolarBear extends Player
             lightningTimer++;
         }
         
-        if (punchTimer == 8 && canAttack()) {
+        if (punchTimer == 5 && canAttack()) {
             Hitbox h = new Hitbox(punchSize, playerNumber, punchDuration, punchDamage, direction, 
                 punchKnockback, (int)getXPosition()+(punchX*direction), (int)getYPosition()+punchY, 
                 punchStun);

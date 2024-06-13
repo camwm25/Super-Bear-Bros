@@ -74,8 +74,8 @@ public class Lightning extends Weapon
             
             for (Player p: getIntersectingObjects(Player.class)) {
                 if (p.playerNumber != bearerNumber) {
-                    p.takeDamage(2);
-                    p.takeKnockback(direction, 26);
+                    p.takeDamage(3);
+                    p.takeKnockback(direction, 28);
                     p.setStun(25);
                 }
             }

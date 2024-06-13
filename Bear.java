@@ -17,7 +17,7 @@ public class Bear extends Player
     int biteDuration = 20;
     int biteSize = 9;
     int biteDamage = 3;
-    int biteKnockback = 12;
+    int biteKnockback = 14;
     int biteStun = 20;
     int biteDelay = 35;
     

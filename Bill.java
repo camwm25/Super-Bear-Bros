@@ -19,7 +19,7 @@ public class Bill extends Player
     int biteDuration = 10;
     int biteSize = 11;
     int biteDamage = 3;
-    int biteKnockback = 12;
+    int biteKnockback = 14;
     int biteStun = 15;
     int biteDelay = 35;
     
