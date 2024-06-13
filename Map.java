@@ -69,7 +69,7 @@ public abstract class Map extends GameScreen
         
         goToScreen(); 
         
-        setPaintOrder(PlayerFollower.class, Icon.class, InvisibleObject.class, 
+        setPaintOrder(PlayerFollower.class, Letter.class, Icon.class, InvisibleObject.class, 
             Player.class, PlayerFollower.class, Lightsaber.class, Hammer.class, 
             Window.class, Beans.class, Ground.class, Cloud.class);
     }
@@ -78,12 +78,12 @@ public abstract class Map extends GameScreen
         switch (playerNumber) {
             case 1:
             playerOneHealth -= damage;
-            showText(String.valueOf(playerOneHealth), 100, 150);
+            displayText(String.valueOf(playerOneHealth), 100, 150, 0.5);
             break;
             
             case 2:
             playerTwoHealth -= damage;
-            showText(String.valueOf(playerTwoHealth), 860, 150);
+            displayText(String.valueOf(playerTwoHealth), 860, 150, 0.5);
             break;
             
         }
@@ -164,22 +164,22 @@ public abstract class Map extends GameScreen
             case "bear":
                 //player1 = new Bear("WASD", -200, 200);
                 player1 = new Bear(1, -200, 200, playerOneControls);
-                showText("BEAR", 100, 50);
+                displayText("BEAR", 100, 50, 0.3);
                 break;
             case "bill":
                 //player1 = new Bill("WASD", -200, 200);
                 player1 = new Bill(1, -200, 200, playerOneControls);
-                showText("BILL", 100, 50);
+                displayText("BILL", 100, 50, 0.3);
                 break;
             case "gordonsmom":
                 //player1 = new GordonsMom("WASD", -200, 200);
                 player1 = new GordonsMom(1, -200, 200, playerOneControls);
-                showText("GORDON'S MOM", 100, 50);
+                displayText("GORDON'S MOM", 100, 50, 0.3);
                 break;
             case "polarbear":
                 //player1 = new PolarBear("WASD", -200, 200);
                 player1 = new PolarBear(1, -200, 200, playerOneControls);
-                showText("POLAR BEAR", 100, 50);
+                displayText("POLAR BEAR", 100, 50, 0.3);
                 break;
             default:
                 //player1 = new Bear("WASD", -200, 200);
@@ -198,22 +198,22 @@ public abstract class Map extends GameScreen
             case "bear":
                 //player2 = new Bear("IJKL", 200, 200);
                 player2 = new Bear(2, 200, 200, playerTwoControls);
-                showText("BEAR", 860, 50);
+                displayText("BEAR", 860, 50, 0.3);
                 break;
             case "bill":
                 //player2 = new Bill("IJKL", 200, 200);
                 player2 = new Bill(2, 200, 200, playerTwoControls);
-                showText("BILL", 860, 50);
+                displayText("BILL", 860, 50, 0.3);
                 break;
             case "gordonsmom":
                 //player2 = new GordonsMom("IJKL", 200, 200);
                 player2 = new GordonsMom(2, 200, 200, playerTwoControls);
-                showText("GORDON'S MOM", 860, 50);
+                displayText("GORDON'S MOM", 860, 50, 0.3);
                 break;
             case "polarbear":
                 //player2 = new PolarBear("IJKL", 200, 200);
                 player2 = new PolarBear(2, 200, 200, playerTwoControls);
-                showText("POLAR BEAR", 860, 50);
+                displayText("POLAR BEAR", 860, 50, 0.3);
                 break;
             default:
                 //player2 = new Bear("IJKL", 200, 200);
