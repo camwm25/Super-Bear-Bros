@@ -32,6 +32,7 @@ public class Bear extends Player
         SPEED = 1;
         imageName = "bear_walk_0.png";
         imageScale = 1;
+        defaultImage = new GreenfootImage("bear_walk_0.png");
     }
     
     public Bear(int playerNumber, double x, double y, String[] controls) {

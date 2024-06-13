@@ -33,6 +33,9 @@ public abstract class Player extends PhysicsObject
     boolean attacking = false;
     boolean inGround = false;
     
+    // Using Bear as a default to avoid having a null image for the first few frames.
+    GreenfootImage defaultImage = new GreenfootImage("bear_walk_0.png");
+    
     // to do: fix attacking and getting hit at same time cancelling knockback
     // to do: fix other knockback tidbits
     
@@ -305,6 +308,14 @@ public abstract class Player extends PhysicsObject
     
     public int getDirection() {
         return direction;
+    }
+    
+    public GreenfootImage getDefaultImage() {
+        return defaultImage;
+    }
+    
+    public double getHeight() {
+        return getDefaultImage().getHeight() * imageScale;
     }
     
     public abstract void normalAttack();

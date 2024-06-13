@@ -43,8 +43,8 @@ public abstract class PhysicsObject extends ForegroundObject
         
         for (Ground tile : getIntersectingObjects(Ground.class)) {
             
-            double playerBottom = y + (getImage().getHeight() * imageScale) / 2;
-            double groundTop = tile.getYPosition() - (tile.getImage().getHeight() * tile.imageScale) / 2;
+            double playerBottom = y + getHeight() / 2;
+            double groundTop = tile.getYPosition() - tile.getHeight() / 2;
             
             if (playerBottom < groundTop + tolerance) {
                 return true;
@@ -62,8 +62,8 @@ public abstract class PhysicsObject extends ForegroundObject
         }
         
         for (Ground tile : getIntersectingObjects(Ground.class)) {
-            double playerBottom = y + getImage().getHeight() / 2;
-            double groundTop = tile.getYPosition() - tile.getImage().getHeight() / 2;
+            double playerBottom = y + getHeight() / 2;
+            double groundTop = tile.getYPosition() - tile.getHeight() / 2;
             
             if (playerBottom < groundTop + tolerance && !tile.canFallThrough()) {
                 return true;

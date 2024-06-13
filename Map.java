@@ -38,7 +38,7 @@ public abstract class Map extends GameScreen
     Ground[] groundArray = new Ground[25];
     int arrayCounter;
     
-    private final double shakingThreshold = 0.1;
+    private final double shakingThreshold = 1;
     
     /**
      * Constructor for objects of class Map.

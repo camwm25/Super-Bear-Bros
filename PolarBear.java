@@ -35,6 +35,8 @@ public class PolarBear extends Player
         SPEED = 1.05;
         imageName = "polar_bear_walk_0.png";
         imageScale = 1;
+        
+        defaultImage = new GreenfootImage("polar_bear_walk_0.png");
     }
     
     public PolarBear(int playerNumber, double x, double y, String[] controls) {
