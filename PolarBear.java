@@ -24,7 +24,7 @@ public class PolarBear extends Player
     int punchKnockback = 16;
     int punchStun = 25;
     
-    double fieldSize = 3.5;
+    double fieldSize = 3.25;
     int fieldHealFactor = 2;
     
     ProjectileBox[] boxHolder = new ProjectileBox[1];
@@ -98,7 +98,7 @@ public class PolarBear extends Player
         if (fieldTimer == 8 && checkHeld()) {
             fieldTimer--;
             if (projectileBoxGone) {
-                fieldTimer = 10;
+                fieldTimer = 9;
             }
             if (stun > 0) {
                 fieldTimer = 10;
