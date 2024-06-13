@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class PolarBear extends Player
 {
     int punchTimer = 30;
-    int fieldTimer = 60;
+    int fieldTimer = 40;
     
     boolean punchActivate = false;
     
@@ -20,6 +20,9 @@ public class PolarBear extends Player
     int punchDamage = 2;
     int punchKnockback = 16;
     int punchStun = 25;
+    
+    int fieldSize = 4;
+    int fieldHealFactor = 2;
     
     ProjectileBox[] boxHolder = new ProjectileBox[1];
     
@@ -57,8 +60,16 @@ public class PolarBear extends Player
             punchTimer++;
         }
         
-        if (fieldTimer < 60) {
-            //imageName = "polar_bear_field.png";
+        if (fieldTimer < 40) {
+            if (fieldTimer < 9) {
+                imageName = "electric_shield_" + (fieldTimer*3/8) +".png";
+            }
+            else if (fieldTimer < 17) {
+                imageName = "electric_shield_" + (3 - (fieldTimer-8)*3/8) +".png";
+            }
+            else {
+                imageName = "polar_bear_walk_" + (((int) x/10) % 16 + 16) % 16 + ".png";
+            }
             fieldTimer++;
         }
         
@@ -70,10 +81,10 @@ public class PolarBear extends Player
             setAttackDelay(punchDelay);
         }
         
-        if (fieldTimer == 2 && checkHeld()) {
+        if (fieldTimer == 8 && checkHeld()) {
             fieldTimer--;
         }
-        if (fieldTimer == 4) {
+        if (fieldTimer == 10) {
             setAttackDelay(fieldDelay);
             ((Map) getWorld()).removeObject(boxHolder[0]);
         }
@@ -99,14 +110,13 @@ public class PolarBear extends Player
         
     }
     
-    
     public void specialAttack() {
         //lighting
         
     }
     
     public void alternateAttack() {
-        if (canAttack() && fieldTimer >= 60) {
+        if (canAttack() && fieldTimer >= 40) {
             attacking = true;
             fieldTimer = 0;
             
@@ -117,8 +127,8 @@ public class PolarBear extends Player
                 xVelocity = 0;
             }
             
-            ProjectileBox p = new ProjectileBox(4, playerNumber, direction, 
-                (int)getXPosition(), (int)getYPosition(), false, 2);
+            ProjectileBox p = new ProjectileBox(fieldSize, playerNumber, direction, 
+                (int)getXPosition(), (int)getYPosition(), false, fieldHealFactor);
             boxHolder[0] = p;
             ((Map) getWorld()).addObject(p, getX(), getY());
     
