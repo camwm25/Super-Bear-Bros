@@ -13,11 +13,11 @@ public class Carl extends Player
     
     int rollTimer = 30;
     
-    int rollX = 20;
+    int rollX = 40;
     int rollY = 0;
     int rollDuration = 20;
     int rollSize = 9;
-    int rollDamage = 3;
+    int rollDamage = 10;
     int rollKnockback = 18;
     int rollStun = 25;
     int rollDelay = 30;
@@ -71,10 +71,10 @@ public class Carl extends Player
             rollTimer = 0;
             
             if (direction == 1) {
-                xVelocity = 1;
+                xVelocity = 20;
             }
             else {
-                xVelocity = -1;
+                xVelocity = -20;
             }
         
             Hitbox h = new Hitbox(rollSize, playerNumber, rollDuration, rollDamage, direction, 
