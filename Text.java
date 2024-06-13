@@ -27,6 +27,7 @@ public class Text extends Actor
             if (currentCharacter.equals("'")) currentCharacter = "apostrophe";
             if (currentCharacter.equals(".")) currentCharacter = "period";
             if (currentCharacter.equals("-")) currentCharacter = "hyphen";
+            if (currentCharacter.equals(":")) currentCharacter = "colon";
             letterList.add(new Letter(currentCharacter, currentX, y, size));
             currentX += size * spacing + letterList.get(letterList.size() - 1).getImage().getWidth();
         }

@@ -45,6 +45,9 @@ public class ControlScreen extends GameScreen
         showText("Click to Change Control:", 480, 150);
         c = new ControlButton();
         addObject(c, 480, 200);
+        
+        BackButton b = new BackButton(this);
+        addObject(b, 480, 400);
     }
     
     private void textPlayerOne() {
