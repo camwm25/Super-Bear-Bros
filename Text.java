@@ -41,6 +41,13 @@ public class Text extends Actor
         }
     }
     
+    public void hide(World world) {
+        for (Letter l : letterList) {
+            world.removeObject(l);
+        }
+        world.removeObject(this);
+    }
+    
     public void act()
     {
         // Add your action code here.
