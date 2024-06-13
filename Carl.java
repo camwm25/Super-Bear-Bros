@@ -12,6 +12,16 @@ public class Carl extends Player
     int swimmingTimer = 0;
     
     int rollTimer = 30;
+    
+    int rollX = 20;
+    int rollY = 0;
+    int rollDuration = 20;
+    int rollSize = 9;
+    int rollDamage = 3;
+    int rollKnockback = 18;
+    int rollStun = 25;
+    int rollDelay = 30;
+    
     int splashTimer = 30;
     
     public Carl(String inputType, double x, double y) {
@@ -46,6 +56,11 @@ public class Carl extends Player
             }
         }
         
+        if (rollTimer < 30) {
+            imageName = "polar_bear_punch_" + rollTimer * 5 / 30 + ".png";
+            rollTimer++;
+        }
+        
         imageDirection = direction;
     }
     
@@ -62,61 +77,29 @@ public class Carl extends Player
                 xVelocity = -1;
             }
         
-            Hitbox h = new Hitbox(biteSize, playerNumber, biteDuration, biteDamage, direction, 
-                biteKnockback, (int)getXPosition()+(biteX*direction), (int)getYPosition()+biteY, 
-                biteStun);
-            ((Map) getWorld()).addObject(h, getX()+(biteX*direction), getY()+biteY);
-            setAttackDelay(biteDelay);
+            Hitbox h = new Hitbox(rollSize, playerNumber, rollDuration, rollDamage, direction, 
+                rollKnockback, (int)getXPosition()+(rollX*direction), (int)getYPosition()+rollY, 
+                rollStun);
+            ((Map) getWorld()).addObject(h, getX()+(rollX*direction), getY()+rollY);
+            setAttackDelay(rollDelay);
             attacking = false;
 
         }
         
     }
     
-    public void updateCurrentBean(int update) {
-        currentBean = update;
-    }
-    
     public void specialAttack() {
         //projectile (beans)
-        if (canAttack()) {
-            beansTimer = 0;
-            Beans b = new Beans(getXPosition()+10, getYPosition()+40, 
-            getXVelocity() + direction * 25, getYVelocity() - 15, playerNumber, currentBean);
-            if (beanList[currentBean] != null) {
-                Beans oldBean = beanList[currentBean];
-                ((Map) getWorld()).removeObject(oldBean);
-            }
-            beanList[currentBean] = b;
-            currentBean = (++currentBean % 2);
-            ((Map) getWorld()).addObject(b, 0, 0); // 0, 0 is fine because it will update anyway
-            setAttackDelay(beansDelay);
-        }
+        
         
     }
     
     public void alternateAttack() {
         // projectile (window)
-        if (canAttack()) {
-            windowTimer = 0;
-            Window w = new Window(getXPosition(), getYPosition()+50, 
-            0, getYVelocity() - 30, playerNumber);
-            if (beanList[0] != null) {
-                Window oldWindow = windowList[0];
-                ((Map) getWorld()).removeObject(oldWindow);
-            }
-            windowList[0] = w;
-            ((Map) getWorld()).addObject(w, 0, 0); // 0, 0 is fine because it will update anyway
-            setAttackDelay(windowDelay);
-        }
+        
     }
     
     public void removeProjectiles() {
-        for (Beans b : beanList) {
-            ((Map) getWorld()).removeObject(b);
-        }
-        for (Window w : windowList) {
-            ((Map) getWorld()).removeObject(w);
-        }
+
     }
 }
