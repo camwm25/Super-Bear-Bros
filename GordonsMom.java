@@ -52,6 +52,8 @@ public class GordonsMom extends Player
         SPEED = 1.2;
         imageName = "gordons_mom_walk_0.png";
         imageScale = 1;
+        
+        defaultImage = new GreenfootImage("gordons_mom_walk_0.png");
     }
 
     

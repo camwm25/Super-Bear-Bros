@@ -44,9 +44,9 @@ public abstract class PhysicsObject extends ForegroundObject
         for (Ground tile : getIntersectingObjects(Ground.class)) {
             
             double playerBottom = y + getHeight() / 2;
-            double groundTop = tile.getYPosition() - tile.getHeight() / 2;
+            double groundTop = tile.getYPosition() - 1.55 * tile.getHeight();
             
-            if (playerBottom < groundTop + tolerance) {
+            if (playerBottom >= groundTop - 40 && playerBottom < groundTop + tolerance) {
                 return true;
             }
         }
@@ -63,9 +63,9 @@ public abstract class PhysicsObject extends ForegroundObject
         
         for (Ground tile : getIntersectingObjects(Ground.class)) {
             double playerBottom = y + getHeight() / 2;
-            double groundTop = tile.getYPosition() - tile.getHeight() / 2;
+            double groundTop = tile.getYPosition() - 1.55 * tile.getHeight();
             
-            if (playerBottom < groundTop + tolerance && !tile.canFallThrough()) {
+            if (playerBottom >= groundTop - 40 && playerBottom < groundTop + tolerance && !tile.canFallThrough()) {
                 return true;
             }
         }

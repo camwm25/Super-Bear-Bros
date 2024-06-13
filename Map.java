@@ -158,7 +158,7 @@ public abstract class Map extends GameScreen
         double desiredCamZoom = 1 / (playerDistanceSquared / 1000000 + 1.2) + 0.25;
         
         // test
-        // desiredCamZoom *= 1;
+        // desiredCamZoom *= 2;
         
         
         camZoom += (desiredCamZoom - camZoom) / 10;

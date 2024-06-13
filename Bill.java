@@ -47,6 +47,8 @@ public class Bill extends Player
         SPEED = 1.1;
         imageName = "bill_walk_0.png";
         imageScale = 1;
+        
+        defaultImage = new GreenfootImage("bill_walk_0.png");
     }
 
     
