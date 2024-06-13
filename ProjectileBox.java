@@ -9,7 +9,7 @@ import java.lang.Math;
  */
 public class ProjectileBox extends InvisibleObject
 {
-    int size;
+    double size;
     int direction;
     int timer = 0;
     int time = 0;
@@ -27,14 +27,14 @@ public class ProjectileBox extends InvisibleObject
         super.act();
     }
     
-    public ProjectileBox(int size, int playerCreator, int direction, double x, double y, int time,
+    public ProjectileBox(double size, int playerCreator, int direction, double x, double y, int time,
                         int healFactor) {
         this(size, playerCreator, direction, x, y, healFactor);
         isTimer = true;
         this.time = time;
     }
     
-    public ProjectileBox(int size, int playerCreator, int direction, double x, double y, int healFactor) {
+    public ProjectileBox(double size, int playerCreator, int direction, double x, double y, int healFactor) {
         super(playerCreator, x, y, direction);
         imageName = "hitbox.png";
         imageScale = 2.0/size;
@@ -48,7 +48,7 @@ public class ProjectileBox extends InvisibleObject
         this.direction = direction;
     }
     
-    public ProjectileBox(int size, int playerCreator, int direction, double x, double y, boolean wantMove,
+    public ProjectileBox(double size, int playerCreator, int direction, double x, double y, boolean wantMove,
                         int healFactor) {
         this(size, playerCreator, direction, x, y, healFactor);
         this.wantMove = wantMove;
@@ -107,10 +107,12 @@ public class ProjectileBox extends InvisibleObject
     public void checkMove() {
         if (!wantMove && this.getWorld() != null) {
             Player p = ((Map) getWorld()).getPlayer(creator);
-            if (Math.abs(yCoord - (int)p.getYPosition()) > 3) {
+            if (Math.abs(yCoord - (int)p.getYPosition()) > 30) {
+                ((PolarBear)p).projectileBoxGone = true;
                 ((Map) getWorld()).removeObject(this);
             }
-            if (Math.abs(xCoord - (int)p.getXPosition()) > 3) {
+            if (Math.abs(xCoord - (int)p.getXPosition()) > 10) {
+                ((PolarBear)p).projectileBoxGone = true;
                 ((Map) getWorld()).removeObject(this);
             }
         }

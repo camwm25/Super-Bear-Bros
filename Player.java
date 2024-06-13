@@ -107,7 +107,6 @@ public abstract class Player extends PhysicsObject
         checkAttack();
         checkInVoid();
         updateStun();
-        System.out.println("" + getHeight() + defaultImage + playerNumber);
     }
     
     public boolean canAttack() {

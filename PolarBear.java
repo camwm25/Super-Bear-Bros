@@ -12,6 +12,8 @@ public class PolarBear extends Player
     int fieldTimer = 40;
     int lightningTimer = 60;
     
+    public boolean projectileBoxGone = false;
+    
     boolean punchActivate = false;
     
     int punchX = 60;
@@ -22,7 +24,7 @@ public class PolarBear extends Player
     int punchKnockback = 16;
     int punchStun = 25;
     
-    int fieldSize = 4;
+    double fieldSize = 3.5;
     int fieldHealFactor = 2;
     
     ProjectileBox[] boxHolder = new ProjectileBox[1];
@@ -95,10 +97,19 @@ public class PolarBear extends Player
         
         if (fieldTimer == 8 && checkHeld()) {
             fieldTimer--;
+            if (projectileBoxGone) {
+                fieldTimer = 10;
+            }
+            if (stun > 0) {
+                fieldTimer = 10;
+            }
         }
+        
+        
         if (fieldTimer == 10) {
             setAttackDelay(fieldDelay);
             ((Map) getWorld()).removeObject(boxHolder[0]);
+            projectileBoxGone = false;
         }
         
         imageDirection = direction;
