@@ -41,6 +41,10 @@ public class MapSelect extends GameScreen
         Selectable map2Select = new Selectable("map2");
         addObject(map2Select, 330, 230);
         displayText("Map 2", 330, 160, 0.3);
+        
+        Selectable map3Select = new Selectable("map3");
+        addObject(map3Select, 480, 230);
+        displayText("Map 3", 480, 160, 0.3);
     }
     
     public void selectMap(String s) {
@@ -60,6 +64,9 @@ public class MapSelect extends GameScreen
             else if (map.equals("map2")) {
                 Greenfoot.setWorld(new Map2(characterOne, characterTwo, controlsOne, controlsTwo));
             }
+            else if (map.equals("map3")) {
+                Greenfoot.setWorld(new Map3(characterOne, characterTwo, controlsOne, controlsTwo));
+            }
             else {
                 Greenfoot.setWorld(new Map1(characterOne, characterTwo, controlsOne, controlsTwo));
             }
@@ -70,6 +77,9 @@ public class MapSelect extends GameScreen
             }
             else if (map.equals("map2")) {
                 Greenfoot.setWorld(new Map2(characterOne, characterTwo));
+            }
+            else if (map.equals("map3")) {
+                Greenfoot.setWorld(new Map3(characterOne, characterTwo));
             }
             else {
                 Greenfoot.setWorld(new Map1(characterOne, characterTwo));
