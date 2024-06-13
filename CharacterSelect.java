@@ -54,6 +54,10 @@ public class CharacterSelect extends GameScreen
         addObject(polarbearSelect, 630, 230);
         displayText("polar bear", 630, 160, 0.3);
         
+        Selectable carlSelect = new Selectable("carl");
+        addObject(carlSelect, 880, 230);
+        displayText("carl", 880, 160, 0.3);
+        
         displayText("player one", 200, 500, 0.3);
         displayText("player two", 760, 500, 0.3);
     }
