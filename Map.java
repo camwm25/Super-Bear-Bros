@@ -38,7 +38,7 @@ public abstract class Map extends GameScreen
     private Text playerOneHealthText;
     private Text playerTwoHealthText;
     
-    Ground[] groundArray = new Ground[25];
+    Ground[] groundArray = new Ground[30];
     int arrayCounter;
     
     private final double shakingThreshold = 1;

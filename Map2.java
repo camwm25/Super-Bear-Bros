@@ -48,20 +48,11 @@ public class Map2 extends Map
         buildObject("space_block", -448, 300, "base");
         buildObject("space_block", -512, 300, "base");
         
-        buildObject("tile1_b0", -300, 100);
-        buildObject("tile1_b2", -190, 100);
+        buildObject("tile1_b0", -220, 100);
+        buildObject("tile1_b2", -110, 100);
         
-        buildObject("tile1_b0", -355, -100);
-        buildObject("tile1_b2", -245, -100);
-        
-        buildObject("tile1_b0", -55, 0);
-        buildObject("tile1_b2", 55, 0);
-        
-        buildObject("tile1_b0", 190, 100);
-        buildObject("tile1_b2", 300, 100);
-        
-        buildObject("tile1_b0", 245, -100);
-        buildObject("tile1_b2", 355, -100);
+        buildObject("tile1_b0", 110, 100);
+        buildObject("tile1_b2", 220, 100);
         
         int numStars = 300;
         for (int i = 0; i <= numStars; i++) {
