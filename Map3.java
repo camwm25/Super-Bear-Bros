@@ -30,16 +30,44 @@ public class Map3 extends Map
     }
     
     private void buildMap() {
-        buildObject("grass_block", 500, 300, "base");
-        buildObject("grass_block", 400, 300, "base");
-        buildObject("grass_block", 300, 300, "base");
-        buildObject("grass_block", 200, 300, "base");
-        buildObject("grass_block", 100, 300, "base");
-        buildObject("grass_block", 0, 300, "base");
-        buildObject("grass_block", -100, 300, "base");
-        buildObject("grass_block", -200, 300, "base");
-        buildObject("grass_block", -300, 300, "base");
-        buildObject("grass_block", -400, 300, "base");
-        buildObject("grass_block", -500, 300, "base");
+        buildObject("goofy_block", 500, 300, "base");
+        buildObject("goofy_block", 400, 300, "base");
+        buildObject("goofy_block", 300, 300, "base");
+        buildObject("goofy_block", 200, 300, "base");
+        buildObject("goofy_block", 100, 300, "base");
+        buildObject("goofy_block", 0, 300, "base");
+        buildObject("goofy_block", -100, 300, "base");
+        buildObject("goofy_block", -200, 300, "base");
+        buildObject("goofy_block", -300, 300, "base");
+        buildObject("goofy_block", -400, 300, "base");
+        buildObject("goofy_block", -500, 300, "base");
+        
+        buildObject("goofy_block", 300, 100);
+        buildObject("goofy_block", 200, 100);
+        buildObject("goofy_block", 100, 100);
+        buildObject("goofy_block", 0, 100);
+        buildObject("goofy_block", -100, 100);
+        buildObject("goofy_block", -200, 100);
+        buildObject("goofy_block", -300, 100);
+        
+        buildObject("goofy_block", 200, -100);
+        buildObject("goofy_block", 100, -100);
+        buildObject("goofy_block", 0, -100);
+        buildObject("goofy_block", -100, -100);
+        buildObject("goofy_block", -200, -100);
+        
+        buildObject("goofy_block", 100, -300);
+        buildObject("goofy_block", 0, -300);
+        buildObject("goofy_block", -100, -300);
+        
+        buildObject("goofy_block", 0, -500);
+        
+        
+        int numStars = 300;
+        for (int i = 0; i <= numStars; i++) {
+            addStar(Math.random() * (25000 - 2000 * i / numStars) - (25000 - 2000 * i / numStars)/2,
+                     Math.random() * (15000 - 1000 * i / numStars) - (15000 - 1000 * i / numStars)/2 + 2000,
+                     10 * (1 - (double) i / numStars));
+        }
     }
 }

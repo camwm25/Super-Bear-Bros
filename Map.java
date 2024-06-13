@@ -157,9 +157,9 @@ public abstract class Map extends GameScreen
                                 Math.pow(player1.getYPosition() - player2.getYPosition(), 2);
         double desiredCamZoom = 1 / (playerDistanceSquared / 1000000 + 1.2) + 0.25;
         
-        // test
-        // desiredCamZoom *= 2;
-        
+        if (this instanceof Map3) {
+            desiredCamZoom = 1 / (playerDistanceSquared / 1000000 + 1.2);
+        }
         
         camZoom += (desiredCamZoom - camZoom) / 10;
     }
