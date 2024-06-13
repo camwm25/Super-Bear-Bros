@@ -70,7 +70,7 @@ public abstract class Map extends GameScreen
         goToScreen(); 
         
         setPaintOrder(PlayerFollower.class, Icon.class, InvisibleObject.class, 
-            Player.class, PlayerFollower.class, Lightsaber.class, Hammer.class, 
+            Player.class, PlayerFollower.class, Lightning.class, Lightsaber.class, Hammer.class, 
             Window.class, Beans.class, Ground.class, Cloud.class);
     }
     

@@ -10,6 +10,7 @@ public class PolarBear extends Player
 {
     int punchTimer = 30;
     int fieldTimer = 40;
+    int lightningTimer = 60;
     
     boolean punchActivate = false;
     
@@ -25,9 +26,11 @@ public class PolarBear extends Player
     int fieldHealFactor = 2;
     
     ProjectileBox[] boxHolder = new ProjectileBox[1];
+    Lightning[] lightningHolder = new Lightning[1];
     
     int punchDelay = 40;
     int fieldDelay = 60;
+    int lightningDelay = 60;
     
     public PolarBear(String inputType, double x, double y) {
         super(inputType, x, y);
@@ -50,7 +53,7 @@ public class PolarBear extends Player
     public void act() {
         super.act();
         
-        if (punchTimer >= 30 && fieldTimer >= 60) {
+        if (punchTimer >= 30 && fieldTimer >= 40 && lightningTimer >= 60) {
             imageName = "polar_bear_walk_" + (((int) x/10) % 16 + 16) % 16 + ".png";
             if (stun != 0) {
                 imageName = "polar_bear_stun.png";
@@ -73,6 +76,11 @@ public class PolarBear extends Player
                 imageName = "polar_bear_walk_" + (((int) x/10) % 16 + 16) % 16 + ".png";
             }
             fieldTimer++;
+        }
+        
+        if (lightningTimer < 60) {
+            imageName = "polar_bear_lightning_" + lightningTimer / 10 + ".png";
+            lightningTimer++;
         }
         
         if (punchTimer == 8 && canAttack()) {
@@ -114,7 +122,18 @@ public class PolarBear extends Player
     
     public void specialAttack() {
         //lighting
-        
+        if (canAttack()) {
+            attacking = true;
+            lightningTimer = 0;
+            Lightning l = new Lightning(playerNumber, direction, getXPosition(), getYPosition());
+            lightningHolder[0] = l;
+            double lightningX = getXPosition() + getXVelocity();
+            double lightningY = getYPosition() + getYVelocity();
+
+            ((Map) getWorld()).addObject(l, (int)lightningX, (int)lightningY);
+            setAttackDelay(lightningDelay);
+            attacking = false;
+        }
     }
     
     public void alternateAttack() {
@@ -149,6 +168,6 @@ public class PolarBear extends Player
     }
     
     public void removeProjectiles() {
-        
+        ((Map) getWorld()).removeObject(lightningHolder[0]);
     }
 }
