@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PolarBear extends Player
 {
-    int punchTimer = 30;
+    int punchTimer = 20;
     int fieldTimer = 40;
     int lightningTimer = 42;
     
@@ -57,15 +57,15 @@ public class PolarBear extends Player
     public void act() {
         super.act();
         
-        if (punchTimer >= 30 && fieldTimer >= 40 && lightningTimer >= 42) {
+        if (punchTimer >= 20 && fieldTimer >= 40 && lightningTimer >= 42) {
             imageName = "polar_bear_walk_" + (((int) x/10) % 16 + 16) % 16 + ".png";
             if (stun != 0) {
                 imageName = "polar_bear_stun.png";
             }
         }
         
-        if (punchTimer < 30) {
-            imageName = "polar_bear_punch_" + punchTimer * 7 / 30 + ".png";
+        if (punchTimer < 20) {
+            imageName = "polar_bear_punch_" + punchTimer * 7 / 20 + ".png";
             punchTimer++;
         }
         
@@ -87,7 +87,7 @@ public class PolarBear extends Player
             lightningTimer++;
         }
         
-        if (punchTimer == 5 && canAttack()) {
+        if (punchTimer == 4 && canAttack()) {
             Hitbox h = new Hitbox(punchSize, playerNumber, punchDuration, punchDamage, direction, 
                 punchKnockback, (int)getXPosition()+(punchX*direction), (int)getYPosition()+punchY, 
                 punchStun);

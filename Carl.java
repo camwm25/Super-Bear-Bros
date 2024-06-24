@@ -20,14 +20,14 @@ public class Carl extends Player
     
     Beans[] beanList = new Beans[2];
     
-    int rollX = 40;
+    int rollX = 0;
     int rollY = 0;
-    int rollDuration = 20;
+    int rollDuration = 7;
     int rollSize = 8;
-    int rollDamage = 10;
+    int rollDamage = 3;
     int rollKnockback = 18;
     int rollStun = 25;
-    int rollDelay = 30;
+    int rollDelay = 60;
     
     int splashX = 20;
     int splashY = -30;
@@ -75,6 +75,12 @@ public class Carl extends Player
         if (rollTimer < 30) {
             imageName = "carl_roll_" + rollTimer * 5 / 30 + ".png";
             rollTimer++;
+            if (rollTimer % 5 == 4) {
+                Hitbox h = new Hitbox(rollSize, playerNumber, rollDuration, rollDamage, direction, 
+                rollKnockback, (int)getXPosition()+(rollX*direction), (int)getYPosition()+rollY, 
+                rollStun);
+                ((Map) getWorld()).addObject(h, getX()+(rollX*direction), getY()+rollY);
+            }
         }
         
         if (splashTimer < 30) {
@@ -98,10 +104,6 @@ public class Carl extends Player
                 xVelocity = -20;
             }
         
-            Hitbox h = new Hitbox(rollSize, playerNumber, rollDuration, rollDamage, direction, 
-                rollKnockback, (int)getXPosition()+(rollX*direction), (int)getYPosition()+rollY, 
-                rollStun);
-            ((Map) getWorld()).addObject(h, getX()+(rollX*direction), getY()+rollY);
             setAttackDelay(rollDelay);
             attacking = false;
 

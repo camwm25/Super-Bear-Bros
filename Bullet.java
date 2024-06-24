@@ -14,8 +14,8 @@ public class Bullet extends ForegroundObject
     private int direction;
     private int throwerNumber;
     
-    final int SELF_DAMAGE = 3;    // Damage done if the thrower touches the buller
-    final int DAMAGE = 4;         // Damage done if someone else touches the bullet
+    final int SELF_DAMAGE = 6;    // Damage done if the thrower touches the buller
+    final int DAMAGE = 8;         // Damage done if someone else touches the bullet
     
     private int bulletTimer = 0;
     private int explosionTimer = 0;
@@ -62,7 +62,7 @@ public class Bullet extends ForegroundObject
         //will explode upon seeing any players, hammers or beans
         
         bulletTimer++;
-        if (bulletTimer >= 20) {
+        if (bulletTimer >= 30) {
             ((Map) getWorld()).removeObject(this);
         }
         else if (bulletTimer > 5) {  // If the bullet is ripe
